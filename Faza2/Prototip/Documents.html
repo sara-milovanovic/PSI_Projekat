@@ -1,0 +1,274 @@
+<!--autor: Sara Milovanovic-->
+<html>
+	<head>
+		<title> CodeWithZac(Documentation)</title>
+		<link rel="icon" type="image/png" href="slika.png"/>
+	</head>
+	<body background="bg.jpg">
+	<table align="right">
+		<tr>
+			<td align="right"> <font size="5" face="Cursive"> Hello <b>Lana!</b></font></td>
+		</tr>
+	</table>
+	<br/> <br/>
+	<hr size="2" color="black">
+	<!--tabela uvod-->
+		<table  width="100%" id="top">
+			<tr>
+				<td width="15%" align="left"> <img src="zac2.jpg" height="150"> </td>
+				<td width="60%" align="center"> <img src="logo2.png" height="170" align="center"> </td>
+				<td width="10%" align=""> <button type="button" > <font size="4"><a href="start_unreg.html">Sign Out</a></font></button> </td>
+				<td width="10%"></td>
+			</tr>
+			
+		</table>
+		<table align="right">
+			<tr>
+				<td align="right"> <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font></td>
+			</tr>
+		</table>
+		<br/> <br/>
+		<hr size="4" color="black">
+		<hr size="2" color="lightblue">
+		<br/>
+		
+		
+		<!--tabela precice-->
+		<table>
+			<tr>
+				<td  width="36%"> <font size="6"></font></td>
+				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="FAQ_only_view.html">Frequently asked questions</a></font></td>
+				<td  width="2%"> <font size="6"></font></td>
+				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="start_reg.html">Home page</a></font></td>
+				<td  width="2%"> <font size="6"></font></td>
+				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="myInformations.html">My informations</a></font></td>
+				<td width="23%" > </td>
+				</tr>
+		</table> 
+		<br/>
+		<hr size="2" color="black">
+		<br/>
+		<!--centralna tabela-->
+		<table width="100%" >
+			<tr><td><img src="c.png" height="120"></td><td></td><td></td></tr>
+			<tr>
+				<td width="15%" height="500"><font size="5" face="Cursive"><b>Introduction:</b></font></td>
+				<td><font size="3" face="Cursive">C is a general-purpose, imperative computer programming language, supporting structured programming, lexical variable scope and recursion, while a static type system prevents many unintended operations. By design, C provides constructs that map efficiently to typical machine instructions, and therefore it has found lasting use in applications that had formerly been coded in assembly language, including operating systems, as well as various application software for computers ranging from supercomputers to embedded systems.
+
+<br/><br/>Operators: C supports a rich set of operators, which are symbols used within an expression to specify the manipulations to be performed while evaluating that expression. C has operators for:
+
+,arithmetic: +, -, *, /, %
+,assignment: =
+,augmented assignment: +=, -=, *=, /=, %=, &=, |=, ^=, <<=, >>=
+,bitwise logic: ~, &, |, ^
+,bitwise shifts: <<, >>
+,boolean logic: !, &&, ||
+,conditional evaluation: ? :
+,equality testing: ==, !=
+,calling functions: ( )
+,increment and decrement: ++, --
+,member selection: ., ->
+,object size: sizeof
+,order relations: <, <=, >, >=
+,reference and dereference: &, *, [ ]
+,sequencing: ,
+,subexpression grouping: ( )
+,type conversion: (typename)<br/><br/>C was originally developed by Dennis Ritchie between 1972 and 1973 at Bell Labs. It was created to make utilities running on Unix. Later, it was applied to re-implementing the kernel of the Unix operating system[6]. Through 1980s, C gradually gained popularity. Nowadays, it is one of the most widely used programming languages[7][8] with C compilers from various vendors available for the majority of existing computer architectures and operating systems. C has been standardized by the American National Standards Institute (ANSI) since 1989 (see ANSI C) and subsequently by the International Organization for Standardization (ISO).</font></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td width="15%"  height="2" bgcolor="gray"></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr>
+				<td width="15%"  height="500" ><font size="5" face="Cursive"><b>Data types:</b></font></td>
+				<td><font size="3" face="Cursive">The type system in C is static and weakly typed, which makes it similar to the type system of ALGOL descendants such as Pascal.[28] There are built-in types for integers of various sizes, both signed and unsigned, floating-point numbers, and enumerated types (enum). Integer type char is often used for single-byte characters. C99 added a boolean datatype. There are also derived types including arrays, pointers, records (struct), and unions (union).
+
+C is often used in low-level systems programming where escapes from the type system may be necessary. The compiler attempts to ensure type correctness of most expressions, but the programmer can override the checks in various ways, either by using a type cast to explicitly convert a value from one type to another, or by using pointers or unions to reinterpret the underlying bits of a data object in some other way.
+
+Some find C's declaration syntax unintuitive, particularly for function pointers. (Ritchie's idea was to declare identifiers in contexts resembling their use: "declaration reflects use".)[29]
+
+C's usual arithmetic conversions allow for efficient code to be generated, but can sometimes produce unexpected results. For example, a comparison of signed and unsigned integers of equal width requires a conversion of the signed value to unsigned. This can generate unexpected results if the signed value is negative.</font></td>
+				<td width="15%"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td width="15%"  height="2" bgcolor="gray"></td>
+				
+				<td width="15%"></td>
+			</tr>
+				
+			
+			<tr align="center">
+				<td width="15%"  height="500" ><font size="5" face="Cursive"><b>For loop:</b></font></td>
+				<td><font size="3" face="Cursive"><b>The syntax of for loop is:</b><br/><img src=for.png height="100"><br/>
+				<b>How for loop works?</b><br/>
+The initialization statement is executed only once.
+
+Then, the test expression is evaluated. If the test expression is false (0), for loop is terminated. But if the test expression is true (nonzero), codes inside the body of for loop is executed and the update expression is updated.
+
+This process repeats until the test expression is false.
+
+The for loop is commonly used when the number of iterations is known.
+
+To learn more on test expression (when test expression is evaluated to nonzero (true) and 0 (false)), check out relational and logical operators.<br/>
+				<img src=flow_for.png height="300" > <br/>
+				<b>Example:</b><br/><img src=ex_for.png height="400"><br/>
+				<br/><img src=out_for.png height="110"><br/>
+				The value entered by the user is stored in variable num. Suppose, the user entered 10.
+
+The count is initialized to 1 and the test expression is evaluated. Since, the test expression count <= num (1 less than or equal to 10) is true, the body of for loop is executed and the value of sum will equal to 1.
+
+Then, the update statement ++count is executed and count will equal to 2. Again, the test expression is evaluated. Since, 2 is also less than 10, the test expression is evaluated to true and the body of for loop is executed. Now, the sum will equal 3.
+
+This process goes on and the sum is calculated until the count reaches 11.
+
+When the count is 11,  the test expression is evaluated to 0 (false) as 11 is not less than or equal to 10. Therefore, the loop terminates and next, the total sum is printed.<br/>
+				</font></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td width="15%"  height="2" bgcolor="gray"></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr align="center">
+				<td width="15%"  height="500" ><font size="5" face="Cursive"><b>While loop:</b></font></td>
+				<td><font size="3" face="Cursive"><b>The syntax of while loop is:</b><br/><img src=while.png height="100"><br/>
+				<b>How while loop works?</b><br/>The while loop evaluates the test expression.
+
+If the test expression is true (nonzero), codes inside the body of while loop is executed. The test expression is evaluated again. The process goes on until the test expression is false.
+
+When the test expression is false, the while loop is terminated.<br/>
+				<img src=flow_while.png height="300" > <br/>
+				<b>Example:</b><br/><img src=ex_while.png height="600"><br/>
+				
+				<br/>
+				</font></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td width="15%"  height="2" bgcolor="gray"></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr align="center">
+				<td width="15%"  height="500" ><font size="5" face="Cursive"><b>Switch/case</b></font></td>
+				<td><font size="3" face="Cursive"><b>The syntax of switch/case loop is:</b><br/><img src=switch.png height="100"><br/>
+				<b>How while switch/case works?</b><br/>The if..else..if ladder allows you to execute a block code among many alternatives. If you are checking on the value of a single variable in if...else...if, it is better to use switch statement.
+
+The switch statement is often faster than nested if...else (not always). Also, the syntax of switch statement is cleaner and easy to understand.<br/>
+				<img src=flow_switch.png height="300" > <br/>
+				<b>Example:</b><br/><img src=ex_switch.png height="500"><br/>
+				<br/><img src=out_switch.png height="110"><br/>
+				<br/>
+				The - operator entered by the user is stored in operator variable. And, two operands 32.5 and 12.4 are stored in variables firstNumber and secondNumber respectively.<br/>
+				<br/>Then, control of the program jumps to:<br/>
+				<img src=sswitch.png height="50" > <br/>
+				Finally, the break statement terminates the switch statement.<br/>
+				</font></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td width="15%"  height="2" bgcolor="gray"></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr align="center">
+				<td width="15%"  height="500" ><font size="5" face="Cursive"><b>Pointers</b></font></td>
+				<td><font size="3" face="Cursive"><b>Address in C:</b><br/><br/>Before you get into the concept of pointers, let's first get familiar with address in C.
+
+If you have a variable var in your program, &var will give you its address in the memory, where & is commonly called the reference operator.
+
+You must have seen this notation while using scanf() function. It was used in the function to store the user inputted value in the address of var.<br/>
+				<img src=pointers.png height="300" > <br/>
+				<b>Note:</b><br/><font size="3" face="Cursive">You may obtain different value of address while using this code.
+
+In above source code, value 5 is stored in the memory location 2686778. var is just the name given to that location.<br/>
+				<br/><b>How to create a pointer variable?</b><br/><img src="p.png" height="100">
+				<br/>
+				<b>Reference operator (&) and Dereference operator (*)</b><br/>
+As discussed, & is called reference operator. It gives you the address of a variable.
+
+Likewise, there is another operator that gets you the value from the address, it is called a dereference operator  *.
+
+Below example clearly demonstrates the use of pointers, reference operator and dereference operator.
+
+Note: The * sign when declaring a pointer is not a dereference operator. It is just a similar notation that creates a pointer.<br/>
+<br/>
+				<b>Example:</b><br/><img src="ex_p.png" height="600"><br/><b>Common mistakes when working with pointers:</b><br/>
+Suppose, you want pointer pc to point to the address of c. Then:<br/> <img src="ex2_p.png" height="300"><br/>
+				<table width="100%"  >
+					<tr>
+						<td valign="top"><img src="1.png" height="100"></td>
+						<td valign="top"><img src="2.png" height="100"></td>
+						<td valign="top"><img src="3.png" height="100"></td>
+						<td valign="top"><img src="4.png" height="100"></td>
+						<td valign="top"><img src="5.png" height="100"></td>
+					</tr>
+				</table>
+				<table width="100%"  >
+					<tr>
+						<td width="19%"  valign="top"><font size="3" face="Cursive">Here, a pointer pc and a normal variable c, both of type int, is created.
+Since pc and c are not initialized at first, pointer pc points to either no address or a random address. And, variable c has an address but contains a random garbage value.</td>
+						<td width="1%" bgcolor="gray"></td>
+						<td width="19%"  valign="top">This assigns 22 to the variable c, i.e., 22 is stored in the memory location of variable c.
+Note that, when printing &c (address of c), we use %u rather than %d since address is usually expressed as an unsigned integer (always positive).</td>
+						<td width="1%" bgcolor="gray"></td>
+						<td width="19%"  valign="top">This assigns the address of variable c to the pointer pc.
+You see the value of pc is same as the address of c and the content of pc is 22 as well.</td>
+						<td width="1%" bgcolor="gray"></td>
+						<td width="19%"  valign="top">This assigns 11 to variable c.
+Since, pointer pc points to the same address as c, value pointed by pointer pc is 11 as well.</td>
+						<td width="1%" bgcolor="gray"></td>
+						<td width="20%"  valign="top">This change the value at the memory location pointed by pointer pc to 2.
+Since the address of the pointer pc is same as the address of c, value of c is also changed to 2.</td></font>
+					</tr>
+				</table>
+				</font></td>
+				
+				<td width="15%"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td width="15%"  height="2" bgcolor="gray"></td>
+				
+				<td width="15%"></td>
+			</tr>		
+			<tr>
+				<td></td>
+				<td align="center"> <img src="zac_doc.png" height="300"></td>
+				
+				<td></td>
+			</tr>		
+		</table>
+		
+		<br/>
+		<hr size="2" color="black">
+		<table align="right">
+			<tr>
+				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="FAQ_only_view.html">FAQ/How to use</a><font/> </td>
+				
+				<td  width="25">  <font size="4" face="Cursive"><font/> </td>
+				
+				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="#top">PageUp</a><font/> </td>
+				
+				<td  width="25">  <font size="4" face="Cursive"><font/> </td>
+				
+				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="myInformations.html">My informations</a><font/> </td>
+			</tr>
+		</table>
+		<br/> <br/>
+		<hr size="2" color="black" >
+		<p align="center"> <font size="4" face="Cursive">Thanks for using our app!<font/></p>
+	</body>
+</html>
