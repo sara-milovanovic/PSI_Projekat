@@ -1,0 +1,3 @@
+MISSIJA-ispravljene-slovne-greske.zip :
+-Crvenom bojom naznacene sve slovne greske koje treba ispraviti u svim .docx dokumentima.
+-zip je stavljen zbog velikog broja slovnih gresaka kako ne bismo njih pisali u logovima
