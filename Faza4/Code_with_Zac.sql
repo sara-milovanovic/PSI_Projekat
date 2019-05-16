@@ -1,286 +1,282 @@
 
-CREATE TABLE [Admin]
+CREATE TABLE IF NOT EXISTS Admin
 ( 
-	[IdRegistrovani]     [Id]  NOT NULL ,
-	[Radi_od]            datetime  NULL ,
-	CONSTRAINT [XPKAdmin] PRIMARY KEY  CLUSTERED ([IdRegistrovani] ASC)
-)
-go
+	IdRegistrovani     int  NOT NULL COLLATE utf8_unicode_ci NOT NULL,
+	Radi_od            datetime  NULL COLLATE utf8_unicode_ci NOT NULL,
+	PRIMARY KEY   (IdRegistrovani )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [FAQ]
+CREATE TABLE IF NOT EXISTS FAQ
 ( 
-	[IdFAQ]              [Id]  NOT NULL ,
-	[Pitanje]            [Tekst] ,
-	[Odgovor]            [Tekst] ,
-	CONSTRAINT [XPKFAQ] PRIMARY KEY  CLUSTERED ([IdFAQ] ASC)
-)
-go
+	IdFAQ              int  NOT NULL COLLATE utf8_unicode_ci NOT NULL,
+	Pitanje            varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+	Odgovor            varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+	PRIMARY KEY   (IdFAQ )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Komentari]
+CREATE TABLE IF NOT EXISTS Komentari
 ( 
-	[IdKomentari]        [Id]  NOT NULL ,
-	[Tekst]              varchar(20)  NULL ,
-	[Datetime]           datetime  NULL ,
-	[IdRegistrovani]     [Id] ,
-	[IdKurs]             [Id]  NOT NULL ,
-	CONSTRAINT [XPKKomentari] PRIMARY KEY  CLUSTERED ([IdKomentari] ASC)
-)
-go
+	IdKomentari        int  NOT NULL ,
+	Tekst              varchar(20)  NULL ,
+	DatumVreme           datetime  NULL ,
+	IdRegistrovani     int ,
+	IdKurs             int  NOT NULL ,
+	PRIMARY KEY   (IdKomentari )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Kurs]
+CREATE TABLE IF NOT EXISTS Kurs
 ( 
-	[IdKurs]             [Id]  NOT NULL ,
-	[Ime]                [Ime] ,
-	[Ocena]              float  NULL ,
-	[Status]             [Status] ,
-	CONSTRAINT [XPKKurs] PRIMARY KEY  CLUSTERED ([IdKurs] ASC)
-)
-go
+	IdKurs             int  NOT NULL ,
+	Ime                varchar(20) ,
+	Ocena              float  NULL ,
+	Status             varchar(10) ,
+	PRIMARY KEY   (IdKurs )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE [Kurs]
-	ADD CONSTRAINT [XIme] UNIQUE ([Ime]  ASC)
-go
 
-CREATE TABLE [Materijali_na_cekanju]
+
+
+CREATE TABLE IF NOT EXISTS Materijali_na_cekanju
 ( 
-	[IdMaterijali_na_cekanju] [Id]  NOT NULL ,
-	[Tekst]              [Tekst] ,
-	[IdOblast]           [Id]  NOT NULL ,
-	CONSTRAINT [XPKMaterijali_na_cekanju] PRIMARY KEY  CLUSTERED ([IdMaterijali_na_cekanju] ASC)
+	IdMaterijali_na_cekanju int  NOT NULL ,
+	Tekst              varchar(255) ,
+	IdOblast           int  NOT NULL ,
+	PRIMARY KEY   (IdMaterijali_na_cekanju )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Oblast]
+CREATE TABLE IF NOT EXISTS Oblast
 ( 
-	[IdOblast]           [Id]  NOT NULL ,
-	[Ime]                [Ime] ,
-	[Materijal]          varchar(40)  NULL ,
-	[IdKurs]             [Id]  NOT NULL ,
-	CONSTRAINT [XPKOblast] PRIMARY KEY  CLUSTERED ([IdOblast] ASC)
+	IdOblast           int  NOT NULL ,
+	Ime                varchar(20) ,
+	Materijal          varchar(40)  NULL ,
+	IdKurs             int  NOT NULL ,
+	PRIMARY KEY   (IdOblast )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Ocena]
+CREATE TABLE IF NOT EXISTS Ocena
 ( 
-	[IdOcena]            [Id]  NOT NULL ,
-	[Vrednost]           float  NULL ,
-	[IdRegistrovani]     [Id] ,
-	[IdKurs]             [Id]  NOT NULL ,
-	CONSTRAINT [XPKOcena] PRIMARY KEY  CLUSTERED ([IdOcena] ASC)
+	IdOcena            int  NOT NULL ,
+	Vrednost           float  NULL ,
+	IdRegistrovani     int ,
+	IdKurs             int  NOT NULL ,
+	PRIMARY KEY   (IdOcena )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Odgovor]
+CREATE TABLE IF NOT EXISTS Odgovor
 ( 
-	[Tekst]              [Tekst] ,
-	[Redni_br]           integer  NULL 
-	CONSTRAINT [za_redni_br_1771392294]
-		CHECK  ( Redni_br BETWEEN 1 AND 4 ),
-	[IdPitalica]         [Id]  NOT NULL ,
-	CONSTRAINT [XPKOdgovor] PRIMARY KEY  CLUSTERED ([IdPitalica] ASC)
+	Tekst              varchar(255) ,
+	Redni_br           integer  NULL ,
+	/*CONSTRAINT za_redni_br_1771392294*/
+	/*	CHECK  ( Redni_br BETWEEN 1 AND 4 ),*/
+	IdPitalica         int  NOT NULL ,
+	PRIMARY KEY   (IdPitalica )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Odslusani]
+CREATE TABLE IF NOT EXISTS Odslusani
 ( 
-	[IdRegistrovani]     [Id]  NOT NULL ,
-	[IdKurs]             [Id]  NOT NULL ,
-	CONSTRAINT [XPKOdslusani] PRIMARY KEY  CLUSTERED ([IdRegistrovani] ASC,[IdKurs] ASC)
+	IdRegistrovani     int  NOT NULL ,
+	IdKurs             int  NOT NULL ,
+	PRIMARY KEY   (IdRegistrovani ,IdKurs )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Pitalica]
+CREATE TABLE IF NOT EXISTS Pitalica
 ( 
-	[IdPitalica]         [Id]  NOT NULL ,
-	[Status]             [Status] ,
-	[Tekst]              [Tekst] ,
-	[Tip]                varchar(20)  NULL 
-	CONSTRAINT [za_tip_1682135326]
-		CHECK  ( [Tip]='radio' OR [Tip]='checkbox' OR [Tip]='fill' OR [Tip]='list' ),
-	[IdOblast]           [Id]  NOT NULL ,
-	[Tacan]              integer  NULL ,
-	CONSTRAINT [XPKPitalica] PRIMARY KEY  CLUSTERED ([IdPitalica] ASC)
+	IdPitalica         int  NOT NULL ,
+	Status             varchar(10) ,
+	Tekst             varchar(255) ,
+	Tip                varchar(20)  NULL ,
+	
+	IdOblast           int  NOT NULL ,
+	Tacan              integer  NULL ,
+	PRIMARY KEY   (IdPitalica )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Profesor]
+CREATE TABLE IF NOT EXISTS Profesor
 ( 
-	[IdRegistrovani]     [Id]  NOT NULL ,
-	CONSTRAINT [XPKProfesor] PRIMARY KEY  CLUSTERED ([IdRegistrovani] ASC)
+	IdRegistrovani     int  NOT NULL ,
+	PRIMARY KEY   (IdRegistrovani )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Registrovani]
+CREATE TABLE IF NOT EXISTS Registrovani
 ( 
-	[IdRegistrovani]     [Id]  NOT NULL ,
-	[Username]           [Ime] ,
-	[Prezime]            varchar(20)  NULL ,
-	[e_mail]             varchar(20)  NULL ,
-	[Password]           [Password] ,
-	[Ime]                [Ime] ,
-	CONSTRAINT [XPKRegistrovani] PRIMARY KEY  CLUSTERED ([IdRegistrovani] ASC)
+	IdRegistrovani     int  NOT NULL ,
+	Username           varchar(20) ,
+	Prezime            varchar(20)  NULL ,
+	e_mail             varchar(20)  NULL ,
+	Password           varchar(20) ,
+	Ime                varchar(20) ,
+	PRIMARY KEY   (IdRegistrovani )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE [Registrovani]
-	ADD CONSTRAINT [XUsername] UNIQUE ([Username]  ASC)
-go
+ALTER TABLE Registrovani
+	ADD UNIQUE (Username  )
+;
 
-ALTER TABLE [Registrovani]
-	ADD CONSTRAINT [Xe_mail] UNIQUE ([e_mail]  ASC)
-go
+ALTER TABLE Registrovani
+	ADD UNIQUE (e_mail  )
+;
 
-CREATE TABLE [Rezultat]
+CREATE TABLE IF NOT EXISTS Rezultat
 ( 
-	[IdRezultat]         [Id]  NOT NULL 
-	CONSTRAINT [za_procenat_34212326]
-		CHECK  ( IdRezultat BETWEEN 0 AND 100 ),
-	[Status]             [Status] ,
-	[Procenat_tacnih]    float  NULL ,
-	[IdOblast]           [Id]  NOT NULL ,
-	[IdRegistrovani]     [Id]  NOT NULL ,
-	CONSTRAINT [XPKRezultat] PRIMARY KEY  CLUSTERED ([IdRezultat] ASC)
+	IdRezultat         int  NOT NULL ,
+	Status            varchar(10) ,
+	Procenat_tacnih    float  NULL ,
+	IdOblast           int  NOT NULL ,
+	IdRegistrovani     int  NOT NULL ,
+	PRIMARY KEY   (IdRezultat )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Slusa]
+CREATE TABLE IF NOT EXISTS Slusa
 ( 
-	[IdRegistrovani]     [Id]  NOT NULL ,
-	[IdKurs]             [Id]  NOT NULL ,
-	CONSTRAINT [XPKSlusa] PRIMARY KEY  CLUSTERED ([IdRegistrovani] ASC,[IdKurs] ASC)
+	IdRegistrovani     int  NOT NULL ,
+	IdKurs             int  NOT NULL ,
+	PRIMARY KEY   (IdRegistrovani ,IdKurs )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE [Student]
+CREATE TABLE IF NOT EXISTS Student
 ( 
-	[IdRegistrovani]     [Id]  NOT NULL ,
-	[Najbolji]           [Status] ,
-	CONSTRAINT [XPKStudent] PRIMARY KEY  CLUSTERED ([IdRegistrovani] ASC)
+	IdRegistrovani     int  NOT NULL ,
+	Najbolji           varchar(10) ,
+	PRIMARY KEY   (IdRegistrovani )
 )
-go
+ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
-ALTER TABLE [Admin]
-	ADD CONSTRAINT [R_1] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Registrovani]([IdRegistrovani])
+ALTER TABLE Admin
+	ADD CONSTRAINT R_1 FOREIGN KEY (IdRegistrovani) REFERENCES Registrovani(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Komentari]
-	ADD CONSTRAINT [R_14] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Profesor]([IdRegistrovani])
+ALTER TABLE Komentari
+	ADD CONSTRAINT R_14 FOREIGN KEY (IdRegistrovani) REFERENCES Profesor(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
-ALTER TABLE [Komentari]
-	ADD CONSTRAINT [R_15] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Student]([IdRegistrovani])
+ALTER TABLE Komentari
+	ADD CONSTRAINT R_15 FOREIGN KEY (IdRegistrovani) REFERENCES Student(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
-ALTER TABLE [Komentari]
-	ADD CONSTRAINT [R_16] FOREIGN KEY ([IdKurs]) REFERENCES [Kurs]([IdKurs])
+ALTER TABLE Komentari
+	ADD CONSTRAINT R_16 FOREIGN KEY (IdKurs) REFERENCES Kurs(IdKurs)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Materijali_na_cekanju]
-	ADD CONSTRAINT [R_25] FOREIGN KEY ([IdOblast]) REFERENCES [Oblast]([IdOblast])
+ALTER TABLE Materijali_na_cekanju
+	ADD CONSTRAINT R_25 FOREIGN KEY (IdOblast) REFERENCES Oblast(IdOblast)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Oblast]
-	ADD CONSTRAINT [R_17] FOREIGN KEY ([IdKurs]) REFERENCES [Kurs]([IdKurs])
+ALTER TABLE Oblast
+	ADD CONSTRAINT R_17 FOREIGN KEY (IdKurs) REFERENCES Kurs(IdKurs)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Ocena]
-	ADD CONSTRAINT [R_11] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Profesor]([IdRegistrovani])
+ALTER TABLE Ocena
+	ADD CONSTRAINT R_11 FOREIGN KEY (IdRegistrovani) REFERENCES Profesor(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
-ALTER TABLE [Ocena]
-	ADD CONSTRAINT [R_12] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Student]([IdRegistrovani])
+ALTER TABLE Ocena
+	ADD CONSTRAINT R_12 FOREIGN KEY (IdRegistrovani) REFERENCES Student(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
-ALTER TABLE [Ocena]
-	ADD CONSTRAINT [R_13] FOREIGN KEY ([IdKurs]) REFERENCES [Kurs]([IdKurs])
+ALTER TABLE Ocena
+	ADD CONSTRAINT R_13 FOREIGN KEY (IdKurs) REFERENCES Kurs(IdKurs)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Odgovor]
-	ADD CONSTRAINT [R_26] FOREIGN KEY ([IdPitalica]) REFERENCES [Pitalica]([IdPitalica])
+ALTER TABLE Odgovor
+	ADD CONSTRAINT R_26 FOREIGN KEY (IdPitalica) REFERENCES Pitalica(IdPitalica)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Odslusani]
-	ADD CONSTRAINT [R_7] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Student]([IdRegistrovani])
+ALTER TABLE Odslusani
+	ADD CONSTRAINT R_7 FOREIGN KEY (IdRegistrovani) REFERENCES Student(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
-ALTER TABLE [Odslusani]
-	ADD CONSTRAINT [R_8] FOREIGN KEY ([IdKurs]) REFERENCES [Kurs]([IdKurs])
+ALTER TABLE Odslusani
+	ADD CONSTRAINT R_8 FOREIGN KEY (IdKurs) REFERENCES Kurs(IdKurs)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Pitalica]
-	ADD CONSTRAINT [R_18] FOREIGN KEY ([IdOblast]) REFERENCES [Oblast]([IdOblast])
+ALTER TABLE Pitalica
+	ADD CONSTRAINT R_18 FOREIGN KEY (IdOblast) REFERENCES Oblast(IdOblast)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Profesor]
-	ADD CONSTRAINT [R_3] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Registrovani]([IdRegistrovani])
+ALTER TABLE Profesor
+	ADD CONSTRAINT R_3 FOREIGN KEY (IdRegistrovani) REFERENCES Registrovani(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Rezultat]
-	ADD CONSTRAINT [R_23] FOREIGN KEY ([IdOblast]) REFERENCES [Oblast]([IdOblast])
+ALTER TABLE Rezultat
+	ADD CONSTRAINT R_23 FOREIGN KEY (IdOblast) REFERENCES Oblast(IdOblast)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
-ALTER TABLE [Rezultat]
-	ADD CONSTRAINT [R_24] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Student]([IdRegistrovani])
+ALTER TABLE Rezultat
+	ADD CONSTRAINT R_24 FOREIGN KEY (IdRegistrovani) REFERENCES Student(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Slusa]
-	ADD CONSTRAINT [R_5] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Student]([IdRegistrovani])
+ALTER TABLE Slusa
+	ADD CONSTRAINT R_5 FOREIGN KEY (IdRegistrovani) REFERENCES Student(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
-ALTER TABLE [Slusa]
-	ADD CONSTRAINT [R_6] FOREIGN KEY ([IdKurs]) REFERENCES [Kurs]([IdKurs])
+ALTER TABLE Slusa
+	ADD CONSTRAINT R_6 FOREIGN KEY (IdKurs) REFERENCES Kurs(IdKurs)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
 
 
-ALTER TABLE [Student]
-	ADD CONSTRAINT [R_2] FOREIGN KEY ([IdRegistrovani]) REFERENCES [Registrovani]([IdRegistrovani])
+ALTER TABLE Student
+	ADD CONSTRAINT R_2 FOREIGN KEY (IdRegistrovani) REFERENCES Registrovani(IdRegistrovani)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-go
+;
+
+ALTER TABLE Kurs
+	ADD  UNIQUE (Ime  )
+;
