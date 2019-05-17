@@ -21,7 +21,7 @@ INSERT INTO `student`(`IdRegistrovani`, `Najbolji`) VALUES ('6','ne');
 INSERT INTO `kurs`(`Ime`, `Ocena`, `Status`) VALUES ('C','0','dostupan');
 INSERT INTO `kurs`(`Ime`, `Ocena`, `Status`) VALUES ('Java','0','nedostupan');
 
-INSERT INTO `faq`(`Pitanje`, `Odgovor`) VALUES ('Kako da Vas kontaktiramo za dodatna pitanja?','Mozete nas kontaktirati pute naseg maila: code_with_zac@gmail.com');
+INSERT INTO `faq`(`Pitanje`, `Odgovor`) VALUES ('Kako da Vas kontaktiramo za dodatna pitanja?','Mozete nas kontaktirati putem naseg maila: code_with_zac@gmail.com');
 INSERT INTO `faq`(`Pitanje`, `Odgovor`) VALUES ('Kada ce biti dostupni novi kursevi?','Nas tim radi na unapredjenju sajta i dodavanju novih kurseva i pitalica');
 
 INSERT INTO `ocena`(`Vrednost`, `IdRegistrovani`, `IdKurs`) VALUES ('5','7','1');
