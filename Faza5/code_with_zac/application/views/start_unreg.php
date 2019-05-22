@@ -96,7 +96,8 @@ In this jam-packed 1 hour course, we focus on the tools, techniques and ideas yo
 				</td>
 				<td><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"> <font size="4" face="Cursive">&nbsp;&nbsp;&nbsp;Course rating: <b>4.7<b/> <font/></td>
 				
-				<td width="50" align="center"> <font size="4" face="Cursive"><img src="<?php echo base_url('images/zac_com.png')?>" height="150"><br/><a href="<?php echo site_url("Gost/ucitaj_komentare")?>"><button type="button" >View comments</button></a><font/></td>
+				<td width="50" align="center"> <font size="4" face="Cursive"><img src="<?php echo base_url('images/zac_com.png')?>" height="150"><br/>
+                                    <a href="<?php echo site_url("Gost/ucitaj_komentare")?>"><input type="button" value="View comments" ></a></td>
 			</tr>
 			<!--Python-->
 			<tr align="center">

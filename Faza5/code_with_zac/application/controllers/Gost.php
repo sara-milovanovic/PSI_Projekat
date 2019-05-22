@@ -5,8 +5,9 @@ class Gost extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('ModelKorisnik');
-   //ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
-      // kako su nam oba modela trebala u svim kontrolerima 
+        $this->load->model('ModelKomentari');
+        //ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
+        // kako su nam oba modela trebala u svim kontrolerima 
         //mogli smo i u autoload falju da ih dodamo u niz za modele
         
         //provera da li je korisnik mozda vec ulogovan
@@ -34,18 +35,6 @@ class Gost extends CI_Controller{
         //treba voditi racuna o tome da pozove ispravni kontroler prilikom pretrage kooja se nalazi na toj stranici
         //to nam omogucala element niza $podaci['controller'] 
     }
-    
-    // metoda koja se poziva prilikom pretrage
-    public function pretraga(){
-        $trazi=$this->input->get('pretraga');
-        $this->index($trazi);
-    }
-     
-    //informacije o svim autorima u sistemu
-    public function  autori(){
-        $podaci['autori']= $this->ModelAutor->dohvatiAutore();
-        $this->prikazi("autori.php",$podaci);     
-    }
           
     //metoda koja ucitava formu za  logovanje
     public function login($poruka=NULL)
@@ -55,6 +44,15 @@ class Gost extends CI_Controller{
             $podaci['poruka'] = $poruka;
         }
         $this->load->view('login.php',$podaci);
+    }
+    
+    public function signup_formValidation($poruka=NULL)
+    {  
+        $podaci=[];
+        if ($poruka) {
+            $podaci['poruka'] = $poruka;
+        }
+        $this->load->view('SignUp.php',$podaci);
     }
     
     //metoda koja se poziva klikom na submit forme za logovanje
@@ -89,19 +87,15 @@ class Gost extends CI_Controller{
                         redirect('Profesor');
                         break;
                 }
-                /*$autor=$this->ModelAutor->autor;
-                $this->session->set_userdata('autor',$autor);
-                if($autor->admin == 0){
-                    redirect("Korisnik");
-                } else {
-                    redirect("Admin");
-                }*/
+                
             }
         } else {
          
             $this->login();
         }
     }
+   
+    
     
    public function ucitaj_login(){
        $this->load->view("login.php");
@@ -112,11 +106,58 @@ class Gost extends CI_Controller{
    }
    
    public function ucitaj_komentare(){
-       $this->load->view("comments_only_view.php");
+       
+       $podaci['komentari']=$this->ModelKomentari->ucitaj_komentare();
+       $this->load->view("comments_only_view.php",$podaci);
    }
    
    public function ucitaj_signup(){
        $this->load->view("SignUp.php");
    }
    
+    public function ucitaj_home(){
+       $this->index();
+   }
+   
+   public function signup(){
+       
+       $this->form_validation->set_rules("username", "Username", "required");
+       $this->form_validation->set_rules("password", "Password", "required");
+       $this->form_validation->set_rules("email", "Email", "required");
+       $this->form_validation->set_message("required","Field {field} is required.");
+       
+      
+       
+       if ($this->form_validation->run()) {
+          echo "123";
+           if ($this->ModelKorisnik->dohvatiUsernameSignup($this->input->post('username'))) {
+                $this->signup_formValidation("Username already exist!");
+              
+            }
+            else if ($this->ModelKorisnik->dohvatiMail($this->input->post('email'))) {
+                $this->signup_formValidation("Your already signed up with this mail!");
+              
+            }
+            else{
+                
+                $korisnik=$this->ModelKorisnik->insert_korisnik($this->input->post('username'),$this->input->post('password'),$this->input->post('email'),$this->input->post('name'),$this->input->post('surname'));
+                $this->session->set_userdata('student',$korisnik);
+                redirect('Student');
+            }
+           
+       }
+       
+       else {
+         
+            $this->signup_formValidation();
+        }
+       
+       
+   }
+   
+   public function salji_sifru_na_mail(){
+       
+       
+       
+   }
 }

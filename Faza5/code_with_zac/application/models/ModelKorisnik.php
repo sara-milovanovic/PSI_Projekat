@@ -29,6 +29,64 @@ class ModelKorisnik extends CI_Model {
             return FALSE;
         }
     }
+    
+    public function dohvatiKorisnika_id($id){
+        $result=$this->db->where('IdRegistrovani',$id)->get('registrovani');
+        $korisnik=$result->row();
+        if ($korisnik!=NULL) {
+            $this->korisnik=$korisnik;
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    
+    public function dohvatiUsernameSignup($korisnicko_ime){
+        $result=$this->db->where('Username',$korisnicko_ime)->get('registrovani');
+        $korisnik=$result->row();
+        if ($korisnik!=NULL) {
+            
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    
+    public function dohvatiMail($mail){
+        $result=$this->db->where('e_mail',$mail)->get('registrovani');
+        $korisnik=$result->row();
+        if ($korisnik!=NULL) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    
+     
+    public function insert_korisnik($u,$p,$m,$n,$s){
+        
+        $this->db->set("Username", $u);
+        $this->db->set("Password", $p);
+        $this->db->set("Ime",$n);
+        $this->db->set("e_mail",$m);
+
+        $this->db->set("Prezime", $s);
+        $this->db->insert("registrovani");
+        
+        
+        $this->db->where("Username",$u);
+        $this->db->from('registrovani');
+        $query=$this->db->get();
+        $result=$query->row();
+        $id=$result->IdRegistrovani;
+        
+        $this->db->set("IdRegistrovani", $id);
+        $this->db->set("Najbolji", "ne");
+        $this->db->insert("student");
+        
+        return $result;
+    }
+    
     public function ispravanPassword($lozinka){
         if ($this->korisnik->Password == $lozinka) {
             return TRUE;
@@ -51,6 +109,13 @@ class ModelKorisnik extends CI_Model {
                 return 'p';
             }
         }
+    }
+    
+    public function insert_faq($p,$o){
+        
+        $this->db->set("Pitanje", $p);
+        $this->db->set("Odgovor", $o);
+        $this->db->insert("faq");
     }
     
 }

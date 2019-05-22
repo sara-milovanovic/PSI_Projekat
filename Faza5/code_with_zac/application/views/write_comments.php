@@ -1,21 +1,27 @@
-<!--autor: Sara Milovanovic-->
+<!--autor: Nedeljko Jokic-->
 <html>
 	<head>
-		<title>CodeWithZac(Comments)</title>
+		<title>CodeWithZac(Write_Comments)</title>
 		<link rel="icon" type="image/png" href="slika.png"/>
 	</head>
 	<body background="bg.jpg">
-		<br/>
+		
+		<table align="right">
+			<tr>
+				<td align="right"> <font size="5" face="Cursive"> Hello <b>Lana!</b></font></td>
+			</tr>
+		</table>
+		<br/><br/>
 		<hr size="2" color="black">
 		
 		
 		<!--tabela uvod-->
-		<table id="top">
+		<table>
 			<tr>
 				<td width="15%" align="left"> <img src="zac2.jpg" height="150"> </td>
 				<td width="65%" align="center"> <img src="logo2.png" height="170" align="center"> </td>
-				<td width="10%" align="right"> <button type="button" align="left"> <font size="4"><a href="LogIn.html">Log In</font></a></button> </td>
-				<td width="10%" align="left"> <button type="button" align="left"> <font size="4"><a href="SignUp.html">Sign Up</font></a></button> </td>
+				<td width="10%" align="right">  </td>
+				<td width="10%" align="left"> <button type="button" align="left"> <font size="4"><a href="start_unreg.html">Sign out</a></font></button> </td>
 			</tr>
 			
 		</table>
@@ -56,15 +62,40 @@
 				<td></td>
 				<td></td>
 			</tr>
-                        <?php
+			
+                        
+                       <?php/*
                         foreach ($komentari as $kom) {
                             echo "<tr height='100'><td></td><td><img align='center' src='star.png' height='45'><font size='4' face='Cursive'>&nbsp;&nbsp;&nbsp;" ;
                                     echo $kom->Tekst;
                                     echo "</font></td><td align='left'><font size='4' face='Cursive'>-";
                                     echo $kom->Ime;
-                                    echo "</font></td></tr>";
-			}
+                                    echo "</font></td>";
+                                    if(($kom->Username)==($this->session->userdata('student')->Username)){ 
+                                        $pomocna='Gost/ucitaj_home/'.$kom->IdKomentari;
+                                        $pomocna1="<?php echo site_url($pomocna)?>";
+                                        echo $pomocna1;
+                                        //
+                                       // echo "<td><a href=".$pomocna1.">";
+                                      //echo "<input type='button' value='Delete'></a></td>";
+                                        
+                                        echo "<input type='button' onclick='echo ' value='$pomocna1'>";
+                                    }
+                                        
+                                        
+                                        
+                                    echo "</tr>";
+                                     
+			}*/
                         ?>
+                        
+                        <form name="kom" action="<?php echo site_url('Student/dodaj_komentar') ?>" method="post">
+			<tr height="100">
+				<td></td>
+				<td><font size="4" face="Cursive">&nbsp;&nbsp;&nbsp; Leave a comment: </font> <input type="text" name="novi_komentar"></td>
+				<td width="10%" align="left"> <input type="submit" align="left" value="Add"> </td>
+			</tr>
+                        </form>
 			<tr height="100">
 				<td></td>
 				<td><img align="center" src="zac_thankyou.png" height="400"></td>
@@ -91,4 +122,4 @@
 			</tr>
 		</table>
 	</body>
-	</html>
+</html>

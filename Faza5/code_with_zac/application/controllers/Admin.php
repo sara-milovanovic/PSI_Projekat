@@ -16,6 +16,7 @@ class Admin extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model("ModelKorisnik");
+        $this->load->model("ModelFAQ");
         $this->load->library('session');
         if (($this->session->userdata('student')) != NULL) {
             redirect("Student");
@@ -47,9 +48,82 @@ class Admin extends CI_Controller{
         redirect("Gost");
     }
     
-    public function obrisivest($idvest){
-        $this->ModelVest->obrisiVest($idvest);
-        redirect("Admin/index");
+     public function ucitaj_faq(){
+       $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
+       $podaci['faq'] = $faq_svi;
+       $this->load->view("admin_adding_faq.php",$podaci);
     }
-
+   
+ 
+   
+     public function ucitaj_documents(){
+       $this->load->view("documents.php");
+    }
+   
+     public function ucitaj_show_users(){
+       $this->load->view("admin_deleting_students.php");
+   }
+   
+     public function ucitaj_questions_waiting_for_approval(){
+       $this->load->view("approving_questions.php");
+   }
+   
+      public function ucitaj_documents_waiting_for_approval(){
+       $this->load->view("app_materials.php");
+   }
+   
+     public function ucitaj_view_comments(){
+       $this->load->view("admin_comments.php");
+   }
+   
+    public function ucitaj_rate_this_course(){
+       $this->load->view("user_rate_app.php");
+   }
+   
+    public function ucitaj_final_test(){
+      //poziv fje koja dohvata pitalice
+   }
+   
+   public function add_faq(){
+       
+       $this->form_validation->set_rules("pitanje", "Pitanje", "required");
+       $this->form_validation->set_rules("odgovor", "Odgovor", "required");
+       $this->form_validation->set_message("required","Field {field} is required.");
+       
+       if ($this->form_validation->run()) {
+           
+           $faq= $this->ModelKorisnik->insert_faq($this->input->post("pitanje"), $this->input->post("odgovor"));
+           $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
+           /*$korisnik=$this->ModelKorisnik->insert_korisnik($this->input->post('username'),$this->input->post('password'),$this->input->post('email'),$this->input->post('name'),$this->input->post('surname'));
+           $this->session->set_userdata('student',$korisnik);
+           redirect('Student');*/
+           $this->add_faq_formValidation(null,$faq_svi);
+       }
+       
+       else {
+            $this->add_faq_formValidation();
+        }
+       
+       
+   }
+   
+   
+   public function add_faq_formValidation($poruka=NULL,$faq=null){  
+        $podaci=[];
+        if ($poruka) {
+            $podaci['poruka'] = $poruka;
+           
+        }
+        
+        
+        if ($faq) {
+             $podaci['faq'] = $faq;
+           
+        }
+        
+        
+        
+        $this->load->view('admin_adding_faq.php',$podaci);
+    }
+   
 }
