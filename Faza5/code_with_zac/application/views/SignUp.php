@@ -2,15 +2,16 @@
 <html>
 	<head>
 		<title> CodeWithZac(SignUp)</title>
-		<link rel="icon" type="image/png" href="slika.png"/>
+		<link rel="icon" type="image/png" href="<?php echo base_url('images/slika.png')?>"/>
 	</head>
-	<body background="bg.jpg">
-	<br/>
-	<hr size="2" color="black">
+	<body background="<?php echo base_url('images/bg.jpg')?>">
+            
+            
+        
 		<table>
 			<tr>
-				<td width="15%"align='left'> <img src="zac2.jpg" height="150"> </td>
-				<td width="65%" align="center"> <img src="logo2.png" height="170" align="center"> </td>
+				<td width="15%"align='left'> <img src="<?php echo base_url('images/zac2.jpg')?>" height="150"> </td>
+				<td width="65%" align="center"> <img src="<?php echo base_url('images/logo2.png')?>" height="170" align="center"> </td>
 				<td width="10%" align="right"> <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Gost/ucitaj_login")?>">Log In</a></font></button> </td>
 				<td width="10%" align="left"> </td>
 			</tr>

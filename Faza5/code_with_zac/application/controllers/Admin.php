@@ -16,6 +16,8 @@ class Admin extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model("ModelKorisnik");
+        $this->load->model("ModelStudent");
+        $this->load->model("ModelMaterijal");
         $this->load->model("ModelFAQ");
         $this->load->library('session');
         if (($this->session->userdata('student')) != NULL) {
@@ -60,8 +62,10 @@ class Admin extends CI_Controller{
        $this->load->view("documents.php");
     }
    
-     public function ucitaj_show_users(){
-       $this->load->view("admin_deleting_students.php");
+      public function ucitaj_show_users(){
+       $studenti_svi=$this->ModelKorisnik->dohvati_sve_studente();
+        $podaci['student'] = $studenti_svi;
+        $this->load->view('admin_deleting_students.php',$podaci);
    }
    
      public function ucitaj_questions_waiting_for_approval(){
@@ -69,7 +73,28 @@ class Admin extends CI_Controller{
    }
    
       public function ucitaj_documents_waiting_for_approval(){
-       $this->load->view("app_materials.php");
+       $podaci['materijali']=$this->ModelMaterijal->dohvati_sve();
+       $this->load->view("app_materials.php",$podaci);
+   }
+   
+   public function odobri_materijal($id){
+       
+      $res=$this->ModelMaterijal->dohvati_materijal($id);
+      $res1=$res->IdOblast;
+      $mat=$res->Tekst;
+       $this->ModelMaterijal->obrisi_materijal($id);
+       $this->ModelMaterijal->ubaci_odobren_materijal($res1,$mat);
+       
+       redirect(base_url("index.php/Admin/ucitaj_documents_waiting_for_approval"));
+       
+       
+       //sredi ubacivanje i konkatenaciju sa materijal
+   }
+   
+   public function ponisti_materijal($id){
+       
+       $this->ModelMaterijal->obrisi_materijal($id);
+       redirect(base_url("index.php/Admin/ucitaj_documents_waiting_for_approval"));
    }
    
      public function ucitaj_view_comments(){
@@ -126,4 +151,18 @@ class Admin extends CI_Controller{
         $this->load->view('admin_adding_faq.php',$podaci);
     }
    
+    public function delete_students(){
+        $studenti_svi=$this->ModelKorisnik->dohvati_sve_studente();
+        $podaci['student'] = $studenti_svi;
+        $this->load->view('admin_deleting_students.php',$podaci);
+    }
+    
+    
+    public function obrisi($id){
+        $this->ModelStudent->obrisi_studenta($id);
+        redirect(base_url("index.php/Admin/ucitaj_show_users"));
+    }
+    
+    
+    
 }

@@ -78,7 +78,7 @@ In this jam-packed 1 hour course, we focus on the tools, techniques and ideas yo
 				<td width="20%"></td>
 			</tr>
 			<tr height="130">
-				<td><font size="4" face="Cursive"><ul type="circle"><li><u><a href="best_student.html">Choose the best student in this month</a></u></li></ul></font></td>
+				<td><font size="4" face="Cursive"><ul type="circle"><li><u><a href="<?php echo site_url('Profesor/ucitaj_biranje_njaboljeg') ?>">Choose the best student in this month</a></u></li></ul></font></td>
 				<td bgcolor="gray"></td>
 				<td width="7%"></td>
 				<td><img src="c.png" height="120"></td>
@@ -109,7 +109,7 @@ In this jam-packed 1 hour course, we focus on the tools, techniques and ideas yo
 				<td width="50" align="center"> <font size="4" face="Cursive"><img src="zac_com.png" height="150"><br/><a href="write_comment.html"><button type="button" >View comments</button></a><font/></td>
 				</tr>
 			<tr height="130">
-				<td><font size="4" face="Cursive"><ul type="circle"><li><u><a href="Prof_adding_materials.html">Add more about some chapter (documentation)</a></u></li></ul></font></td>
+				<td><font size="4" face="Cursive"><ul type="circle"><li><u><a href="<?php echo site_url('Profesor/ucitaj_dodavanje_materijala') ?>">Add more about some chapter (documentation)</a></u></li></ul></font></td>
 				<td bgcolor="gray"></td>
 				<td width="7%"></td>
 				<td><img src="python.png" height="120"></td>

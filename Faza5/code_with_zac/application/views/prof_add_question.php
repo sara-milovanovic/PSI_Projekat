@@ -73,7 +73,7 @@
 		
 		</td>
 		<td width="70%"><center>
-                    <input type='text' name='question'>
+                    <input type='text' name='question' value="<?php echo $q ?>">
                 </center></td>
 		
 		<td width="20%">
@@ -137,7 +137,7 @@
 					<input type='checkbox' name="c1"><font face="cursive" color="darkblue" size="4">offered answer 1:</font>
 				</td>
 				<td width='25%'>
-					<input type='text' name='ans1'>
+					<input type='text' name='ans1' value="<?php echo $a1 ?>">
 				</td>
 				
 			
@@ -150,7 +150,7 @@
 					<input type='checkbox' name="c2"><font face="cursive" color="darkblue" size="4">offered answer 2:</font>
 				</td>
 				<td width='25%'>
-					<input type='text' name='ans2'>
+					<input type='text' name='ans2' value="<?php echo $a2 ?>">
 				</td>
 				<td colspan='2' rowspan='3'>
 					<img src='zac_note_add_question.png' width='700' height='400' align='center' valign='center'>
@@ -163,7 +163,7 @@
 					<input type='checkbox' name="c3"><font face="cursive" color="darkblue" size="4">offered answer 3:</font>
 				</td>
 				<td width='25%'>
-					<input type='text' name='ans3'>
+					<input type='text' name='ans3' value="<?php echo $a3 ?>">
 				</td>
 			
 			</tr>
@@ -172,7 +172,7 @@
 					<input type='checkbox' name="c4"><font face="cursive" color="darkblue" size="4">offered answer 4:</font>
 				</td>
 				<td width='25%'>
-					<input type='text' name='ans4'>
+					<input type='text' name='ans4' value="<?php echo $a4 ?>">
 				</td>
 			
 			</tr>

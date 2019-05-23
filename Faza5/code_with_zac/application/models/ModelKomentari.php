@@ -34,4 +34,11 @@ class ModelKomentari extends CI_Model{
         
         
     }
+    
+    public function brisi_komentar($id){
+        
+       $this->db->where("IdKomentari",$id);
+       $this->db->delete("komentari");
+        
+    }
 }

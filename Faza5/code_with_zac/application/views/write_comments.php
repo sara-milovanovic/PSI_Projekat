@@ -64,7 +64,7 @@
 			</tr>
 			
                         
-                       <?php/*
+                       <?php
                         foreach ($komentari as $kom) {
                             echo "<tr height='100'><td></td><td><img align='center' src='star.png' height='45'><font size='4' face='Cursive'>&nbsp;&nbsp;&nbsp;" ;
                                     echo $kom->Tekst;
@@ -72,23 +72,18 @@
                                     echo $kom->Ime;
                                     echo "</font></td>";
                                     if(($kom->Username)==($this->session->userdata('student')->Username)){ 
-                                        $pomocna='Gost/ucitaj_home/'.$kom->IdKomentari;
-                                        $pomocna1="<?php echo site_url($pomocna)?>";
-                                        echo $pomocna1;
-                                        //
-                                       // echo "<td><a href=".$pomocna1.">";
-                                      //echo "<input type='button' value='Delete'></a></td>";
+                                        $pomocna=$kom->IdKomentari;
                                         
-                                        echo "<input type='button' onclick='echo ' value='$pomocna1'>";
+                                        echo "<td style='text-align:left;'><a href='brisi_komentar/".$pomocna."'><input type='button' value='Delete'></a></td>";
+
+                                        
                                     }
-                                        
-                                        
-                                        
+                                     
                                     echo "</tr>";
                                      
-			}*/
+			}
                         ?>
-                        
+                      
                         <form name="kom" action="<?php echo site_url('Student/dodaj_komentar') ?>" method="post">
 			<tr height="100">
 				<td></td>

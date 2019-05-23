@@ -113,4 +113,23 @@ class Student extends CI_Controller{
         $this->ucitaj_komentare();
     }
     
+    public function brisi_komentar($id){
+        
+        $this->ModelKomentari->brisi_komentar($id);
+        $this->ucitaj_komentare();
+        /*
+        $novi=$this->input->post('novi_komentar');
+        $user=$this->session->userdata('student')->IdRegistrovani;
+        $this->ModelKomentari->upisi_komentar($novi,$user);
+        $this->ucitaj_komentare();*/
+    }
+    
+    public function ucitaj_faq(){
+       $this->load->view("faq_only_view.php");
+    }
+    
+    public function ucitaj_documents(){
+       $this->load->view("documents.php");
+    }
+    
 }

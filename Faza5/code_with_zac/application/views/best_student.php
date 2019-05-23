@@ -1,14 +1,14 @@
 <!--autor: Nedeljko Jokic-->
 <html>
 	<head>
-		<title> CodeWithZac(Approving Materials)</title>
+		<title> CodeWithZac(The_best_student)</title>
 		<link rel="icon" type="image/png" href="slika.png"/>
 	</head>
 	<body background="bg.jpg">
 	
 	<table align="right">
 		<tr>
-			<td align="right"> <font size="5" face="Cursive"> Hello <b>Admin!</b></font></td>
+			<td align="right"> <font size="5" face="Cursive"> Hello <b>professor Mike!</b></font></td>
 		</tr>
 	</table>
 	<br/> <br/>
@@ -58,51 +58,37 @@
 			<tr>
 				<td>
 					<font face='Cursive' size='6'>
-						Approve New Materials
+						Choose the best student for this month
 					</font>
 				</td>
 			
 			</tr>
-		</table>
 		
-                <table>
-                    
-                    <tr>
-                        
-                        <td>
-                           
-                        </td>
-                        
-                    </tr>
-                    
-                    <tr>
-                        
-                        <td>
-                           
-                        </td>
-                        
-                    </tr>
-                    
-                    <?php
-                        foreach ($materijali as $mat) {
-                            echo "<tr><td>" ;
-                            echo $mat->Ime;
-                            echo "</td></tr><tr><td>";
-                            echo $mat->Tekst;
-                            echo "</td><td>";
-                            
-                            echo "<a href='odobri_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' value='Approve'></a><a href='ponisti_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' value='Reject'></a></td></tr>";
+			<table width="100%" align="center">
+                            <?php
+                                foreach($student as $s){
+                                    echo "<div class='row' style='background-color:#edecd3' height='100' align='center'><div class='col-sm-12' bgcolor='lightyellow'><font size='6' face='Cursive'>&nbsp;&nbsp;&nbsp;";
 
-                            
-                                     
-			}
-                        ?>
-                    
-                </table>
+                                    echo $s->Username;                                
+                                    echo '&nbsp;';
+                                    echo $s->procenat_tacnih.'%';
+                                    $promenljiva1=($s->IdRegistrovani);   
+
+
+                                    echo '&nbsp;';echo '&nbsp;';echo '&nbsp;';echo '&nbsp;';
+                                    echo "<a href='proglasi_najboljeg/".$promenljiva1."'><input type='button' value='Promote'></a>";
+                                    echo "</div></div><br>";
+                                    }
+                             ?>
+                        </table>
+		
+		
+		
+		
 		
 		<table align="right">
 			<tr>
-				<td bgcolor="edecd3">  <font size="4" face="Cursive">FAQ/How to use<font/> </td>
+				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="FAQ_only_view.html">FAQ/How to use<font/></a> </td>
 				
 				<td  width="25">  <font size="4" face="Cursive"><font/> </td>
 				

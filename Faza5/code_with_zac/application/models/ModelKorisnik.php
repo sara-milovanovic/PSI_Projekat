@@ -118,4 +118,13 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert("faq");
     }
     
+    public function dohvati_sve_studente(){
+        $this->db->where("r.IdRegistrovani=s.IdRegistrovani");
+        $this->db->from('registrovani r,student s');
+        
+        $query=$this->db->get();
+        $result=$query->result();//vraca niz studenata
+        return $result;
+    }
+    
 }
