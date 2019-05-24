@@ -16,23 +16,14 @@
                         <div class="col-sm-6">
                             <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170">
                         </div>
-                        <div class="col-sm-3">
-                            
-                        </div> 
+                        <div class="col-sm-3" valign="center">
+                        <a href="<?php echo site_url("Gost/signup_formValidation")?>"><input type="button" value="Sign Up" class="btn btn-info" align="left"> </a> &nbsp;
+                        <a href="<?php echo site_url("Gost/login")?>"><input type="button" value="LogIn" class="btn btn-info" align="left"> </a>
                     </div>
-                    <div class="row" align="center">
-                        <div class="offset-sm-9 col-sm-3">
-                           <button type="button"> <font size="4"><a href="<?php echo site_url("Gost/signup_formValidation")?>">Sign Up</font></a></button>
-                           <button type="button"> <font size="4"><a href="<?php echo site_url("Gost/login")?>">Log In</font></a></button>
-                        </div> 
                     </div>
                     
-                    <div class="row" align="right">
-                        <div class="col-sm-12">
-                            <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font>
-                        </div>
-                    </div>
-                    <hr size="4" color="black">
+                    
+                    
                     <hr size="2" color="lightblue">
                     
                     <div class="row" align="center">
@@ -54,17 +45,18 @@
                             <font size="5" face="Cursive"> Comments that you left about C++ course:</font>
                         </div>
                     </div>
-                    <br>
+                    <br><br><br>
                     
                     <?php
                         foreach ($komentari as $kom) {
-                            echo "<div class='row' align='center' height='100'><div class='col-sm-6'><font size='6' face='Cursive'>&nbsp;&nbsp;&nbsp;" ;
+                            echo "<hr><div class='row' align='center' height='100'><div class='col-sm-6'><font size='4' face='Cursive'>&nbsp;&nbsp;&nbsp;" ;
                                     echo $kom->Tekst;
-                                    echo "</font></div><div class='col-sm-6'><font size='6' face='Cursive'>-";
+                                    echo "</font></div><div class='col-sm-6'><font size='4' face='Cursive'>-";
                                     echo $kom->Ime;
                                     echo "</font></div></div>";
 			}
                     ?>
+                    <hr>
                     <br><br><br><br>
                     <div class="row" align="center">
                         <div class="col-sm-12">

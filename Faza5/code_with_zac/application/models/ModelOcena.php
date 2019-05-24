@@ -64,4 +64,13 @@ class ModelOcena extends CI_Model{
         
     }
     
+    public function dohvati_ocenu(){
+        
+        $this->db->where("IdKurs",1);
+        $this->db->from('kurs');
+        $query=$this->db->get();
+        $result=$query->row();
+        return $result->Ocena;
+    }
+    
 }

@@ -10,6 +10,11 @@ class Korisnik extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
+    }
+    
+    
+    /*public function __construct() {
+        parent::__construct();
         $this->load->model("ModelVest");//ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
         $this->load->model("ModelAutor");// kako su nam oba modela trebala u svim kontrolerima 
         //mogli smo i u autoload falju da ih dodamo u niz za modele
@@ -23,8 +28,8 @@ class Korisnik extends CI_Controller{
             // ali za kontroler Admin i njegovu podrazumevanu metodu (index)
             
         }
-    }
-    
+    }*/
+    /*
     //pomocna metoda koja sluzi za ucitavanje stranice posto nam se svaka stranica sadrzi iz tri dela
     private function prikazi($glavniDeo,$podaci=[]){
         $podaci['autor']=$this->session->userdata('autor');
@@ -128,5 +133,7 @@ class Korisnik extends CI_Controller{
     //metoda za prikaz jedne vesti
     public function prikazivest($id){
         $this->prikazi("vestprikaz.php", ["vest"=>$this->ModelVest->dohvatiVest($id)]);
-    }
+    }*/
+    
+    
 }

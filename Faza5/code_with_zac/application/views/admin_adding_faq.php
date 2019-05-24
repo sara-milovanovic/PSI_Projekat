@@ -11,7 +11,7 @@
                 
                 <div class="row">
                     <div class="col-sm-12" id="top" align="right">
-                        <font size="5" face="Cursive"> Hello <b>Admin!</b></font>
+                        <font size="5" face="Cursive"> Hello <b><?php if(isset($username)) echo $username ?>!</b></font>
                         <br>
                         <hr size="2" color="black">
                     </div>   
@@ -25,16 +25,20 @@
                         <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
                     </div>
                     <div class="col-sm-3" align="right">
-                        <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Admin/logout")?>">Sign out</a></font></button>
+                        <a href="<?php echo site_url("Admin/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a> &nbsp;
                     </div>
                 </div>
+                
+		<hr size="4" color="black">
                 <div class="row">
                     <div class="col-sm-12" align="right">
-                        <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font>
+                        <?php 
+                        if(isset($najbolji)) 
+                            echo "<font size='5' face='Cursive'> Best student in this month is <b>". $najbolji." </b>! Congratulations!</font>";
+                                ?>
                     </div> 
                 </div>
-                <br/>
-		<hr size="4" color="black">
+                
 		<hr size="2" color="lightblue">
 		<br/>
                 
@@ -80,30 +84,46 @@
                             
                             <center><font size="5" face="Cursive">&nbsp Enter question: </font></center>
                             <br>
-                            <center><input type="text" name="pitanje" size="35"></center>
+                            <center><input type="text" name="pitanje" size="35" maxlength="255"></center>
                             <br><br>
-                            <center><font size="5" face="Cursive" align="left">&nbsp Enter answer: </font></center>
+                            <center><font size="5" face="Cursive" align="left" >&nbsp Enter answer: </font></center>
 				<br>
 				
 				
-				<center><input type="text" name="odgovor" size="35"></center>
+				<center><input type="text" name="odgovor" size="35" maxlength="255"></center>
                                     <br>    
-                                <center><input type="submit" value="Add"></center>
+                               
                         </div> 
                     </div>
                     <div class="row" align="center">
-                        <?php echo form_error("pitanje","<font color='red'>","</font>");?>
+                        <div class="col-sm-12">
+                            
+                            <?php echo form_error("pitanje","<font color='red'>","</font>");?>
                         <br>
+                            
+                        </div>
                     </div>
                     
                     <div class="row" align="center">
-                        <?php echo form_error("odgovor","<font color='red'>","</font>");?>
+                        <div class="col-sm-12">
+                            
+                            <?php echo form_error("odgovor","<font color='red'>","</font>");?>
                         <br>
+                            
+                        </div>
                     </div>
                     <br/>
+                    
+                    <div class="row">
+                        
+                        <div class="col-sm-12">
+                            
+                             <center><input type="submit" value="Add" class="btn btn-info"></center>
+                            
+                        </div>
+                        
+                    </div>
                     <hr size="2" color="black">
-                    
-                    
                 </form>
                 
                 <div class="row">
@@ -115,7 +135,7 @@
 		<hr size="2" color="black">
 		
                 <div class="row">
-                    <div class="col-sm-12" align="right">
+                    <div class="col-sm-12" align="center">
                         <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
                         <br><br>
                         

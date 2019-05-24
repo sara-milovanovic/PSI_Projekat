@@ -8,36 +8,39 @@
 	<body background="<?php echo base_url('images/bg.jpg')?>">
             <div class="container">
                 
-                <div class="row" align="right">
-                    <div class="col-sm-12">
-                        <font size="5" face="Cursive"> Hello <b>Admin!</b></font>
-                    </div>
+                <div class="row">
+                    <div class="col-sm-12" id="top" align="right">
+                        <font size="5" face="Cursive"> Hello <b><?php if(isset($username)) echo $username ?>!</b></font>
+                        <br>
+                        <hr size="2" color="black">
+                    </div>   
                 </div>
-                
                 <div class="row" align="center">
                     <div class="col-sm-3">
-                        <img src="<?php echo base_url('images/zac2.jpg')?>" height="150">
+                        <img class="img img-fluid" src="<?php echo base_url('images/zac2.jpg')?>" height="150">
                     </div>
                     <div class="col-sm-6">
-                        <img src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
+                        <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" class="img img-fluid" height="170" align="center">
                     </div>
-                    <div class="col-sm-3">
-                        <button type="button"> <font size="4"><a href="<?php echo site_url("Admin/logout")?>">Sign out</a></font></button>
+                    <div class="col-sm-3" align="right">
+                        <a href="<?php echo site_url("Admin/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a>
+
                     </div>
                 </div>
                 
-                <br/> <br/>
+                
                 <hr size="2" color="black">
                 
                 <div class="row" align="right">
                     <div class="col-sm-12">
-                        <font face="Cursive" size='5'>Best student in this month is <b>Pera</b>! Congratulations! </font>
+                         <?php 
+                        if(isset($najbolji)) 
+                            echo "<font size='5' face='Cursive'> Best student in this month is <b>". $najbolji." </b>! Congratulations!</font>";
+                                ?>
                     </div>
                 </div>
                 
                 
-                <br/>
-		<hr size="4" color="black">
 		<hr size="2" color="lightblue">
 		<br/>
                 
@@ -63,15 +66,15 @@
                         <font face='Cursive' size='6'>Approve New Materials</font>
                     </div> 
                 </div>
-                
+                <br><br><br>
                  <?php
                     foreach ($materijali as $mat) {
-                        echo "<div class='row' align='center'><div class='col-sm-12'>" ;
+                        echo "<font size='6' face='Cursive'><b><div class='row' align='center'><div class='col-sm-12'>" ;
                         echo $mat->Ime;
-                        echo "</div></div><div class='row' align='center'><div class='col-sm-12'>";
+                        echo "</div></div></b></font><br><div class='row' align='center'><div class='col-sm-12'>";
                         echo $mat->Tekst;
-                        echo "</div><div>";
-                        echo "<a href='odobri_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' value='Approve'></a><a href='ponisti_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' value='Reject'></a></td></tr>";                        
+                        echo "</div></div><br><br>";
+                        echo "<div class='row' ><div class='col-sm-6' align='right'><a href='odobri_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' class='btn btn-info' value='Approve'></a></div><div class='col-sm-6' align='left'><a href='ponisti_materijal/".$mat->IdMaterijali_na_cekanju."'><input class='btn btn-info' type='button' value='Reject'></a></div></div><br><br>";                        
                     }
                   ?>
                 
@@ -84,7 +87,7 @@
 		<hr size="2" color="black">
 		
                 <div class="row">
-                    <div class="col-sm-12" align="right">
+                    <div class="col-sm-12" align="center">
                         <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
                         <br><br>
                         

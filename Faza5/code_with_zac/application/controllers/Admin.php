@@ -15,6 +15,8 @@ class Admin extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
+        $this->load->model("ModelOblasti");
+        $this->load->model("ModelOcena");
         $this->load->model("ModelKorisnik");
         $this->load->model("ModelStudent");
         $this->load->model("ModelMaterijal");
@@ -39,7 +41,12 @@ class Admin extends CI_Controller{
     }*/
     
     public function index(){
-       
+        $poruka=$this->ModelOblasti->ucitaj_oblasti();
+        if ($poruka) {
+            $podaci['oblasti'] = $poruka;
+        }
+        $podaci['ocena']=$this->ModelOcena->dohvati_ocenu();
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
         //$this->prikazi("adminvesti.php",$podaci);
         $podaci['username']=$this->session->userdata('admin')->Username;
         $this->load->view("start_admin.php", $podaci);
@@ -51,7 +58,10 @@ class Admin extends CI_Controller{
         redirect("Gost");
     }
     
+      
      public function ucitaj_faq(){
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('admin')->Username;
        $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
        $podaci['faq'] = $faq_svi;
        $this->load->view("admin_adding_faq.php",$podaci);
@@ -60,12 +70,15 @@ class Admin extends CI_Controller{
  
    
      public function ucitaj_documents(){
-       $this->load->view("documents.php");
+       $podaci['oblast']=$this->ModelMaterijal->izlistaj_materijale();
+       $this->load->view("documents.php",$podaci);
     }
    
       public function ucitaj_show_users(){
        $studenti_svi=$this->ModelKorisnik->dohvati_sve_studente();
         $podaci['student'] = $studenti_svi;
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('admin')->Username;
         $this->load->view('admin_deleting_students.php',$podaci);
    }
    
@@ -74,6 +87,8 @@ class Admin extends CI_Controller{
    }
    
       public function ucitaj_documents_waiting_for_approval(){
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('admin')->Username;
        $podaci['materijali']=$this->ModelMaterijal->dohvati_sve();
        $this->load->view("app_materials.php",$podaci);
    }
@@ -102,9 +117,11 @@ class Admin extends CI_Controller{
        $this->load->view("admin_comments.php");
    }
    
-    public function ucitaj_rate_this_course(){
-       $this->load->view("user_rate_app.php");
-   }
+    public function ucitaj_ocenjivanje(){
+        
+        $this->load->view("admin_rate_app.php");
+        
+    }
    
     public function ucitaj_final_test(){
       //poziv fje koja dohvata pitalice
@@ -112,8 +129,11 @@ class Admin extends CI_Controller{
    
    public function add_faq(){
        
-       $this->form_validation->set_rules("pitanje", "Pitanje", "required");
-       $this->form_validation->set_rules("odgovor", "Odgovor", "required");
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('admin')->Username;
+       
+       $this->form_validation->set_rules("pitanje", "Question", "required");
+       $this->form_validation->set_rules("odgovor", "Answer", "required");
        $this->form_validation->set_message("required","Field {field} is required.");
        
        if ($this->form_validation->run()) {
@@ -123,19 +143,20 @@ class Admin extends CI_Controller{
            /*$korisnik=$this->ModelKorisnik->insert_korisnik($this->input->post('username'),$this->input->post('password'),$this->input->post('email'),$this->input->post('name'),$this->input->post('surname'));
            $this->session->set_userdata('student',$korisnik);
            redirect('Student');*/
-           $this->add_faq_formValidation(null,$faq_svi);
+           $this->add_faq_formValidation(null,$faq_svi,$podaci);
        }
        
        else {
-            $this->add_faq_formValidation();
+            $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
+            $this->add_faq_formValidation(null,$faq_svi,$podaci);
         }
        
        
    }
    
    
-   public function add_faq_formValidation($poruka=NULL,$faq=null){  
-        $podaci=[];
+   public function add_faq_formValidation($poruka=NULL,$faq=null,$podaci=null){  
+        
         if ($poruka) {
             $podaci['poruka'] = $poruka;
            

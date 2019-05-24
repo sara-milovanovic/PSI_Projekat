@@ -22,16 +22,13 @@
                 </div>
                 <div class="row" align="right">
                     <div class="col-sm-12">
-                        <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Gost/signup_formValidation")?>">Sign Up</a></font></button>
-                        <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Gost/login")?>">Log In</a></font></button>
+                        <a href="<?php echo site_url("Gost/signup_formValidation")?>"><input type="button" value="Sign Up" class="btn btn-info" align="left"> </a>
+                        &nbsp;
+                        <a href="<?php echo site_url("Gost/login")?>"><input type="button" value="LogIn" class="btn btn-info" align="left"> </a>
                     </div>
                 </div>
                  
-                <div class="row" align="right">
-                    <div class="col-sm-12">
-                        <font size="5" face="Cursive"> Best student in this month is <b>Pera </b>! Congratulations!</font>
-                    </div>
-                </div>
+                
                 <br/> <br/>
 		<hr size="4" color="black">
 		<hr size="2" color="lightblue">

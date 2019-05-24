@@ -18,12 +18,11 @@
                         <img src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
                     </div>
                     <div class="col-sm-4">
-                        <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Gost/ucitaj_signup")?>">Sign Up</a></font></button>
+                        <a href="<?php echo site_url("Gost/ucitaj_signup")?>"><input type="button" value="Sign Up" class="btn btn-info" align="right"> </a>
                     </div>
                 </div>
                 
                 <br/> <br/>
-                <hr size="4" color="black">
                 <hr size="2" color="lightblue">
                 <br/>
                     
@@ -44,7 +43,7 @@
                            <font size="6" face="Cursive"> username:*&nbsp;</font>
                         </div>
                         <div class="col-sm-6">
-                            &nbsp;<input type='text' name="username">
+                            &nbsp;<input type='text' name="username" value="<?php echo $username ?>">
                         </div>
                     </div>
                 
@@ -94,10 +93,10 @@
                     <br/><br/>
                     <div class="row" align="center">
                         <div class="offset-sm-4 col-sm-2">
-                            <input width='10%' height='10%' type='submit' align='center' value='Confirm'>
+                            <input width='10%' height='10%' type='submit' class='btn btn-info' align='center' value='Confirm'>
                         </div>
                          <div class="col-sm-2">
-                            <input width='10%' height='10%' type='reset' align='center' value='Cancel'>
+                            <input width='10%' height='10%' type='reset' class='btn btn-secondary' align='center' value='Cancel'>
                         </div>
                     </div>
                     

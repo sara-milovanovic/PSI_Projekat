@@ -2,112 +2,115 @@
 <html>
 	<head>
 		<title>CodeWithZac(Admin_Comments)</title>
-		<link rel="icon" type="image/png" href="slika.png"/>
+		<link rel="icon" type="image/png" href="<?php echo base_url('images/slika.png')?>"/>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	</head>
-	<body background="bg.jpg">
-		
-		<table align="right">
-			<tr>
-				<td align="right"> <font size="5" face="Cursive"> Hello <b>Admin!</b></font></td>
-			</tr>
-		</table>
-		<br/><br/>
-		<hr size="2" color="black">
-		
-		
-		<!--tabela uvod-->
-		<table id="top">
-			<tr>
-				<td width="15%" align="left"> <img src="zac2.jpg" height="150"> </td>
-				<td width="65%" align="center"> <img src="logo2.png" height="170" align="center"> </td>
-				<td width="10%" align="right">  </td>
-				<td width="10%" align="left"> <button type="button" align="left"> <font size="4"><a href="start_unreg.html">Sign out</a></font></button> </td>
-			</tr>
-			
-		</table>
-		<table align="right">
-			<tr>
-				<td align="right"> <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font></td>
-			</tr>
-		</table>
-		<br/> <br/>
+	<body background="<?php echo base_url('images/bg.jpg')?>">
+            <div class="container">
+                <div class="row" align="right">
+                    <div class="col-sm-12">
+                        <font size="5" face="Cursive"> Hello <b>Admin!</b></font>
+                    </div>
+                </div>
+                
+                
+                <div class="row" align="center">
+                    <div class="col-sm-3">
+                        <img class="img img-fluid" src="<?php echo base_url('images/zac2.jpg')?>" height="150">
+                    </div>
+                    <div class="col-sm-6">
+                        <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
+                    </div>
+                    <div class="col-sm-3" align="right">
+                        <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Admin/logout")?>">Sign out</a></font></button>
+                    </div>
+                </div>
+                <hr size="2" color="lightblue">
+                <div class="row" align="center">
+                    <div class="col-sm-12" align="right">
+                        <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font>
+                    </div> 
+                </div>
+                <br/>
 		<hr size="4" color="black">
-		<hr size="2" color="lightblue">
+
 		<br/>
-		
-		
-		<!--tabela precice-->
-		<table align="center">
-			<tr>
-				<td  width="30%"> <font size="6"></font></td>
-				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="start_admin.html">Home page</a></font></td>
-				<td  width="3%"> <font size="6"></font></td>
-				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="FAQ_only_view.html">Frequently Asked Questions</a></font></td>
-				<td width="30%" > </td>
-				</tr>
-		</table> 
-		<br/>
-		<hr size="2" color="black">
-		<br/>
-		
-		<!--centralna tabela-->
-		<table  width="100%">
-			<tr height="100">
-				<td width="20%"></td>
-				<td align="center" bgcolor="lightblue"><font size="5" face="Cursive"> Comments that you left about C++ course:</font></td>
-				<td width="20%"></td>
-			</tr>
-			<tr height="50">
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			
-			    <?php
+                
+                
+                <div class="row" align="center">
+                    <div class="col-sm-6" style="background-color:lightblue ">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Admin/index")?>">Home page</a></font>
+                    </div>
+                    <div class="col-sm-6" style="background-color:lightblue ">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Admin/ucitaj_faq")?>">Frequently Asked Questions</a></font>
+                    </div>
+                </div>
+                
+                <br/>
+                <hr size="2" color="black">
+                <br/>
+                
+                
+                <div class="row" align="center">
+                    <div class="col-sm-12" style="background-color: lightblue">
+                        <font size="5" face="Cursive"> Comments that you left about C++ course:</font>
+                    </div>
+                </div>
+                  <br><br><br>
+                <?php
                         foreach ($komentari as $kom) {
-                            echo "<tr height='100'><td></td><td><img align='center' src='star.png' height='45'><font size='4' face='Cursive'>&nbsp;&nbsp;&nbsp;" ;
+                            echo "<div class='row' height='100'><div class='col-sm-4'><font size='4' face='Cursive'>&nbsp;&nbsp;&nbsp;" ;
                                     echo $kom->Tekst;
-                                    echo "</font></td><td align='left'><font size='4' face='Cursive'>-";
+                                    echo "</font></div><div class='col-sm-4'><font size='4' face='Cursive'>-";
                                     echo $kom->Ime;
-                                    echo "</font></td>";
+                                    echo "</font></div>";
                                     $pomocna=$kom->IdKomentari;
-                                    echo "<td style='text-align:left;'><a href='brisi_komentar/".$pomocna."'><input type='button' value='Delete'></a></td>";
+                                    echo "<div class='col-sm-4' style='text-align:left;'><a href='brisi_komentar/".$pomocna."'><input type='button' value='Delete'></a></div>";
  
-                                    echo "</tr>";
+                                    echo "</div>";
                                      
 			}
-                        ?>
-			
-			<tr height="100">
-				<td></td>
-				<td height='80' ><font size="4" face="Cursive">&nbsp;&nbsp;&nbsp; Leave a comment: </font> <textarea rows="5" cols="80%"></textarea></td>
-				<td width="10%" align="left"> <button type="button" align="left"> <font size="4"><a href="Admin_Comments.html">Submit</a></font></button> </td>
-			</tr>
-			
-			<tr height="100">
-				<td></td>
-				<td><img align="center" src="zac_thankyou.png" height="400"></td>
-				<td align="left"></td>
-			</tr>
-		</table>
-		<!--end_centralna tabela-->
-		<br/>
+                ?>
+                
+                  <br><br><br>  <br><br><br>
+                <div class="row" align="center">
+                    <div class="col-sm-6">
+                        <font size="4" face="Cursive">&nbsp;&nbsp;&nbsp; Leave a comment: </font> <textarea rows="5" cols="80%"></textarea>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" align="left"> <font size="4"><a href="Admin_Comments.html">Submit</a></font></button>
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                        <img class="img img-fluid" align="center" src="<?php echo base_url('images/zac_thankyou.png')?>" style="width:300px;height:250px;">
+                    </div>
+                </div>
+                
+                
+                
+                
+                <br/>
 		<hr size="2" color="black">
-		<table align="right">
-			<tr>
-				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="FAQ_only_view.html">FAQ/How to use</a><font/> </td>
-				
-				<td  width="25">  <font size="4" face="Cursive"><font/> </td>
-				
-				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="#top">PageUp<font/></a> </td>
-			</tr>
-		</table>
-		<br/> <br/>
-		<hr size="2" color="black" >
-		<table align="center">
-			<tr>
-				<td><font size="4" face="Cursive" width="40%">Thanks for using our app!<font/></td>
-			</tr>
-		</table>
+                
+                
+                <div class="row" align="right">
+                        <div class="offset-sm-9 col-sm-1">
+                            <font size="4" face="Cursive"><a href="<?php echo site_url("Admin/ucitaj_faq")?>">FAQ/How to use</a><font/>
+                        </div>
+                        <div class="col-sm-1">
+                            <font size="4" face="Cursive"><a href="#top">PageUp</a><font/>
+                        </div>
+                    </div>
+                    
+               
+                    <hr size="2" color="black" >
+                    <div class="row" align="right">
+                        <div class="col-sm-12">
+                            <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
+                        </div>
+                    </div>
+            </div>
 	</body>
-	</html>
+</html>

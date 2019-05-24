@@ -8,15 +8,17 @@
 	<body background="<?php echo base_url('images/bg.jpg')?>">
             
             <div class="container">
+               <br/>
+                <hr size="2" color="black"> 
                 <div class="row" align="center">
-                    <div class="col-sm-3">
-                        <img class="img img-fluid" src="<?php echo base_url('images/zac2.jpg')?>" height="150"> 
+                    <div class="col-sm-4">
+                        <img src="<?php echo base_url('images/zac2.jpg')?>" height="150">
                     </div>
-                    <div class="col-sm-6">
-                        <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
+                    <div class="col-sm-4">
+                        <img src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
                     </div>
-                    <div class="col-sm-3" valign="center">
-                        <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Gost/ucitaj_login")?>">Log In</a></font></button>
+                    <div class="col-sm-4">
+                        <a href="<?php echo site_url("Gost/login")?>"><input type="button" value="LogIn" class="btn btn-info" align="left"> </a>
                     </div>
                 </div>
                 
@@ -122,10 +124,10 @@
                     
                     <div class="row" align="center">
                        <div class="offset-sm-3 col-sm-3">
-                            <input width='10%' height='10%' type='submit' value='Confirm' align='center'>
+                            <input width='10%' class="btn btn-info" height='10%' type='submit' value='Confirm' align='center'>
                        </div> 
                         <div class="col-sm-3">
-                            <input width='10%' height='10%' type='reset' align='center' value='Cancel'>
+                            <input width='10%' class="btn btn-secondary" height='10%' type='reset' align='center' value='Cancel'>
                        </div> 
                     </div> 
                     

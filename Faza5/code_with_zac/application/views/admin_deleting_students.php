@@ -10,7 +10,7 @@
                 
                 <div class="row">
                     <div class="col-sm-12" id="top" align="right">
-                        <font size="5" face="Cursive"> Hello <b>Admin!</b></font>
+                        <font size="5" face="Cursive"> Hello <b><?php if(isset($username)) echo $username ?>!</b></font>
                         <br>
                         <hr size="2" color="black">
                     </div>   
@@ -24,13 +24,16 @@
                         <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
                     </div>
                     <div class="col-sm-3" align="right">
-                        <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Admin/logout")?>">Sign out</a></font></button>
+                        <a href="<?php echo site_url("Admin/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a> &nbsp;
                     </div>
                 </div>
                 <hr size="2" color="lightblue">
                 <div class="row">
                     <div class="col-sm-12" align="right">
-                        <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font>
+                        <?php 
+                        if(isset($najbolji)) 
+                            echo "<font size='5' face='Cursive'> Best student in this month is <b>". $najbolji." </b>! Congratulations!</font>";
+                                ?>
                     </div> 
                 </div>
                 <br/>
@@ -77,7 +80,7 @@
                         
                         
                         echo '&nbsp;';echo '&nbsp;';echo '&nbsp;';echo '&nbsp;';
-                        echo "<a href='obrisi/".$promenljiva1."'><input type='button' value='Delete'></a>";
+                        echo "<a href='obrisi/".$promenljiva1."'><input type='button' class='btn btn-info' value='Delete'></a>";
                         echo "</div></div><br>";
                         }
                  ?>
@@ -97,7 +100,7 @@
                     
                
                     <hr size="2" color="black" >
-                    <div class="row" align="right">
+                    <div class="row" align="center">
                         <div class="col-sm-12">
                             <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
                         </div>

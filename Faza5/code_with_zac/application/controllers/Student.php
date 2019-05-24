@@ -138,7 +138,7 @@ class Student extends CI_Controller{
     }
     
     public function ucitaj_ocenjivanje(){
-        echo "123";
+        
         $this->load->view("user_rate_app.php");
         
     }

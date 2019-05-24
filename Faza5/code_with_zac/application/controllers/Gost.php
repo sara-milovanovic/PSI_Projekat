@@ -7,6 +7,7 @@ class Gost extends CI_Controller{
         $this->load->model('ModelKorisnik');
         $this->load->model('ModelKomentari');
         $this->load->model("ModelOblasti");
+        $this->load->model("ModelOcena");
         $this->load->model("ModelFAQ");
         //ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
         // kako su nam oba modela trebala u svim kontrolerima 
@@ -39,19 +40,19 @@ class Gost extends CI_Controller{
         if ($poruka) {
             $podaci['oblasti'] = $poruka;
         }
+        $podaci['ocena']=$this->ModelOcena->dohvati_ocenu();
         $this->load->view('start_unreg.php',$podaci);
-        //view vest se ucitava iz kontrolera Korisnik i Gost
-        //treba voditi racuna o tome da pozove ispravni kontroler prilikom pretrage kooja se nalazi na toj stranici
-        //to nam omogucala element niza $podaci['controller'] 
+        
     }
           
     //metoda koja ucitava formu za  logovanje
-    public function login($poruka=NULL)
+    public function login($poruka=NULL,$u=null)
     {  
         $podaci=[];
         if ($poruka) {
             $podaci['poruka'] = $poruka;
         }
+        $podaci['username']=$u;
         $this->load->view('login.php',$podaci);
     }
     
@@ -75,10 +76,10 @@ class Gost extends CI_Controller{
            
             if (!$this->ModelKorisnik->dohvatiKorisnika($this->input->post('username'))) {
                 $this->login("Wrong username!");
-              
+                
             } else if (!$this->ModelKorisnik->ispravanPassword($this->input->post('password'))) {
-            
-                $this->login("Wrong passoword!");
+                $u=$this->input->post('username');
+                $this->login("Wrong passoword!",$u);
             } else {
                 $korisnik= $this->ModelKorisnik->korisnik;
                 $c=$this->ModelKorisnik->proveriKorisnika();
@@ -98,6 +99,8 @@ class Gost extends CI_Controller{
                 }
                 
             }
+            
+            
         } else {
          
             $this->login();

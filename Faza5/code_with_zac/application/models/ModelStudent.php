@@ -56,4 +56,14 @@ class ModelStudent extends CI_Model {
         
     }
     
+    public function dohvati_najboljeg(){
+        
+        $this->db->where("Najbolji='da' and s.IdRegistrovani=r.IdRegistrovani");
+        $this->db->from("student s, registrovani r");
+        $query=$this->db->get();
+        $result=$query->row();
+        
+        return $result->Username;
+    }
+    
 }
