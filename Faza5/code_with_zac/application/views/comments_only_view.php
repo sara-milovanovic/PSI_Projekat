@@ -76,7 +76,7 @@
                     
                     <div class="row">
                         <div class="offset-sm-8 col-sm-2" align="right"  bgcolor="edecd3">
-                            <font size="4" face="Cursive"><a href="#top">FAQ/How to use</a><font/>
+                            <font size="4" face="Cursive"><a href="<?php echo site_url("Gost/ucitaj_faq")?>">FAQ/How to use</a><font/>
                         </div>
                         <div class="col-sm-2" align="right"  bgcolor="edecd3">
                             <font size="4" face="Cursive"><a href="#top">PageUp</a><font/>

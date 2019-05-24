@@ -2,115 +2,95 @@
 <html>
 	<head>
 		<title> CodeWithZac(Approving Materials)</title>
-		<link rel="icon" type="image/png" href="slika.png"/>
+		<link rel="icon" type="image/png" href="<?php echo base_url('images/slika.png')?>"/>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	</head>
-	<body background="bg.jpg">
-	
-	<table align="right">
-		<tr>
-			<td align="right"> <font size="5" face="Cursive"> Hello <b>Admin!</b></font></td>
-		</tr>
-	</table>
-	<br/> <br/>
-	<hr size="2" color="black">
-		<table>
-			<tr>
-				<td width="15%"align='left'> <img src="zac2.jpg" height="150"> </td>
-				<td width="65%" align="center"> <img src="logo2.png" height="170" align="center"> </td>
-				<td width="10%" align="right"> <button type="button" align="left"> <font size="4"><a href="start_unreg.html">Sign out</a></font></button> </td>
-				<td width="10%" align="left">  </td>
-			</tr>
-		</table>
-		
-		<table width='100%'>
-			<tr>
-				<td align='right'>
-					<font face="Cursive" size='5'>Best student in this month is <b>Pera</b>! Congratulations! </font>
-				</td>
-			</tr>
-			
-		</table>
-		
-		<br/>
+	<body background="<?php echo base_url('images/bg.jpg')?>">
+            <div class="container">
+                
+                <div class="row" align="right">
+                    <div class="col-sm-12">
+                        <font size="5" face="Cursive"> Hello <b>Admin!</b></font>
+                    </div>
+                </div>
+                
+                <div class="row" align="center">
+                    <div class="col-sm-3">
+                        <img src="<?php echo base_url('images/zac2.jpg')?>" height="150">
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button"> <font size="4"><a href="<?php echo site_url("Admin/logout")?>">Sign out</a></font></button>
+                    </div>
+                </div>
+                
+                <br/> <br/>
+                <hr size="2" color="black">
+                
+                <div class="row" align="right">
+                    <div class="col-sm-12">
+                        <font face="Cursive" size='5'>Best student in this month is <b>Pera</b>! Congratulations! </font>
+                    </div>
+                </div>
+                
+                
+                <br/>
 		<hr size="4" color="black">
 		<hr size="2" color="lightblue">
 		<br/>
-		
-		
-		
-		<table width='100%'>
-			<tr>
-				<td width='15%'></td>
-				<td align='center' bgcolor="edecd3"> <font size="5" face="Cursive"><a href="start_reg.html">Home page</a></font></td>
-				<td width='3%'></td>
-				<td align='center' bgcolor="edecd3"> <font size="5" face="Cursive"><a href="FAQ_only_view.html">Frequently Asked Questions</a></font></td>
-				<td width='3%'></td>
-				<td align='center' bgcolor="edecd3"> <font size="5" face="Cursive"><a href="Documents.html">Documents</a></font></td>
-				<td width='15%'></td>
-			</tr>
-		</table>
-		
-		<br/>	
+                
+                <div class="row" align="center">
+                    <div class="col-sm-4" style="background-color:#edecd3 ">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Admin/index")?>">Home page</a></font>
+                    </div>
+                    <div class="col-sm-4" style="background-color:#edecd3 ">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Admin/ucitaj_faq")?>">Frequently asked questions</a></font>
+                    </div>
+                    <div class="col-sm-4" style="background-color:#edecd3 ">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Admin/ucitaj_documents")?>">Documents</a></font>
+                    </div>
+                </div>
+                
+                
+                <br/>	
 		<hr size="2" color="black">
 		<br/>
+                
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                        <font face='Cursive' size='6'>Approve New Materials</font>
+                    </div> 
+                </div>
+                
+                 <?php
+                    foreach ($materijali as $mat) {
+                        echo "<div class='row' align='center'><div class='col-sm-12'>" ;
+                        echo $mat->Ime;
+                        echo "</div></div><div class='row' align='center'><div class='col-sm-12'>";
+                        echo $mat->Tekst;
+                        echo "</div><div>";
+                        echo "<a href='odobri_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' value='Approve'></a><a href='ponisti_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' value='Reject'></a></td></tr>";                        
+                    }
+                  ?>
+                
+                <br><br><br>
+                <div class="row">
+                    <div class="offset-sm-10 col-sm-2" align="right"  bgcolor="edecd3">
+                        <font size="4" face="Cursive"><a href="<?php echo site_url("Admin/ucitaj_faq")?>">FAQ/How to use</a><font/>
+                    </div>
+                </div>
+		<hr size="2" color="black">
 		
-		<table>
-			<tr>
-				<td>
-					<font face='Cursive' size='6'>
-						Approve New Materials
-					</font>
-				</td>
-			
-			</tr>
-		</table>
-		
-                <table>
-                    
-                    <tr>
+                <div class="row">
+                    <div class="col-sm-12" align="right">
+                        <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
+                        <br><br>
                         
-                        <td>
-                           
-                        </td>
-                        
-                    </tr>
-                    
-                    <tr>
-                        
-                        <td>
-                           
-                        </td>
-                        
-                    </tr>
-                    
-                    <?php
-                        foreach ($materijali as $mat) {
-                            echo "<tr><td>" ;
-                            echo $mat->Ime;
-                            echo "</td></tr><tr><td>";
-                            echo $mat->Tekst;
-                            echo "</td><td>";
-                            
-                            echo "<a href='odobri_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' value='Approve'></a><a href='ponisti_materijal/".$mat->IdMaterijali_na_cekanju."'><input type='button' value='Reject'></a></td></tr>";
-
-                            
-                                     
-			}
-                        ?>
-                    
-                </table>
-		
-		<table align="right">
-			<tr>
-				<td bgcolor="edecd3">  <font size="4" face="Cursive">FAQ/How to use<font/> </td>
-				
-				<td  width="25">  <font size="4" face="Cursive"><font/> </td>
-				
-				
-			</tr>
-		</table>
-		<br/> <br/>
-		<hr size="2" color="black" >
-		<p align="center"> <font size="4" face="Cursive">Thanks for using our app!<font/></p>
+                    </div>
+                </div>
+                
+            </div>
 	</body>
 </html>

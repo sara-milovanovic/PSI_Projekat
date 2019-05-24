@@ -43,7 +43,7 @@
 				<td  width="3%"> <font size="6"></font></td>
 				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="#soon">Coming Soon</a></font></td>
 				<td  width="3%"> </td>
-				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="Documents.html">Documents</a></font></td>
+				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="<?php echo site_url("Student/ucitaj_documents")?>">Documents</a></font></td>
 				<td  width="3%"> </td>
 				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="<?php echo site_url("Student/ucitaj_infos")?>">My Informations</a></font></td>
 				<td width="20%" > </td>
@@ -125,7 +125,7 @@ In this jam-packed 1 hour course, we focus on the tools, techniques and ideas yo
 				<td><img src="star.png" height="45"><img src="star.png" height="45"><img src="star.png" height="45"><img src="star.png" height="45"><img src="star.png" height="45"> <font size="4" face="Cursive">&nbsp;&nbsp;&nbsp;Course rating: <b>4.7<b/> <font/>
 				
 				
-				&nbsp;&nbsp;<a href="user_rate_app.html"><font size="4" face="Cursive">Rate this course <font/></a>
+				&nbsp;&nbsp;<a href="Student/ucitaj_ocenjivanje"><font size="4" face="Cursive">Rate this course <font/></a>
 				
 				</td>
 				

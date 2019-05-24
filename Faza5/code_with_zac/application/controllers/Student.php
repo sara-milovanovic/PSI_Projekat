@@ -7,6 +7,9 @@ class Student extends CI_Controller{
         parent::__construct();
         $this->load->model("ModelKorisnik");
         $this->load->model("ModelKomentari");
+        $this->load->model("ModelMaterijal");
+        $this->load->model("ModelOblasti");
+        $this->load->model("ModelOcena");
         $this->load->library('session');
         if (($this->session->userdata('profesor')) != NULL) {
             redirect("Profesor");
@@ -38,6 +41,7 @@ class Student extends CI_Controller{
         $podaci['e_mail']=$this->session->userdata('student')->e_mail;
         $podaci['name']=$this->session->userdata('student')->Ime;
         $podaci['surname']=$this->session->userdata('student')->Prezime;
+        $podaci['oblasti']=$this->ModelOblasti->ucitaj_oblasti_sa_rez();
         $this->load->view("my_informations.php",$podaci);
     }
     
@@ -129,7 +133,22 @@ class Student extends CI_Controller{
     }
     
     public function ucitaj_documents(){
-       $this->load->view("documents.php");
+       $podaci['oblast']=$this->ModelMaterijal->izlistaj_materijale();
+       $this->load->view("documents.php",$podaci);
+    }
+    
+    public function ucitaj_ocenjivanje(){
+        echo "123";
+        $this->load->view("user_rate_app.php");
+        
+    }
+    
+    public function oceni(){
+        $id=$this->session->userdata('student')->IdRegistrovani;
+        $ocena=$this->input->post('star');
+        $this->ModelOcena->oceni($id,$ocena);
+        $this->ucitaj_ocenjivanje();
+        
     }
     
 }

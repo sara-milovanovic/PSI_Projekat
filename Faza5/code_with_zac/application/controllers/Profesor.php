@@ -236,4 +236,13 @@ class Profesor extends CI_Controller{
         
     }
 
+    
+     public function ucitaj_faq(){
+       $this->load->view("faq_only_view.php");
+    }
+    
+    public function ucitaj_documents(){
+       $this->load->view("documents.php");
+    }
+    
 }

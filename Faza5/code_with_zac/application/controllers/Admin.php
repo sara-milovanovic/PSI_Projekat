@@ -18,6 +18,7 @@ class Admin extends CI_Controller{
         $this->load->model("ModelKorisnik");
         $this->load->model("ModelStudent");
         $this->load->model("ModelMaterijal");
+        $this->load->model("ModelKomentari");
         $this->load->model("ModelFAQ");
         $this->load->library('session');
         if (($this->session->userdata('student')) != NULL) {
@@ -163,6 +164,19 @@ class Admin extends CI_Controller{
         redirect(base_url("index.php/Admin/ucitaj_show_users"));
     }
     
+     public function brisi_komentar($id){
+        
+        $this->ModelKomentari->brisi_komentar($id);
+        $this->ucitaj_komentare();
+      
+    }
     
+      public function ucitaj_komentare(){
+        
+       $komentari=$this->ModelKomentari->ucitaj_komentare();
+       $podaci['komentari'] = $komentari;
+       $this->load->view("admin_comments.php",$podaci);
+        
+    }
     
 }

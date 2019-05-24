@@ -6,6 +6,8 @@ class Gost extends CI_Controller{
         parent::__construct();
         $this->load->model('ModelKorisnik');
         $this->load->model('ModelKomentari');
+        $this->load->model("ModelOblasti");
+        $this->load->model("ModelFAQ");
         //ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
         // kako su nam oba modela trebala u svim kontrolerima 
         //mogli smo i u autoload falju da ih dodamo u niz za modele
@@ -21,6 +23,8 @@ class Gost extends CI_Controller{
             redirect('Profesor');
         }
     }
+    
+     
         
     //pomocna metoda koja sluzi za ucitavanje stranice posto nam se svaka stranica sadrzi iz tri dela
     private function prikazi($glavniDeo, $data){
@@ -29,8 +33,13 @@ class Gost extends CI_Controller{
         $this->load->view("sablon/footer.php");
     }
     
-    public function index($trazi=NULL){
-        $this->load->view('start_unreg.php');
+    public function index($poruka=NULL){
+        $poruka=$this->ModelOblasti->ucitaj_oblasti();
+        $podaci=[];
+        if ($poruka) {
+            $podaci['oblasti'] = $poruka;
+        }
+        $this->load->view('start_unreg.php',$podaci);
         //view vest se ucitava iz kontrolera Korisnik i Gost
         //treba voditi racuna o tome da pozove ispravni kontroler prilikom pretrage kooja se nalazi na toj stranici
         //to nam omogucala element niza $podaci['controller'] 
@@ -102,8 +111,10 @@ class Gost extends CI_Controller{
    }
    
    public function ucitaj_faq(){
-       $this->load->view("faq_only_view.php");
-   }
+       $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
+       $podaci['faq'] = $faq_svi;
+       $this->load->view("faq_only_view.php",$podaci);
+    }
    
    public function ucitaj_komentare(){
        

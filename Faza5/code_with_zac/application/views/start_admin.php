@@ -106,7 +106,7 @@ In this jam-packed 1 hour course, we focus on the tools, techniques and ideas yo
 				<td><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"> <font size="4" face="Cursive">&nbsp;&nbsp;&nbsp;Course rating: <b>4.7<b/> <font/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="user_rate_app.html"><font size="4" face="Cursive">Rate this course <font/></a>
 				</td>
-								<td width="50" align="center"> <font size="4" face="Cursive"><img src="<?php echo base_url('images/zac_com.png')?>" height="150"><br/><a href="Admin_Comments.html"><button type="button" >View comments</button></a><font/></td>
+								<td width="50" align="center"> <font size="4" face="Cursive"><img src="<?php echo base_url('images/zac_com.png')?>" height="150"><br/><a href="<?php echo site_url("Admin/ucitaj_komentare")?>"><button type="button" >View comments</button></a><font/></td>
 
 				</tr>
 			<tr height="130">

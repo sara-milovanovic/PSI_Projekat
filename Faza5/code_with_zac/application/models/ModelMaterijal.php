@@ -97,4 +97,12 @@ class ModelMaterijal extends CI_Model{
      
     }
     
+    public function izlistaj_materijale(){
+        
+        $query=$this->db->get('oblast');
+        $result=$query->result();//vraca niz komentara
+        return $result;
+        
+    }
+    
 }

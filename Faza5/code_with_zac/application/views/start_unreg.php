@@ -85,13 +85,19 @@ In this jam-packed 1 hour course, we focus on the tools, techniques and ideas yo
 				
 				<td></td>
 				<td> <font size="4" face="Cursive">
-					<ul>
-						<li>Introduction</li>
-						<li>Data types</li>
-						<li>Arrays</li>
-						<li>For loop</li>
-						<li> Log In to view more...</li>
-					</ul>
+                                    
+                                       <?php
+                        foreach ($oblasti as $o) {
+                            echo "<tr height='100'><td>" ;
+                                    echo '*'.$o->Ime;
+                             
+                                    echo "</td></tr>";
+                                     
+			}
+                        ?>
+                                    
+                                    
+					
 					<font/>
 				</td>
 				<td><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"><img src="<?php echo base_url('images/star.png')?>" height="45"> <font size="4" face="Cursive">&nbsp;&nbsp;&nbsp;Course rating: <b>4.7<b/> <font/></td>
