@@ -107,8 +107,10 @@
                     </div>
                     <div class="row" align="center">
                         <div class="col-sm-12">
-                            <?php if(isset($poruka))
-                               echo "<font color='red'>$poruka</font><br>";
+                            <?php if(isset($poruka)){
+                                $p=str_replace("_", " ", $poruka);
+                                echo "<font color='red'>$p</font><br>";
+                            }
                              ?>
                         </div>
                     </div>

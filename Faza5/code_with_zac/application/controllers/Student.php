@@ -77,12 +77,14 @@ class Student extends CI_Controller{
         
         if(isset($u) or isset($np) or isset($rp) or isset($n) or isset($s)){
             if(isset($np) and (!isset($rp))){
-                $poruka="Please fill all the * fields";
-                $this->ucitaj_change_infos($poruka);
+                $poruka="Please_fill_all_the_required_fields";
+                redirect(base_url("index.php/Student/ucitaj_change_infos/Please_fill_all_the_required_fields"));
+
             }
             elseif((isset($np)) and ($np!=$rp)){
-                $poruka="Passwords are not the same";
-                $this->ucitaj_change_infos($poruka);
+                $poruka="Passwords_are_not_the_same";
+                 redirect(base_url("index.php/Student/ucitaj_change_infos/Passwords_are_not_the_same"));
+                
             }
 
             else{

@@ -224,15 +224,15 @@ class Profesor extends CI_Controller{
             
             $this->ModelMaterijal->dodaj_materijal($mat,$obl);
             
-            $poruka="Material waiting for approval!";
-            redirect(base_url("index.php/Profesor/ucitaj_dodavanje_materijala/Success"));   
+            $poruka="Material_waiting_for_approval!";
+            redirect(base_url("index.php/Profesor/ucitaj_dodavanje_materijala/Material_waiting_for_approval"));   
             
             
             
         }
         else{
-            $poruka="Material waiting for approval!";
-            redirect(base_url("index.php/Profesor/ucitaj_dodavanje_materijala/Required"));   
+            $poruka="Material_waiting_for_approval!";
+            redirect(base_url("index.php/Profesor/ucitaj_dodavanje_materijala/Fill_the_box"));   
         }
         
         
