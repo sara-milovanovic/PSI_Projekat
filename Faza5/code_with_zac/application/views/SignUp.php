@@ -12,10 +12,10 @@
                 <hr size="2" color="black"> 
                 <div class="row" align="center">
                     <div class="col-sm-4">
-                        <img src="<?php echo base_url('images/zac2.jpg')?>" height="150">
+                        <img class='img img-fluid' src="<?php echo base_url('images/zac2.jpg')?>" height="150">
                     </div>
                     <div class="col-sm-4">
-                        <img src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
+                        <img class='img img-fluid' src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
                     </div>
                     <div class="col-sm-4">
                         <a href="<?php echo site_url("Gost/login")?>"><input type="button" value="LogIn" class="btn btn-info" align="left"> </a>
@@ -23,11 +23,9 @@
                 </div>
                 
                 
-                <br/> <br/>
-		<hr size="4" color="black">
-		<hr size="2" color="lightblue">
-		<br/>
                 
+		<hr size="2" color="lightblue">
+		
                 
                 
                 <div class="row" align="center">
@@ -134,8 +132,7 @@
                     
                     <br/>
                     <br/>
-                    <br/>
-                    <hr></hr>
+                    
                     <hr size="2" color="black">
                     
                     <div class="row" align="center">
@@ -153,7 +150,7 @@
                     <hr size="2" color="black">
 
                     <div class="row">
-                        <div class="col-sm-12" align="right">
+                        <div class="col-sm-12" align="center">
                             <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
                             <br><br>
                         </div>
