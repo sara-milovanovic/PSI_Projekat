@@ -1,125 +1,140 @@
 <!--autor: Iva Veljkovic-->
 <html>
 	<head>
-		<title> CodeWithZac(UserRate)</title>
-		<link rel="icon" type="image/png" href="slika.png"/>
+		<title> CodeWithZac(ProfRate)</title>
+		<link rel="icon" type="image/png" href="<?php echo base_url('images/slika.png')?>"/>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	</head>
-	<body background="bg.jpg">
-	<table align="right">
-		<tr>
-			<td align="right"> <font size="5" face="Cursive"> Hello <b>Lana!</b></font></td>
-		</tr>
-	</table>
-	<br/> <br/>
-	<hr size="2" color="black">
-	<!--tabela uvod-->
-		<table  width="100%" id="top">
+	<body background="<?php echo base_url('images/bg.jpg')?>">
+            <div class="container">
+                <div class="row" align="right">
+                    <div class="col-sm-12">
+                        <font size="5" face="Cursive"> Hello <b><?php if(isset($username)) echo $username ?>!</b></font>
+                    </div>
+                </div>
+                
+                <hr size="2" color="black">
+                <div class="row text-center">
+                    <div class="col-sm-3">
+                        <img class="img img-fluid" src="<?php echo base_url('images/zac2.jpg')?>" height="150">
+                    </div>
+                    <div class="col-sm-6">
+                        <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
+                    </div>
+                    <div class="col-sm-3" align="right">
+                        <a href="<?php echo site_url("Profesor/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a> &nbsp;
+                    </div>
+                </div>
+                
+                
+                <div class="row">
+                    <div class="col-sm-12" align="right">
+                        <?php 
+                        if(isset($najbolji)) 
+                            echo "<font size='5' face='Cursive'> Best student in this month is <b>". $najbolji." </b>! Congratulations!</font>";
+                        ?>
+                    </div> 
+                </div>
 
-			<tr>
-				<td width="15%" align="left"> <img src="zac2.jpg" height="150"> </td>
-				<td width="60%" align="center"> <img src="logo2.png" height="170" align="center"> </td>
-				<td width="10%" align=""> <button type="button" > <font size="4"><a href="start_unreg.html">Sign out</a></font></button> </td>
-				<td width="10%"></td>
-			</tr>
-			
-		</table>
-		<table align="right">
-			<tr>
-				<td align="right"> <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font></td>
-			</tr>
-		</table>
-		<br/> <br/>
-		<hr size="4" color="black">
-		<hr size="2" color="lightblue">
-		<br/>
-		
-		
-		<!--tabela precice-->
-		<table>
-			<tr>
-				<td  width="13%"> <font size="6"></font></td>
-				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="FAQ_only_view.html">Frequently Asked Questions</a></font></td>
-				<td  width="2%"> <font size="6"></font></td>
-				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="start_reg.html#courses">Courses</a></font></td>
-				<td  width="2%"> <font size="6"></font></td>
-				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="start_reg.html#soon">Coming soon</a></font></td>
-				<td  width="2%"> </td>
-				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="Documents.html">Documents</a></font></td>
-				<td  width="2%"> </td>
-				<td bgcolor="edecd3"> <font size="5" face="Cursive"><a href="myInformations.html">My informations</a></font></td>
-				<td width="13%" > </td>
-				</tr>
-		</table> 
-		<br/>
+                <hr size="2" color="lightblue">
+                <br/>   
+                
+                <div class="row" align="center"><div class="col-sm-3" style="background-color:#edecd3 ">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor/index")?>">Home page</a></font>
+                    </div>
+                    <div class="col-sm-3" style="background-color: #edecd3">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor/ucitaj_faq")?>">Frequently Asked Questions</a></font>
+                    </div>
+                    <div class="col-sm-3" style="background-color: #edecd3">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor")?>#courses">Courses</a></font>
+                    </div>
+                    
+                    <div class="col-sm-3" style="background-color: #edecd3">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor/ucitaj_documents")?>">Documents</a></font>
+                    </div>
+                    
+                </div>
+                <br/>
 		<hr size="2" color="black">
 		<br/>
-		
-		<!--centralna tabela-->		
-		<table width="100%" align="center" >
-			<tr align="center">
-				
-				<td bgcolor="c1f3d8" colspan="4"> <font size="6" face="Cursive"><b>How did you like our course?<b/></font></td>
-				
-			</tr>
-
-			<tr height="15" align="center">
-
-				<td  colspan="4"><center><img src="star.png" height="45"><img src="star.png" height="45"><img src="star.png" height="45"><img src="star.png" height="45"><img src="star.png" height="45"> <font size="4" face="Cursive"> </center></td>
-			</tr>
-			<tr >
-				
-				<td width="30%"><img src="c.png" height="130" >
-				<font size="3" face="Cursive"><b>Choose one and rate<b/></font></td>
-				
-				
-			</tr>
-                        <form name="signupform" action="<?php echo site_url('Student/oceni') ?>" method="post">
-                            <tr>
-
-                                    <td width="20%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="star" value="1">1
-                                    <input type="radio" name="star" value="2">2
-                                     <input type="radio" name="star" value="3">3
-                                    <input type="radio" name="star" value="4">4
-                                    <input type="radio" name="star" checked value="5">5</td>
-                                    <td width="10%"><a href="user_rate_app.html"><input type="submit" value="Rate"></a>
-                                    <a href="user_rate_app.html"><input type="reset"></a></td>
-                                    <td width="65%"></td>
-
-                            </tr>
-                        </form>
-			
-			
-		</table>	
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>	
-		
-		
-			
-		<br/>
+                
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                        <font size="6" face="Cursive"><b>How did you like our course?<b/></font>
+                    </div>
+                </div>
+                
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                        <img src="<?php echo base_url('images/star.png')?>" style="height:50px;width: 50px;">
+                        <img src="<?php echo base_url('images/star.png')?>" style="height:50px;width: 50px;">
+                        <img src="<?php echo base_url('images/star.png')?>" style="height:50px;width: 50px;">
+                        <img src="<?php echo base_url('images/star.png')?>" style="height:50px;width: 50px;">
+                        <img src="<?php echo base_url('images/star.png')?>" style="height:50px;width: 50px;">
+                    </div>
+                </div>
+                
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                        <font size="3" face="Cursive"><b>Choose one and rate<b/></font>
+                    </div>
+                </div>
+                
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                        <img src="<?php echo base_url('images/c.png')?>" style="height:150px;width: 150px;" >
+                    </div>
+                </div>
+                
+                 <form name="signupform" action="<?php echo site_url('Profesor/oceni') ?>" method="post">
+                
+                 <div class="row" align="center">
+                    <div class="col-sm-2">
+                        <input type="radio" name="star" value="1">1
+                    </div>
+                     <div class="col-sm-2">
+                        <input type="radio" name="star" value="2">2
+                    </div>
+                     <div class="col-sm-2">
+                             <input type="radio" name="star" value="3">3
+                    </div>
+                     <div class="col-sm-2">
+                        <input type="radio" name="star" value="4">4
+                    </div>
+                     <div class="col-sm-2">
+                        <input type="radio" name="star" checked value="5">5</td>
+                    </div>
+                     <div class="col-sm-2">
+                        <a href="user_rate_app.html"><input type="submit" class="btn btn-info " value="Rate"></a>&nbsp;&nbsp;&nbsp;
+                        <a href="user_rate_app.html"><input type="reset" class="btn btn-info "></a>
+                    </div>
+                </div>
+                </form>
+                
+                
+                <br/>
 		<hr size="2" color="black">
-		<table align="right">
-			<tr>
-				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="FAQ_only_view.html">FAQ/How to use<font/></a><font/> </td>
-				
-				<td  width="25">  <font size="4" face="Cursive"><font/> </td>
-				
-				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="#top">PageUp</a><font/> </td>
-				
-				<td  width="25">  <font size="4" face="Cursive"><font/> </td>
-				
-				<td bgcolor="edecd3">  <font size="4" face="Cursive"><a href="myInformations.html">My informations<font/></a> </td>
-			</tr>
-		</table>
-		<br/> <br/>
-		<hr size="2" color="black" >
-		<p align="center"> <font size="4" face="Cursive">Thanks for using our app!<font/></p>
+                
+                
+                <div class="row" align="right">
+                        <div class="offset-sm-9 col-sm-1">
+                            <font size="4" face="Cursive"><a href="<?php echo site_url("Profesor/ucitaj_faq")?>">FAQ/How to use</a><font/>
+                        </div>
+                        <div class="col-sm-1">
+                            <font size="4" face="Cursive"><a href="#top">PageUp</a><font/>
+                        </div>
+                    </div>
+                    
+               
+                    <hr size="2" color="black" >
+                    <div class="row" align="center">
+                        <div class="col-sm-12">
+                            <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
+                        </div>
+                    </div>
+                    <br>
+                
+                
+            </div>
 	</body>
 </html>

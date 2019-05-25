@@ -24,17 +24,21 @@
                         <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
                     </div>
                     <div class="col-sm-3" align="right">
-                        <button type="button" align="left"> <font size="4"><a href="<?php echo site_url("Student/logout")?>">Sign out</a></font></button>
+                        <a href="<?php echo site_url("Student/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a>
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="col-sm-12" align="right">
-                        <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font>
-                    </div> 
+                <div class="row" align="right">
+                    <div class="col-sm-12">
+                        
+                        <?php 
+                        if(isset($najbolji)) 
+                            echo "<font size='5' face='Cursive'> Best student in this month is <b>". $najbolji." </b>! Congratulations!</font>";
+                                ?>
+                        
+                    </div>
                 </div>
                 <br/>
-		<hr size="4" color="black">
 		<hr size="2" color="lightblue">
 		<br/>
                 

@@ -12,8 +12,7 @@
                         <font size="5" face="Cursive"> Hello <b><?php if(isset($username)) echo $username ?>!</b></font>
                     </div>
                 </div>
-                <br/> <br/>
-                
+                <hr>
                 <div class="row" align="center">
                     <div class="col-sm-3">
                         <img class="img img-fluid" src="<?php echo base_url('images/zac2.jpg')?>">
@@ -22,21 +21,25 @@
                         <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>">
                     </div>
                     <div class="col-sm-3">
-                        <button type="button"> <font size="4"><a href="<?php echo site_url("Student/logout")?>">Sign Out</a></font></button>
+                        <a href="<?php echo site_url("Student/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a>
                     </div>
                 </div>
                 
-                <hr size="2" color="black">
                 
                 
-                <div class="row" align="right">
+                
+                 <div class="row" align="right">
                     <div class="col-sm-12">
-                        <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font>
+                        
+                        <?php 
+                        if(isset($najbolji)) 
+                            echo "<font size='5' face='Cursive'> Best student in this month is <b>". $najbolji." </b>! Congratulations!</font>";
+                                ?>
+                        
                     </div>
                 </div>
-                <br/> <br/>
-		<hr size="4" color="black">
-		<hr size="2" color="lightblue">
+                
+		<hr size="2" color="black">
                 
                 <div class="row" align="center">
                     <div class="col-sm-3" style="background-color:lightblue ">
@@ -111,10 +114,10 @@
                     </div>
                     <div class="row" align="center">
                         <div class="offset-sm-4 col-sm-2">
-                            <input width='10%' height='10%' type='submit' value="Confirm" align='center' >
+                            <input width='10%' height='10%' type='submit' class='btn btn-info' value="Confirm" align='center' >
                         </div>
                         <div class="col-sm-2">
-                            <input width='10%' height='10%' type='reset' align='center'value="Cancel" >
+                            <input width='10%' height='10%' type='reset' class='btn btn-info' align='center'value="Cancel" >
                         </div>
                     </div>
                 </form>

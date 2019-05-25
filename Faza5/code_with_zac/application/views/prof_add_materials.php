@@ -39,15 +39,16 @@
                 <br/>   
                 
                 <div class="row" align="center">
+                    <div class="col-sm-3" style="background-color:#edecd3 ">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor/index")?>">Home page</a></font>
+                    </div>
                     <div class="col-sm-3" style="background-color: #edecd3">
                         <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor/ucitaj_faq")?>">Frequently Asked Questions</a></font>
                     </div>
                     <div class="col-sm-3" style="background-color: #edecd3">
-                        <font size="5" face="Cursive"><a href="#courses">Courses</a></font>
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor")?>#courses">Courses</a></font>
                     </div>
-                    <div class="col-sm-3" style="background-color: #edecd3">
-                        <font size="5" face="Cursive"><a href="#soon">Coming Soon</a></font>
-                    </div>
+                    
                     <div class="col-sm-3" style="background-color: #edecd3">
                         <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor/ucitaj_documents")?>">Documents</a></font>
                     </div>

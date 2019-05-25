@@ -27,7 +27,6 @@
                 </div>
                 
                 
-                <hr size="4" color="black">
                 <div class="row">
                     <div class="col-sm-12" align="right">
                         <?php 
@@ -40,18 +39,18 @@
                 <hr size="2" color="lightblue">
                 <br/>   
                 
-                <div class="row" align="center">
+                <div class="row" align="center"><div class="col-sm-3" style="background-color:#edecd3 ">
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Student/index")?>">Home page</a></font>
+                    </div>
                     <div class="col-sm-3" style="background-color: #edecd3">
                         <font size="5" face="Cursive"><a href="<?php echo site_url("Student/ucitaj_faq")?>">Frequently Asked Questions</a></font>
                     </div>
                     <div class="col-sm-3" style="background-color: #edecd3">
-                        <font size="5" face="Cursive"><a href="#courses">Courses</a></font>
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Student")?>#courses">Courses</a></font>
                     </div>
+                    
                     <div class="col-sm-3" style="background-color: #edecd3">
                         <font size="5" face="Cursive"><a href="<?php echo site_url("Student/ucitaj_documents")?>">Documents</a></font>
-                    </div>
-                    <div class="col-sm-3" style="background-color: #edecd3">
-                        <font size="5" face="Cursive"><a href="<?php echo site_url("Student/ucitaj_infos")?>">My Informations</a></font>
                     </div>
                     
                 </div>
@@ -83,7 +82,7 @@
                 
                 <div class="row" align="center">
                     <div class="col-sm-12">
-                        <img src="<?php echo base_url('images/c.png')?>" style="height:200px;width: 200px;" >
+                        <img src="<?php echo base_url('images/c.png')?>" style="height:150px;width: 150px;" >
                     </div>
                 </div>
                 
@@ -106,8 +105,8 @@
                         <input type="radio" name="star" checked value="5">5</td>
                     </div>
                      <div class="col-sm-2">
-                        <a href="user_rate_app.html"><input type="submit" value="Rate"></a>&nbsp;&nbsp;&nbsp;
-                        <a href="user_rate_app.html"><input type="reset"></a>
+                        <input type="submit" class="btn btn-info " value="Rate">&nbsp;&nbsp;&nbsp;
+                        <input type="reset" class="btn btn-info ">
                     </div>
                 </div>
                 </form>

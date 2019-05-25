@@ -15,7 +15,6 @@
                     </div>
                 </div> 
                 
-                <br/> <br/>
                 <hr size="2" color="black">
                 
                 <div class="row" align="center">
@@ -26,19 +25,23 @@
                         <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
                     </div>
                     <div class="col-sm-3">
-                        <button type="button" > <font size="4"><a href="<?php echo site_url("Student/logout")?>">Sign Out</a></font></button>
+                        <a href="<?php echo site_url("Student/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a>
                     </div>
                     
                 </div>
                 
                 <div class="row" align="right">
                     <div class="col-sm-12">
-                        <font size="5" face="Cursive"> Best student in this month is <b>Pera</b>! Congratulations!</font>
+                        
+                        <?php 
+                        if(isset($najbolji)) 
+                            echo "<font size='5' face='Cursive'> Best student in this month is <b>". $najbolji." </b>! Congratulations!</font>";
+                                ?>
+                        
                     </div>
                 </div>
                 
-                <br/> <br/>
-		<hr size="4" color="black">
+                <br/>
 		<hr size="2" color="lightblue">
                 <br/>
                 
@@ -107,7 +110,18 @@
                     </div>   
                 </div>
                 <br/>
-                
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                         <a href="<?php echo site_url("Student/ucitaj_change_infos")?>"><input class='btn btn-info' type="button" value="Change"></a>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row" align="center" height="200">
+                    <div class="col-sm-12">
+                        <font size='5' face='Cursive'>Your score:</font>
+                    </div>
+                </div>
+                <br><br>
                 <div class="row" align="center" height="200">
                     <div class="col-sm-12">
                         <img class="img img-fluid" src="<?php echo base_url('images/c.png')?>">
@@ -121,11 +135,7 @@
                     }
                  ?>
                 
-                <div class="row" align="center">
-                    <div class="col-sm-12">
-                         <a href="<?php echo site_url("Student/ucitaj_change_infos")?>"><input type="button" value="Change"></a>
-                    </div>
-                </div>
+                
                 
                 
                 <br><br>

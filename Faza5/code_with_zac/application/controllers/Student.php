@@ -10,6 +10,8 @@ class Student extends CI_Controller{
         $this->load->model("ModelMaterijal");
         $this->load->model("ModelOblasti");
         $this->load->model("ModelOcena");
+        $this->load->model("ModelFAQ");
+        $this->load->model("ModelStudent");
         $this->load->library('session');
         if (($this->session->userdata('profesor')) != NULL) {
             redirect("Profesor");
@@ -22,7 +24,12 @@ class Student extends CI_Controller{
     }
    
     public function index(){
-       
+       $poruka=$this->ModelOblasti->ucitaj_oblasti();
+        if ($poruka) {
+            $podaci['oblasti'] = $poruka;
+        }
+        $podaci['ocena']=$this->ModelOcena->dohvati_ocenu();
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
         //$this->prikazi("adminvesti.php",$podaci);
         $podaci['username']=$this->session->userdata('student')->Username;
        
@@ -36,6 +43,7 @@ class Student extends CI_Controller{
     }
     
     public function ucitaj_infos(){
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
         $podaci['username']=$this->session->userdata('student')->Username;
         $podaci['password']=$this->session->userdata('student')->Password;
         $podaci['e_mail']=$this->session->userdata('student')->e_mail;
@@ -47,9 +55,14 @@ class Student extends CI_Controller{
     
     public function ucitaj_change_infos($poruka=null){
         $podaci=[];
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+        
+        $podaci['username']=$this->session->userdata('student')->Username;
+        
         if ($poruka) {
             $podaci['poruka'] = $poruka;
         }
+        //var_dump($podaci);
         $this->load->view("change_infos.php",$podaci);
         
     }
@@ -62,47 +75,57 @@ class Student extends CI_Controller{
         if($this->input->post('name')!="") $n=$this->input->post('name');
         if($this->input->post('surname')!="") $s=$this->input->post('surname');
         
-        if(isset($np) and (!isset($rp))){
-            $poruka="Please fill all the * fields";
-            $this->ucitaj_change_infos($poruka);
-        }
-        elseif($np!=$rp){
-            $poruka="Passwords are not the same";
-            $this->ucitaj_change_infos($poruka);
-        }
+        if(isset($u) or isset($np) or isset($rp) or isset($n) or isset($s)){
+            if(isset($np) and (!isset($rp))){
+                $poruka="Please fill all the * fields";
+                $this->ucitaj_change_infos($poruka);
+            }
+            elseif((isset($np)) and ($np!=$rp)){
+                $poruka="Passwords are not the same";
+                $this->ucitaj_change_infos($poruka);
+            }
+
+            else{
+
+                    if(isset($u)) {
+                        $this->db->set("Username", $u);
+                    }
+                    if(isset($np)) {
+                        $this->db->set("Password", $np);
+                    }
+                    if(isset($n)) {
+                        $this->db->set("Ime", $n);
+                    }
+                    if(isset($s)) {
+                        $this->db->set("Prezime", $s);
+                    }
+                    $this->db->where("Username",$this->session->userdata('student')->Username);
+                    $this->db->update("registrovani");
+
+                    $this->ModelKorisnik->dohvatiKorisnika_id($this->session->userdata('student')->IdRegistrovani);
+                    $korisnik= $this->ModelKorisnik->korisnik;
+
+                    $this->session->unset_userdata("student");
+                    $this->session->set_userdata('student',$korisnik);
+
+                    redirect(base_url("index.php/Student/ucitaj_infos"));
+
+
+            }
         
+        }
         else{
-           
-                if(isset($u)) {
-                    $this->db->set("Username", $u);
-                }
-                if(isset($np)) {
-                    $this->db->set("Password", $np);
-                }
-                if(isset($n)) {
-                    $this->db->set("Ime", $n);
-                }
-                if(isset($s)) {
-                    $this->db->set("Prezime", $s);
-                }
-                $this->db->where("Username",$this->session->userdata('student')->Username);
-                $this->db->update("registrovani");
-               
-                $this->ModelKorisnik->dohvatiKorisnika_id($this->session->userdata('student')->IdRegistrovani);
-                $korisnik= $this->ModelKorisnik->korisnik;
-                
-                $this->session->unset_userdata("student");
-                $this->session->set_userdata('student',$korisnik);
-                
-                $this->ucitaj_infos();
             
+            redirect(base_url("index.php/Student/ucitaj_change_infos"));
             
         }
         
     }
     
     public function ucitaj_komentare(){
-        
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('student')->Username;
+       
        $komentari=$this->ModelKomentari->ucitaj_komentare();
        $podaci['komentari'] = $komentari;
        $this->load->view("write_comments.php",$podaci);
@@ -114,13 +137,16 @@ class Student extends CI_Controller{
         $novi=$this->input->post('novi_komentar');
         $user=$this->session->userdata('student')->IdRegistrovani;
         $this->ModelKomentari->upisi_komentar($novi,$user);
-        $this->ucitaj_komentare();
+        redirect(base_url("index.php/Student/ucitaj_komentare"));
+        
     }
     
     public function brisi_komentar($id){
         
         $this->ModelKomentari->brisi_komentar($id);
-        $this->ucitaj_komentare();
+        
+        redirect(base_url("index.php/Student/ucitaj_komentare"));
+        
         /*
         $novi=$this->input->post('novi_komentar');
         $user=$this->session->userdata('student')->IdRegistrovani;
@@ -129,17 +155,26 @@ class Student extends CI_Controller{
     }
     
     public function ucitaj_faq(){
-       $this->load->view("faq_only_view.php");
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('student')->Username;
+       $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
+       $podaci['faq'] = $faq_svi;
+       $this->load->view("faq_only_view_student.php",$podaci);
     }
     
     public function ucitaj_documents(){
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('student')->Username;
        $podaci['oblast']=$this->ModelMaterijal->izlistaj_materijale();
-       $this->load->view("documents.php",$podaci);
+       $this->load->view("documents_student.php",$podaci);
     }
     
-    public function ucitaj_ocenjivanje(){
-        
-        $this->load->view("user_rate_app.php");
+ 
+    
+    public function ucitaj_rate(){
+         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('student')->Username;
+         $this->load->view("student_rate_app.php",$podaci);
         
     }
     
@@ -147,7 +182,7 @@ class Student extends CI_Controller{
         $id=$this->session->userdata('student')->IdRegistrovani;
         $ocena=$this->input->post('star');
         $this->ModelOcena->oceni($id,$ocena);
-        $this->ucitaj_ocenjivanje();
+         redirect(base_url("index.php/Student/ucitaj_rate"));
         
     }
     

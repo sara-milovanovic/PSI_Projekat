@@ -128,11 +128,7 @@ class Admin extends CI_Controller{
        $this->load->view("admin_comments.php");
    }
    
-    public function ucitaj_ocenjivanje(){
-        
-        $this->load->view("admin_rate_app.php");
-        
-    }
+   
    
     public function ucitaj_final_test(){
       //poziv fje koja dohvata pitalice
