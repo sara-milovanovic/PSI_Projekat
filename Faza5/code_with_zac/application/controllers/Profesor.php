@@ -19,6 +19,10 @@ class Profesor extends CI_Controller{
         $this->load->model("ModelMaterijal");
         $this->load->model("ModelPitalica");
         $this->load->model("ModelStudent");
+        $this->load->model("ModelOblasti");
+        $this->load->model("ModelOcena");
+        $this->load->model("ModelKomentari");
+        $this->load->model("ModelFAQ");
         $this->load->library('session');
         if (($this->session->userdata('student')) != NULL) {
             redirect("Student");
@@ -38,7 +42,12 @@ class Profesor extends CI_Controller{
     }*/
     
     public function index(){
-       
+       $poruka=$this->ModelOblasti->ucitaj_oblasti();
+        if ($poruka) {
+            $podaci['oblasti'] = $poruka;
+        }
+        $podaci['ocena']=$this->ModelOcena->dohvati_ocenu();
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
         //$this->prikazi("adminvesti.php",$podaci);
         $podaci['username']=$this->session->userdata('profesor')->Username;
         $this->load->view("start_prof.php", $podaci);
@@ -62,9 +71,11 @@ class Profesor extends CI_Controller{
     }
     
     public function ucitaj_dodavanje_materijala($poruka=null,$mat=null){
-         $podaci['poruka']=$poruka;
+         $podaci['poruka']=$poruka.'!';
          $podaci['materijal']=$mat;
-       
+         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+        //$this->prikazi("adminvesti.php",$podaci);
+         $podaci['username']=$this->session->userdata('profesor')->Username;
          $this->load->view("prof_add_materials.php",$podaci);
         
     }
@@ -198,10 +209,6 @@ class Profesor extends CI_Controller{
         $mat=$this->input->post('mat');
         $obl=$this->input->post('obl');
         
-        var_dump($mat);
-        var_dump($obl);
-     
-       
         
         $this->form_validation->set_rules("mat", "Material", "required");
         $this->form_validation->set_message("required","Field {field} is required.");
@@ -210,20 +217,22 @@ class Profesor extends CI_Controller{
             $this->ModelMaterijal->dodaj_materijal($mat,$obl);
             
             $poruka="Material waiting for approval!";
-               
-            $this->ucitaj_dodavanje_materijala($poruka);
+            redirect(base_url("index.php/Profesor/ucitaj_dodavanje_materijala/Success"));   
+            
             
             
         }
         else{
-            $this->ucitaj_dodavanje_materijala();
+            $poruka="Material waiting for approval!";
+            redirect(base_url("index.php/Profesor/ucitaj_dodavanje_materijala/Required"));   
         }
         
         
     }
     
     public function ucitaj_biranje_njaboljeg(){
-        
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('profesor')->Username;
        $podaci['student']=$this->ModelStudent->dohvati_sve_sa_uspehom();
        $this->load->view("best_student.php",$podaci);
         
@@ -238,11 +247,49 @@ class Profesor extends CI_Controller{
 
     
      public function ucitaj_faq(){
-       $this->load->view("faq_only_view.php");
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('profesor')->Username;
+       $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
+       $podaci['faq'] = $faq_svi;
+       $this->load->view("faq_only_view_prof.php",$podaci);
     }
     
     public function ucitaj_documents(){
-       $this->load->view("documents.php");
+        $poruka=$this->ModelOblasti->ucitaj_oblasti();
+        if ($poruka) {
+            $podaci['oblast'] = $poruka;
+        }
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('profesor')->Username;
+       $this->load->view("documents_prof.php",$podaci);
+    }
+     public function ucitaj_komentare(){
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('profesor')->Username;
+       $komentari=$this->ModelKomentari->ucitaj_komentare();
+       $podaci['komentari'] = $komentari;
+       $this->load->view("write_comments_prof.php",$podaci);
+        
     }
     
+    public function dodaj_komentar(){
+        
+        $novi=$this->input->post('novi_komentar');
+        $user=$this->session->userdata('profesor')->IdRegistrovani;
+        $this->ModelKomentari->upisi_komentar($novi,$user);
+     redirect(base_url("index.php/Profesor/ucitaj_komentare"));
+    }
+    public function brisi_komentar($id){
+        
+        $this->ModelKomentari->brisi_komentar($id);
+        redirect(base_url("index.php/Profesor/ucitaj_komentare"));
+      
+    }
+        
+    public function ucitaj_rate(){
+         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('profesor')->Username;
+         $this->load->view("prof_rate_app.php",$podaci);
+        
+    }
 }

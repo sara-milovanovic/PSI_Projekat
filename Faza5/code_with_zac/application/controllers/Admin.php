@@ -40,6 +40,15 @@ class Admin extends CI_Controller{
         $this->load->view("sablon/footer.php");
     }*/
     
+    public function dodaj_komentar(){
+        
+        $novi=$this->input->post('novi_komentar');
+        $user=$this->session->userdata('admin')->IdRegistrovani;
+        $this->ModelKomentari->upisi_komentar($novi,$user);
+        redirect(base_url("index.php/Admin/ucitaj_komentare"));
+
+    }
+    
     public function index(){
         $poruka=$this->ModelOblasti->ucitaj_oblasti();
         if ($poruka) {
@@ -70,8 +79,10 @@ class Admin extends CI_Controller{
  
    
      public function ucitaj_documents(){
+          $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('admin')->Username;
        $podaci['oblast']=$this->ModelMaterijal->izlistaj_materijale();
-       $this->load->view("documents.php",$podaci);
+       $this->load->view("documents_admin.php",$podaci);
     }
    
       public function ucitaj_show_users(){
@@ -188,12 +199,13 @@ class Admin extends CI_Controller{
      public function brisi_komentar($id){
         
         $this->ModelKomentari->brisi_komentar($id);
-        $this->ucitaj_komentare();
+        redirect(base_url("index.php/Admin/ucitaj_komentare"));
       
     }
     
       public function ucitaj_komentare(){
-        
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['username']=$this->session->userdata('admin')->Username;
        $komentari=$this->ModelKomentari->ucitaj_komentare();
        $podaci['komentari'] = $komentari;
        $this->load->view("admin_comments.php",$podaci);

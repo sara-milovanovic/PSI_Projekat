@@ -1,7 +1,7 @@
-<!--autor: Nedeljko Jokic-->
+<!--autor: Sara Milovanovic-->
 <html>
 	<head>
-		<title>CodeWithZac(Admin_Comments)</title>
+		<title> CodeWithZac(Documentation)</title>
 		<link rel="icon" type="image/png" href="<?php echo base_url('images/slika.png')?>"/>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	</head>
@@ -12,11 +12,9 @@
                         <font size="5" face="Cursive"> Hello <b><?php if(isset($username)) echo $username ?>!</b></font>
                     </div>
                 </div>
+                
                 <hr size="2" color="black">
-                
-                
-                
-                <div class="row" align="center">
+                <div class="row text-center">
                     <div class="col-sm-3">
                         <img class="img img-fluid" src="<?php echo base_url('images/zac2.jpg')?>" height="150">
                     </div>
@@ -25,19 +23,21 @@
                     </div>
                     <div class="col-sm-3" align="right">
                         <a href="<?php echo site_url("Admin/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a> &nbsp;
-
                     </div>
                 </div>
-                <div class="row" align="center">
+                
+                <hr size="4" color="black">
+                <div class="row">
                     <div class="col-sm-12" align="right">
                         <?php 
                         if(isset($najbolji)) 
                             echo "<font size='5' face='Cursive'> Best student in this month is <b>". $najbolji." </b>! Congratulations!</font>";
-                                ?>
+                        ?>
                     </div> 
                 </div>
-                
+
                 <hr size="2" color="lightblue">
+                <br/>    
                 
                 <div class="row" align="center">
                     <div class="col-sm-6" style="background-color:lightblue ">
@@ -50,45 +50,29 @@
                 
                 <hr size="2" color="black">
                 
+                <div class="row" align="center">
+                    <div class="col-sm-12">
+                        <img src="<?php echo base_url('images/c.png')?>" style="height:150px;width:150px;">
+                    </div> 
+                </div>
                 
+                <?php
+                    foreach ($oblast as $obl) {
+                        echo "<div class='row' align='center'><div class='col-sm-12'><font face='Cursive' size='5'><b>";
+                        echo $obl->Ime;
+                        echo "</b></font></div><br><br><div class='col-sm-12'>";
+                        echo $obl->Materijal;
+                        echo "</div></div>";
+                                     
+                    }
+                ?>
+                <br><br><br>
                 
                 <div class="row" align="center">
-                    <div class="col-sm-12" style="background-color: lightblue">
-                        <font size="5" face="Cursive"> Comments that you left about C++ course:</font>
+                    <div class="col-sm-12">
+                       <img src="<?php echo base_url('images/zac_doc.png')?>" style="height:350px;width:550px;">
                     </div>
                 </div>
-                  <br><br><br>
-                <?php
-                        foreach ($komentari as $kom) {
-                            echo "<div class='row' height='100'><div class='col-sm-4'><font size='4' face='Cursive'>&nbsp;&nbsp;&nbsp;" ;
-                                    echo $kom->Tekst;
-                                    echo "</font></div><div class='col-sm-4'><font size='4' face='Cursive'>-";
-                                    echo $kom->Username;
-                                    echo "</font></div>";
-                                    $pomocna=$kom->IdKomentari;
-                                    echo "<div class='col-sm-4' style='text-align:left;'><a href='brisi_komentar/".$pomocna."'><input type='button' class='btn btn-info' value='Delete'></a></div><br>";
- 
-                                    echo "</div><br>";
-                                     
-			}
-                ?>
-                
-                  <br><br><br>  <br>
-                <form name="kom" action="<?php echo site_url('Admin/dodaj_komentar') ?>" method="post">
-                    <div class="row">
-                             <div class="col-sm-12" align="left">
-                                 <font size="4" face="Cursive">&nbsp;&nbsp;&nbsp; Leave a comment: </font> <input type="text" size='50' maxlength="255" name="novi_komentar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class='btn btn-info' align="left" value="Add"> 
-                             </div>
-
-                         </div>
-                    <br><br><br>
-                    <div class="row" align="center">
-                        <div class="col-sm-12">
-                            <img class="img img-fluid" align="center" src="<?php echo base_url('images/zac_thankyou.png')?>" style="width:500px;height:250px;">
-                        </div>
-                    </div>
-                </form>
-                
                 
                 
                 <br/>
@@ -112,6 +96,8 @@
                         </div>
                     </div>
                     <br>
+                
+                
             </div>
 	</body>
 </html>

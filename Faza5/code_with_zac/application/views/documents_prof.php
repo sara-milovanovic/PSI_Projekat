@@ -22,11 +22,10 @@
                         <img class="img img-fluid" src="<?php echo base_url('images/logo2.png')?>" height="170" align="center">
                     </div>
                     <div class="col-sm-3" align="right">
-                        <a href="<?php echo site_url("Student/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a> &nbsp;
+                        <a href="<?php echo site_url("Profesor/logout")?>"><input type="button" value="Sign Out" class="btn btn-info" align="left"> </a> &nbsp;
                     </div>
                 </div>
                 
-                <hr size="4" color="black">
                 <div class="row">
                     <div class="col-sm-12" align="right">
                         <?php 
@@ -41,10 +40,10 @@
                 
                 <div class="row" align="center">
                     <div class="col-sm-6" style="background-color:lightblue ">
-                        <font size="5" face="Cursive"><a href="<?php echo site_url("Student/index")?>">Home page</a></font>
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor/index")?>">Home page</a></font>
                     </div>
                     <div class="col-sm-6" style="background-color:lightblue ">
-                        <font size="5" face="Cursive"><a href="<?php echo site_url("Student/ucitaj_faq")?>">Frequently Asked Questions</a></font>
+                        <font size="5" face="Cursive"><a href="<?php echo site_url("Profesor/ucitaj_faq")?>">Frequently Asked Questions</a></font>
                     </div>
                 </div>
                 
@@ -70,7 +69,7 @@
                 
                 <div class="row" align="center">
                     <div class="col-sm-12">
-                       <img src="<?php echo base_url('images/zac_doc.png')?>" style="height:350px;width:400px;">
+                       <img src="<?php echo base_url('images/zac_doc.png')?>" style="height:350px;width:550px;">
                     </div>
                 </div>
                 
@@ -81,7 +80,7 @@
                 
                 <div class="row" align="right">
                         <div class="offset-sm-9 col-sm-1">
-                            <font size="4" face="Cursive"><a href="<?php echo site_url("Student/ucitaj_faq")?>">FAQ/How to use</a><font/>
+                            <font size="4" face="Cursive"><a href="<?php echo site_url("Profesor/ucitaj_faq")?>">FAQ/How to use</a><font/>
                         </div>
                         <div class="col-sm-1">
                             <font size="4" face="Cursive"><a href="#top">PageUp</a><font/>
@@ -97,7 +96,10 @@
                     </div>
                     <br>
                 
-                
+             
+                    
             </div>
 	</body>
 </html>
+
+

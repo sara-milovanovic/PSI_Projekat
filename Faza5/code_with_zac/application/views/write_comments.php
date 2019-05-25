@@ -68,33 +68,31 @@
                                     if(($kom->Username)==($this->session->userdata('student')->Username)){ 
                                         $pomocna=$kom->IdKomentari;
                                         
-                                        echo "<div class='col-sm-4' style='text-align:left;'><a href='brisi_komentar/".$pomocna."'><input type='button' value='Delete'></a></div>";
+                                        echo "<div class='col-sm-4' style='text-align:left;'><a href='brisi_komentar/".$pomocna."'><input type='button' class='btn btn-info' value='Delete'></a></div>";
 
                                         
                                     }
                                      
-                                    echo "</div>";
+                                    echo "</div><br>";
                                      
 			}     
                 ?>
                 
                 <br><br><br>  <br><br><br>
-                 <form name="kom" action="<?php echo site_url('Student/dodaj_komentar') ?>" method="post">
-                     <div class="row">
-                         <div class="col-sm-12" align="center">
-                             <font size="4" face="Cursive">&nbsp;&nbsp;&nbsp; Leave a comment: </font> <input type="text" name="novi_komentar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" align="left" value="Add"> 
+                  <form name="kom" action="<?php echo site_url('Student/dodaj_komentar') ?>" method="post">
+                    <div class="row">
+                             <div class="col-sm-12" align="left">
+                                 <font size="4" face="Cursive">&nbsp;&nbsp;&nbsp; Leave a comment: </font> <input type="text" size='50' maxlength="255" name="novi_komentar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class='btn btn-info' align="left" value="Add"> 
+                             </div>
+
                          </div>
-                         
-                     </div>
-                     <br><br>
-                      <div class="row" align="center">
-                         <div class="col-sm-12">
-                             <img class="img img-fluid" align="center" src="<?php echo base_url('images/zac_thankyou.png')?>" style="width:400px;height:350px;">
-                         </div>
-                     </div>
-                     
-                 </form>
-                
+                    <br><br><br>
+                    <div class="row" align="center">
+                        <div class="col-sm-12">
+                            <img class="img img-fluid" align="center" src="<?php echo base_url('images/zac_thankyou.png')?>" style="width:500px;height:250px;">
+                        </div>
+                    </div>
+                </form>
                 
                 <br/>
 		<hr size="2" color="grey">
