@@ -1,4 +1,11 @@
---Baza 22.5.2019. sa INSERT-ima
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 25, 2019 at 01:50 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -49,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `Pitanje` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Odgovor` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`IdFAQ`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `faq`
@@ -59,7 +66,10 @@ INSERT INTO `faq` (`IdFAQ`, `Pitanje`, `Odgovor`) VALUES
 (1, 'Kako da Vas kontaktiramo za dodatna pitanja?', 'Mozete nas kontaktirati putem naseg maila: code_with_zac@gmail.com'),
 (2, 'Kada ce biti dostupni novi kursevi?', 'Nas tim radi na unapredjenju sajta i dodavanju novih kurseva i pitalica'),
 (3, 'Da li radi kolega?', 'Ne radi plakyy'),
-(4, 'stagod', 'stagod');
+(4, 'stagod', 'stagod'),
+(5, 'pitanje1', 'odgovor1'),
+(6, 'pit', 'odg'),
+(7, 'p', 'o');
 
 -- --------------------------------------------------------
 
@@ -77,18 +87,19 @@ CREATE TABLE IF NOT EXISTS `komentari` (
   PRIMARY KEY (`IdKomentari`),
   KEY `R_14` (`IdRegistrovani`),
   KEY `R_16` (`IdKurs`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `komentari`
 --
 
 INSERT INTO `komentari` (`IdKomentari`, `Tekst`, `DatumVreme`, `IdRegistrovani`, `IdKurs`) VALUES
-(1, 'Top kurs!', '2019-06-06', 4, 1),
-(2, 'Zlata vredan!', '2019-05-06', 7, 1),
-(4, 'You are doing a great service!! Thanks!', '2019-01-01', 4, 1),
-(5, 'I have bookmarked your homepage, it is great and full of infos.', '2019-02-02', 5, 1),
-(6, 'Nikad bolje!', '2019-05-22', 5, 1);
+(12, 'bbbbbb', '2019-05-25', NULL, 1),
+(14, 'uuuuuuuuuuuuuuuuuuuuu', '2019-05-25', 2, 1),
+(16, 'rrrrrrrrrrrrrrrrrrrrrrrr', '2019-05-25', 2, 1),
+(21, 'ssssssssssssssssss', '2019-05-25', 1, 1),
+(24, 'ssssssssssssssssssgggggg', '2019-05-25', 7, 1),
+(27, 'sara', '2019-05-25', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -111,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `kurs` (
 --
 
 INSERT INTO `kurs` (`IdKurs`, `Ime`, `Ocena`, `Status`) VALUES
-(1, 'C', 0, 'dostupan'),
+(1, 'C', 3.25, 'dostupan'),
 (2, 'Java', 0, 'nedostupan');
 
 -- --------------------------------------------------------
@@ -127,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `materijali_na_cekanju` (
   `IdOblast` int(11) NOT NULL,
   PRIMARY KEY (`IdMaterijali_na_cekanju`),
   KEY `R_25` (`IdOblast`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -143,15 +154,21 @@ CREATE TABLE IF NOT EXISTS `oblast` (
   `IdKurs` int(11) NOT NULL,
   PRIMARY KEY (`IdOblast`),
   KEY `R_17` (`IdKurs`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `oblast`
 --
 
 INSERT INTO `oblast` (`IdOblast`, `Ime`, `Materijal`, `IdKurs`) VALUES
-(1, 'Pokazivaci', '**Pokazivaci materijali**', 1),
-(2, 'For loop', '/', 1);
+(3, 'Introduction', '', 1),
+(4, 'Data types', '', 1),
+(5, 'Arrays', '', 1),
+(6, 'For loop', '', 1),
+(7, 'While loop', '', 1),
+(8, 'Switch/Case', '', 1),
+(9, 'Pointers', '', 1),
+(10, 'Final test', '', 1);
 
 -- --------------------------------------------------------
 
@@ -168,16 +185,17 @@ CREATE TABLE IF NOT EXISTS `ocena` (
   PRIMARY KEY (`IdOcena`),
   KEY `R_11` (`IdRegistrovani`),
   KEY `R_13` (`IdKurs`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `ocena`
 --
 
 INSERT INTO `ocena` (`IdOcena`, `Vrednost`, `IdRegistrovani`, `IdKurs`) VALUES
-(1, 5, 7, 1),
+(1, 4, 7, 1),
 (2, 2, 1, 1),
-(3, 4, 2, 1);
+(3, 4, 2, 1),
+(6, 3, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -193,25 +211,6 @@ CREATE TABLE IF NOT EXISTS `odgovor` (
   `Tacan` int(11) NOT NULL,
   PRIMARY KEY (`IdPitalica`,`Redni_br`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `odgovor`
---
-
-INSERT INTO `odgovor` (`Tekst`, `Redni_br`, `IdPitalica`, `Tacan`) VALUES
-('asas', 1, 5, 1),
-('asas', 2, 5, 0),
-('a1', 1, 6, 0),
-('a2', 2, 6, 0),
-('a3', 3, 6, 1),
-('a4', 4, 6, 0),
-('A', 1, 7, 0),
-(' B', 2, 7, 1),
-('C', 3, 7, 0),
-('ans1', 1, 8, 1),
-('ans1', 2, 8, 0),
-('fillans', 1, 9, 1),
-('fdfdfd', 1, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -242,22 +241,7 @@ CREATE TABLE IF NOT EXISTS `pitalica` (
   `IdOblast` int(11) NOT NULL,
   PRIMARY KEY (`IdPitalica`),
   KEY `R_18` (`IdOblast`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `pitalica`
---
-
-INSERT INTO `pitalica` (`IdPitalica`, `Status`, `Tekst`, `Tip`, `IdOblast`) VALUES
-(2, 'neaktivna', 'p', 'radio', 2),
-(3, 'neaktivna', 'aaffgf', 'radio', 2),
-(4, 'neaktivna', 'aa', 'radio', 2),
-(5, 'neaktivna', 'assas', 'radio', 2),
-(6, 'neaktivna', 'pitalicacb', 'radio', 2),
-(7, 'neaktivna', 'Abc', 'radio', 2),
-(8, 'neaktivna', 'lista', 'list', 2),
-(9, 'neaktivna', 'fill', 'Fill the box', 2),
-(10, 'neaktivna', 'fdfdfdf', 'checkbox', 2);
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -296,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `registrovani` (
   PRIMARY KEY (`IdRegistrovani`),
   UNIQUE KEY `Username` (`Username`),
   UNIQUE KEY `e_mail` (`e_mail`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `registrovani`
@@ -306,12 +290,10 @@ INSERT INTO `registrovani` (`IdRegistrovani`, `Username`, `Prezime`, `e_mail`, `
 (1, 'sara97', 'Milovanovic', 'sara@gmail.com', 'sara123', 'Sara'),
 (2, 'iva97', 'Veljkovic', 'iva@gmail.com', 'iva123', 'Iva'),
 (3, 'nedeljko97', 'Jokic', 'ned@gmail.com', 'ned321', 'Ned'),
-(4, 'Perica', 'Peric', 'pera@gmail.com', 'pera123', 'Pera'),
 (5, 'zikicica', 'Zikic', 'zika@gmail.com', '111', 'Zikica'),
-(6, 'mika97', 'Mikic', 'mika@gmail.com', 'mika123', 'Mika'),
 (7, 'tasha', 'Sekularac', 'tasha@gmail.com', 'tasha123', 'Tasha'),
 (8, 'drazen', 'Draskovic', 'drazen@gmail.com', 'drazen123', 'Drazen'),
-(9, 'Jova', '', 'jova@gmail.com', 'sifra123', '');
+(10, 'koko', '', 'koko', 'koko', '');
 
 -- --------------------------------------------------------
 
@@ -329,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `rezultat` (
   PRIMARY KEY (`IdRezultat`),
   KEY `R_23` (`IdOblast`),
   KEY `R_24` (`IdRegistrovani`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -350,9 +332,7 @@ CREATE TABLE IF NOT EXISTS `slusa` (
 --
 
 INSERT INTO `slusa` (`IdRegistrovani`, `IdKurs`) VALUES
-(4, 1),
-(5, 1),
-(6, 1);
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -372,10 +352,8 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 INSERT INTO `student` (`IdRegistrovani`, `Najbolji`) VALUES
-(4, 'da'),
 (5, 'ne'),
-(6, 'ne'),
-(9, 'ne');
+(10, 'da');
 
 --
 -- Constraints for dumped tables
