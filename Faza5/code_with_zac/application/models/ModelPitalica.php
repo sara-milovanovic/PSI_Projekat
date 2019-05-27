@@ -191,4 +191,57 @@ class ModelPitalica extends CI_Model{
         $this->db->insert("odgovor");
         
     }
+    
+    public function dohvati_pitalicu_na_cekanju(){
+        
+        
+        $this->db->where("p.IdPitalica=o.IdPitalica and Status='neaktivna' and Tacan=1");
+        $this->db->from('pitalica p, odgovor o');
+        $this->db->select("p.IdPitalica,p.Tekst,o.Tekst as Odgovor,p.Tip");
+        $query=$this->db->get();
+        $result=$query->result();//vraca niz pitalica
+        return $result;
+        
+    }
+    
+    public function odobri_pitalicu($id){
+        $this->db->set("Status","aktivna");
+        $this->db->where('IdPitalica',$id);
+        $this->db->update("pitalica");
+        
+    }
+    
+    public function ponisti_pitalicu($id){
+        
+       $this->db->where("IdPitalica",$id);
+       $this->db->delete("pitalica");
+       
+       $this->db->where("IdPitalica",$id);
+       $this->db->delete("odgovor");
+        
+    }
+    
+    public function dohvati_po_vrsti($idOblasti,$t){
+        $this->db->where("(IdOblast=$idOblasti) and (Status='aktivna')  ");
+        $this->db->where("Tip",$t);
+        $query=$this->db->get('pitalica');
+        $result=$query->result();//vraca niz pitalica
+        //var_dump($result);
+        require_once 'system/helpers/array_helper.php';
+        $rnd= random_element($result);
+        //var_dump($rnd);
+        return $rnd;
+        
+    }
+    
+    public function dohvati_po_vrsti_odgovor($id){
+        
+        $this->db->where("IdPitalica",$id);
+        $query=$this->db->get('odgovor');
+        $result=$query->result();//vraca niz odgovora
+        
+        shuffle($result);
+        
+        return $result;
+    }
 }

@@ -64,7 +64,20 @@
                 </div>
                 
                 <!--Ovde treba da ide php blok koji ispisuje pitalice -->
-                
+                 <?php
+                    foreach ($pitalice as $p) {
+                        echo "<br><br><font size='4' face='Cursive'><b><div class='row' align='center'><div class='col-sm-12'>" ;
+                        echo "Question: ".$p->Tekst;
+                        echo "</div></div></b></font><br><br><div class='row' align='right'><div class='col-sm-6'>";
+                        echo "Type: ".$p->Tip;
+                        echo "</div><br><br>";
+                        echo "<div class='col-sm-6' align='left'>Correct answer: ".$p->Odgovor."</div></div><br><br>";
+                        echo "<div class='row' ><div class='col-sm-6' align='right'><a href='odobri_pitalicu/".$p->IdPitalica."'><input type='button' class='btn btn-info' value='Approve'></a></div><div class='col-sm-6' align='left'><a href='ponisti_pitalicu/".$p->IdPitalica."'><input class='btn btn-info' type='button' value='Reject'></a></div></div><br><br>";                        
+                        
+
+                        
+                    }
+                  ?>
                 
                 
                 

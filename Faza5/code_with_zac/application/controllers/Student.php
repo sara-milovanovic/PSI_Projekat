@@ -1,7 +1,6 @@
 <?php
 
 class Student extends CI_Controller{
-    //put your code here
     
     public function __construct() {
         parent::__construct();
@@ -11,6 +10,7 @@ class Student extends CI_Controller{
         $this->load->model("ModelOblasti");
         $this->load->model("ModelOcena");
         $this->load->model("ModelFAQ");
+        $this->load->model('ModelPitalica');
         $this->load->model("ModelStudent");
         $this->load->library('session');
         if (($this->session->userdata('profesor')) != NULL) {
@@ -33,7 +33,22 @@ class Student extends CI_Controller{
         //$this->prikazi("adminvesti.php",$podaci);
         $podaci['username']=$this->session->userdata('student')->Username;
        
+        redirect(base_url("index.php/Student/ucitaj_index"));
+        
+    }
+    
+    public function ucitaj_index(){
+        $poruka=$this->ModelOblasti->ucitaj_oblasti();
+        if ($poruka) {
+            $podaci['oblasti'] = $poruka;
+        }
+        $podaci['ocena']=$this->ModelOcena->dohvati_ocenu();
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+        //$this->prikazi("adminvesti.php",$podaci);
+        $podaci['username']=$this->session->userdata('student')->Username;
+       
         $this->load->view("start_reg.php", $podaci);
+        
     }
     
     public function logout(){
@@ -125,6 +140,7 @@ class Student extends CI_Controller{
     }
     
     public function ucitaj_komentare(){
+     
         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
        $podaci['username']=$this->session->userdata('student')->Username;
        
@@ -174,9 +190,9 @@ class Student extends CI_Controller{
  
     
     public function ucitaj_rate(){
-         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
-       $podaci['username']=$this->session->userdata('student')->Username;
-         $this->load->view("student_rate_app.php",$podaci);
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+        $podaci['username']=$this->session->userdata('student')->Username;
+        $this->load->view("student_rate_app.php",$podaci);
         
     }
     
@@ -185,6 +201,106 @@ class Student extends CI_Controller{
         $ocena=$this->input->post('star');
         $this->ModelOcena->oceni($id,$ocena);
          redirect(base_url("index.php/Student/ucitaj_rate"));
+        
+    }
+    
+    public function ucitajTest($idOblasti){
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+        $podaci['username']=$this->session->userdata('student')->Username;
+        $podaci['radio']=$this->ModelPitalica->dohvati_po_vrsti($idOblasti,'radio');
+        $podaci['radio_odg']=$this->ModelPitalica->dohvati_po_vrsti_odgovor($podaci['radio']->IdPitalica);
+        $this->session->set_userdata('radio',$podaci['radio_odg']);
+        $podaci['checkbox']=$this->ModelPitalica->dohvati_po_vrsti($idOblasti,'checkbox');
+        $podaci['checkbox_odg']=$this->ModelPitalica->dohvati_po_vrsti_odgovor($podaci['checkbox']->IdPitalica);
+        $this->session->set_userdata('checkbox',$podaci['checkbox_odg']);
+        $podaci['list']=$this->ModelPitalica->dohvati_po_vrsti($idOblasti,'list');
+        $podaci['list_odg']=$this->ModelPitalica->dohvati_po_vrsti_odgovor($podaci['list']->IdPitalica);
+        $this->session->set_userdata('list',$podaci['list_odg']);
+        $podaci['fill']=$this->ModelPitalica->dohvati_po_vrsti($idOblasti,'Fill the box');
+        $podaci['fill_odg']=$this->ModelPitalica->dohvati_po_vrsti_odgovor($podaci['fill']->IdPitalica);
+        $this->session->set_userdata('fill',$podaci['fill_odg']);
+     
+        $this->load->view("student_test.php",$podaci);
+    }
+    
+    public function oceni_test(){
+        
+        $rez=0;
+        
+        if($this->input->post('p1')==1){
+            
+            $rez+=25;
+            
+        }
+        
+        if($this->input->post('p2')==1){
+            
+            $rez+=25;
+            
+        }
+        
+        if($this->input->post('fill3')==$this->input->post('p3')){
+            
+            $rez+=25;
+            
+        }
+        
+        $niz=[];
+        
+        for($i=0;$i<4;$i++){
+        
+            $niz[$i]=0;
+        
+        }
+        var_dump($this->input->post());
+        var_dump($this->input->post('c1'));
+        
+        $flag=25;
+       
+        
+        if(($this->input->post("c1")!=null) && ($this->input->post("c1")==0)){
+            
+            $flag=0;
+            
+        }
+        
+        if(($this->input->post("c2")!=null) && ($this->input->post("c2")==0)){
+            
+            $flag=0;
+            
+        }
+        
+        if(($this->input->post("c3")!=null) && ($this->input->post("c3")==0)){
+            
+            $flag=0;
+            
+        }
+        
+        if(($this->input->post("c4")!=null) && ($this->input->post("c4")==0)){
+            
+            $flag=0;
+            
+        }
+        
+        $rez+=$flag;
+        
+        echo "rezultat je: ";
+        var_dump($rez);
+        
+        var_dump($niz);
+        
+        $podaci['rezultat']=$rez;
+        
+        redirect(base_url("index.php/Student/ucitaj_rezultat/".$rez));
+        
+    }
+    
+    public function ucitaj_rezultat($rez){
+        
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+        $podaci['username']=$this->session->userdata('student')->Username;
+        $podaci['rezultat']=$rez;
+        $this->load->view("student_result",$podaci);
         
     }
     

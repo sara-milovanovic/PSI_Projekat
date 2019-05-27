@@ -112,7 +112,7 @@ But more than any of that, when taught correctly, programming can be a whole hea
                         <font size="4" face="Cursive">
 				<?php 
                                     foreach ($oblasti as $o) {
-                                        echo "<div class='row'> <div class='col-sm-12'>*".$o->Ime."*</div></div>";
+                                        echo "<div class='row'> <div class='col-sm-12'><a href='ucitajTest/".$o->IdOblast."'> *".$o->Ime."*</a></div></div>";
                                     }
                                 
                                 ?>

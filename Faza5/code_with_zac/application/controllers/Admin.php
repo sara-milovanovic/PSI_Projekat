@@ -21,6 +21,7 @@ class Admin extends CI_Controller{
         $this->load->model("ModelStudent");
         $this->load->model("ModelMaterijal");
         $this->load->model("ModelKomentari");
+        $this->load->model("ModelPitalica");
         $this->load->model("ModelFAQ");
         $this->load->library('session');
         if (($this->session->userdata('student')) != NULL) {
@@ -94,7 +95,10 @@ class Admin extends CI_Controller{
    }
    
      public function ucitaj_questions_waiting_for_approval(){
-       $this->load->view("approving_questions.php");
+      $podaci['pitalice']= $this->ModelPitalica->dohvati_pitalicu_na_cekanju();
+      $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+      $podaci['username']=$this->session->userdata('admin')->Username;
+      $this->load->view('approving_questions.php',$podaci);
    }
    
       public function ucitaj_documents_waiting_for_approval(){
@@ -122,6 +126,20 @@ class Admin extends CI_Controller{
        
        $this->ModelMaterijal->obrisi_materijal($id);
        redirect(base_url("index.php/Admin/ucitaj_documents_waiting_for_approval"));
+   }
+   
+   public function odobri_pitalicu($id){
+       
+      $res=$this->ModelPitalica->odobri_pitalicu($id);
+      redirect(base_url("index.php/Admin/ucitaj_questions_waiting_for_approval"));
+       
+       //sredi ubacivanje i konkatenaciju sa materijal
+   }
+   
+   public function ponisti_pitalicu($id){
+       $res=$this->ModelPitalica->ponisti_pitalicu($id);
+      redirect(base_url("index.php/Admin/ucitaj_questions_waiting_for_approval"));
+       
    }
    
      public function ucitaj_view_comments(){
