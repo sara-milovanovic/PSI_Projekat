@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 25, 2019 at 01:50 PM
+-- Generation Time: May 28, 2019 at 06:02 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -212,6 +212,41 @@ CREATE TABLE IF NOT EXISTS `odgovor` (
   PRIMARY KEY (`IdPitalica`,`Redni_br`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `odgovor`
+--
+
+INSERT INTO `odgovor` (`Tekst`, `Redni_br`, `IdPitalica`, `Tacan`) VALUES
+('pokazivaci :)', 1, 13, 1),
+('radioOdgovor', 1, 15, 1),
+('RadioNetacan', 2, 15, 0),
+('Tacan', 1, 16, 1),
+('Tacan2', 2, 16, 1),
+('Netacan', 3, 16, 0),
+('ListTacan', 1, 17, 1),
+('ListNetacan', 2, 17, 0),
+('FillTacan', 1, 18, 1),
+('RadoOdgovor2Tacan', 1, 19, 1),
+('Sara', 2, 19, 0),
+('Odg', 1, 20, 1),
+('Odg2', 2, 20, 0),
+('forTacanR', 1, 21, 1),
+('forNetacanR', 2, 21, 0),
+('ForTacan2', 1, 22, 1),
+('forNetacan2', 2, 22, 0),
+('Check1Tacan', 1, 23, 1),
+('Check1Netacan', 2, 23, 0),
+('Check2Tacan', 3, 23, 1),
+('ForCheck2Tacan', 1, 24, 1),
+('ForCheck2Netacan', 2, 24, 0),
+('ListFor1Tacan', 1, 25, 1),
+('ListFor1Netacan1', 2, 25, 0),
+('ListFor1Netacan2', 3, 25, 0),
+('ForListTacan', 1, 26, 1),
+('ForListNetacan', 2, 26, 0),
+('Fill1Tacan', 1, 27, 1),
+('ForFill2Tacan', 1, 28, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -241,7 +276,28 @@ CREATE TABLE IF NOT EXISTS `pitalica` (
   `IdOblast` int(11) NOT NULL,
   PRIMARY KEY (`IdPitalica`),
   KEY `R_18` (`IdOblast`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `pitalica`
+--
+
+INSERT INTO `pitalica` (`IdPitalica`, `Status`, `Tekst`, `Tip`, `IdOblast`) VALUES
+(13, 'aktivna', 'Sta su pokazivaci?', 'Fill the box', 9),
+(15, 'aktivna', 'Radio pitalica', 'radio', 3),
+(16, 'aktivna', 'CheckboxPitalica', 'checkbox', 3),
+(17, 'aktivna', 'ListPitalica', 'list', 3),
+(18, 'aktivna', 'FillPitalica', 'Fill the box', 3),
+(19, 'aktivna', 'RadioPitalica2', 'radio', 3),
+(20, 'aktivna', 'Radio Pitanje', 'radio', 3),
+(21, 'aktivna', 'radioFor', 'radio', 6),
+(22, 'aktivna', 'ForRadio2', 'radio', 6),
+(23, 'aktivna', 'CheckboxFor1', 'checkbox', 6),
+(24, 'aktivna', 'CheckFor2', 'checkbox', 6),
+(25, 'aktivna', 'ForList1', 'list', 6),
+(26, 'aktivna', 'ListFor2', 'list', 6),
+(27, 'aktivna', 'fill1For', 'Fill the box', 6),
+(28, 'aktivna', 'fill2For', 'Fill the box', 6);
 
 -- --------------------------------------------------------
 
@@ -275,12 +331,12 @@ CREATE TABLE IF NOT EXISTS `registrovani` (
   `Username` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Prezime` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `e_mail` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Password` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Ime` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`IdRegistrovani`),
   UNIQUE KEY `Username` (`Username`),
   UNIQUE KEY `e_mail` (`e_mail`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `registrovani`
@@ -293,7 +349,8 @@ INSERT INTO `registrovani` (`IdRegistrovani`, `Username`, `Prezime`, `e_mail`, `
 (5, 'zikicica', 'Zikic', 'zika@gmail.com', '111', 'Zikica'),
 (7, 'tasha', 'Sekularac', 'tasha@gmail.com', 'tasha123', 'Tasha'),
 (8, 'drazen', 'Draskovic', 'drazen@gmail.com', 'drazen123', 'Drazen'),
-(10, 'koko', '', 'koko', 'koko', '');
+(10, 'koko', '', 'koko', 'koko', ''),
+(11, 'iva', '', 'iva', '$2y$10$kHM41mor8SWufLiTFFaDouwIuvC1r/tmrYsvcA1vfwsatfL8nOoSG', '');
 
 -- --------------------------------------------------------
 
@@ -353,7 +410,8 @@ CREATE TABLE IF NOT EXISTS `student` (
 
 INSERT INTO `student` (`IdRegistrovani`, `Najbolji`) VALUES
 (5, 'ne'),
-(10, 'da');
+(10, 'da'),
+(11, 'ne');
 
 --
 -- Constraints for dumped tables
