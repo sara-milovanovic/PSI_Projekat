@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2019 at 06:02 PM
+-- Generation Time: May 29, 2019 at 03:42 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`IdRegistrovani`, `Radi_od`) VALUES
-(1, '2019-05-05'),
-(2, '2019-05-05'),
-(3, '2019-05-05');
+(14, '2019-04-04'),
+(16, '2019-04-04'),
+(17, '2019-04-04');
 
 -- --------------------------------------------------------
 
@@ -94,12 +94,7 @@ CREATE TABLE IF NOT EXISTS `komentari` (
 --
 
 INSERT INTO `komentari` (`IdKomentari`, `Tekst`, `DatumVreme`, `IdRegistrovani`, `IdKurs`) VALUES
-(12, 'bbbbbb', '2019-05-25', NULL, 1),
-(14, 'uuuuuuuuuuuuuuuuuuuuu', '2019-05-25', 2, 1),
-(16, 'rrrrrrrrrrrrrrrrrrrrrrrr', '2019-05-25', 2, 1),
-(21, 'ssssssssssssssssss', '2019-05-25', 1, 1),
-(24, 'ssssssssssssssssssgggggg', '2019-05-25', 7, 1),
-(27, 'sara', '2019-05-25', 5, 1);
+(12, 'bbbbbb', '2019-05-25', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -186,16 +181,6 @@ CREATE TABLE IF NOT EXISTS `ocena` (
   KEY `R_11` (`IdRegistrovani`),
   KEY `R_13` (`IdKurs`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `ocena`
---
-
-INSERT INTO `ocena` (`IdOcena`, `Vrednost`, `IdRegistrovani`, `IdKurs`) VALUES
-(1, 4, 7, 1),
-(2, 2, 1, 1),
-(3, 4, 2, 1),
-(6, 3, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -316,8 +301,8 @@ CREATE TABLE IF NOT EXISTS `profesor` (
 --
 
 INSERT INTO `profesor` (`IdRegistrovani`) VALUES
-(7),
-(8);
+(15),
+(18);
 
 -- --------------------------------------------------------
 
@@ -330,27 +315,27 @@ CREATE TABLE IF NOT EXISTS `registrovani` (
   `IdRegistrovani` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Prezime` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `e_mail` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `e_mail` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Ime` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`IdRegistrovani`),
   UNIQUE KEY `Username` (`Username`),
   UNIQUE KEY `e_mail` (`e_mail`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `registrovani`
 --
 
 INSERT INTO `registrovani` (`IdRegistrovani`, `Username`, `Prezime`, `e_mail`, `Password`, `Ime`) VALUES
-(1, 'sara97', 'Milovanovic', 'sara@gmail.com', 'sara123', 'Sara'),
-(2, 'iva97', 'Veljkovic', 'iva@gmail.com', 'iva123', 'Iva'),
-(3, 'nedeljko97', 'Jokic', 'ned@gmail.com', 'ned321', 'Ned'),
-(5, 'zikicica', 'Zikic', 'zika@gmail.com', '111', 'Zikica'),
-(7, 'tasha', 'Sekularac', 'tasha@gmail.com', 'tasha123', 'Tasha'),
-(8, 'drazen', 'Draskovic', 'drazen@gmail.com', 'drazen123', 'Drazen'),
-(10, 'koko', '', 'koko', 'koko', ''),
-(11, 'iva', '', 'iva', '$2y$10$kHM41mor8SWufLiTFFaDouwIuvC1r/tmrYsvcA1vfwsatfL8nOoSG', '');
+(14, 'Sara', 'Milovanovic', 'saramilovanovic997@gmail.com', '$2y$10$KwDWt/7uvcJy79tsOdIEduyfpOASj//DpLud.RIoaKzckAOutQfHa', 'Sara'),
+(15, 'tasha', 'Sekularac', 'tasha@etf.bg.ac.rs', '$2y$10$1PSqgP7mlbe3tlt.Cr.Woud.0YAq2WDqfa1K354VyyGZVcCoHlHGS', 'Tasha'),
+(16, 'jokic', 'Jokic', 'nedeljkojokic97@gmail.com', '$2y$10$I46vN/h..o73ddx9SJt7U.98EayT0/GOH3U1GZXonAFllvM2RxnIK', 'Nedeljko'),
+(17, 'Iva', 'Veljkovic', 'veljkovic.iva@gmail.com', '$2y$10$CEQexyIuG1T1rbBWwEtPi.dpeNk/YTFbEtCWbLYoKMrComY2vW8hW', 'Iva'),
+(18, 'drazen', 'Draskovic', 'drazen.draskovic@etf.bg.ac.rs', '$2y$10$MxWFH6nO7UESI9zXH794J.gu6YiRZdvJrAcxbLggurZB9eB0KwIxa', 'Drazen'),
+(19, 'pera', 'Peric', 'pera@gmail.com', '$2y$10$wfqQaPBFpZyKImT0/3f/6.fsQ0iFAec8XGqNTd8COs1vk3A3PgwEa', 'Pera'),
+(20, 'zika', 'Zikic', 'zika@gmail.com', '$2y$10$RaOC2jCl/qmCrncTl4i3EuznhiCVR7ayM8WqQwE5VrP8jljGTTErq', 'Zika'),
+(21, 'mika', 'Mikic', 'mika@gmail.com', '$2y$10$UF4VfWE.yaoSpio.RfBVVOETc/kPuNmVOQPPBnBfDZmVAxp9DDhJu', 'Mika');
 
 -- --------------------------------------------------------
 
@@ -368,7 +353,16 @@ CREATE TABLE IF NOT EXISTS `rezultat` (
   PRIMARY KEY (`IdRezultat`),
   KEY `R_23` (`IdOblast`),
   KEY `R_24` (`IdRegistrovani`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rezultat`
+--
+
+INSERT INTO `rezultat` (`IdRezultat`, `Status`, `Procenat_tacnih`, `IdOblast`, `IdRegistrovani`) VALUES
+(7, 'pao', 25, 6, 20),
+(8, 'pao', 0, 3, 20),
+(9, 'pao', 0, 3, 21);
 
 -- --------------------------------------------------------
 
@@ -383,13 +377,6 @@ CREATE TABLE IF NOT EXISTS `slusa` (
   PRIMARY KEY (`IdRegistrovani`,`IdKurs`),
   KEY `R_6` (`IdKurs`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `slusa`
---
-
-INSERT INTO `slusa` (`IdRegistrovani`, `IdKurs`) VALUES
-(5, 1);
 
 -- --------------------------------------------------------
 
@@ -409,9 +396,9 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 INSERT INTO `student` (`IdRegistrovani`, `Najbolji`) VALUES
-(5, 'ne'),
-(10, 'da'),
-(11, 'ne');
+(19, 'ne'),
+(20, 'ne'),
+(21, 'da');
 
 --
 -- Constraints for dumped tables
