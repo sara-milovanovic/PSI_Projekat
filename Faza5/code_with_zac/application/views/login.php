@@ -86,7 +86,7 @@
 		
                     <div class="row" align="center">
                         <div class="col-sm-12">
-                            <a href="<?php echo site_url("Gost/salji_sifru_na_mail")?>"><i><font color="blue"><center>Forgot your password?</center></font></i></a>
+                            <a href="<?php echo site_url("Gost/ucitaj_mail")?>"><i><font color="blue"><center>Forgot your password?</center></font></i></a>
                         </div>
                         
                     </div>

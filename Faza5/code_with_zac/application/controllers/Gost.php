@@ -9,6 +9,7 @@ class Gost extends CI_Controller{
         $this->load->model("ModelOblasti");
         $this->load->model("ModelOcena");
         $this->load->model("ModelFAQ");
+        $this->load->model("ModelStudent");
         //ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
         // kako su nam oba modela trebala u svim kontrolerima 
         //mogli smo i u autoload falju da ih dodamo u niz za modele
@@ -143,7 +144,7 @@ class Gost extends CI_Controller{
       
        
        if ($this->form_validation->run()) {
-          echo "123";
+         
            if ($this->ModelKorisnik->dohvatiUsernameSignup($this->input->post('username'))) {
                 $this->signup_formValidation("Username already exist!");
               
@@ -153,8 +154,9 @@ class Gost extends CI_Controller{
               
             }
             else{
-                
-                $korisnik=$this->ModelKorisnik->insert_korisnik($this->input->post('username'),$this->input->post('password'),$this->input->post('email'),$this->input->post('name'),$this->input->post('surname'));
+                $sifra=$this->input->post('password');
+                $hash= password_hash($sifra, PASSWORD_DEFAULT);
+                $korisnik=$this->ModelKorisnik->insert_korisnik($this->input->post('username'),$hash,$this->input->post('email'),$this->input->post('name'),$this->input->post('surname'));
                 $this->session->set_userdata('student',$korisnik);
                 redirect('Student');
             }
@@ -169,9 +171,44 @@ class Gost extends CI_Controller{
        
    }
    
-   public function salji_sifru_na_mail(){
-       
-       
+     public function posalji_mail(){
+             $config = array();
+             $config['protocol'] = 'smtp';
+             $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+             $config['smtp_user'] = 'codewithzac@gmail.com';
+             $config['smtp_pass'] = 'code_with_zac1';
+             $config['smtp_port'] = 465;
+             $config['charset'] = 'iso-8859-1';
+             $config['mailtype'] = 'html';
+             //extension=php_openssl.dll
+             //ovde ide neki rand i uodate sifre za tog korisnika
+             $pass= random_int(100000, 2500000);
+             
+             $email=$this->input->post('mail');
+             $hash= password_hash($pass, PASSWORD_DEFAULT);
+               
+             $this->ModelStudent->update_sifre($email,$hash);
+              
+             
+             $this->email->initialize($config);
+             $this->email->set_newline("\r\n");
+        
+             $this->email->from('findeatsupp@gmail.com', 'CodeWithZacSupport');
+             $this->email->to("$email");
+             $this->email->subject("New password for CodeWithZac account");
+             $this->email->message("<h2>Password: ".$pass."</h2>");
+             
+             $this->email->send();
+             //var_dump($pass);
+             
+             redirect('Gost');
        
    }
+   
+   public function ucitaj_mail(){
+       
+       $this->load->view('mail.php');
+       
+   }
+   
 }

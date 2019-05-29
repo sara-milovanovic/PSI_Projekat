@@ -244,4 +244,54 @@ class ModelPitalica extends CI_Model{
         
         return $result;
     }
+    
+    public function dohvati_po_vrsti_tacan_odgovor($id){
+        
+        $this->db->where("IdPitalica",$id);
+        $this->db->where("Tacan",1);
+        $query=$this->db->get('odgovor');
+        $result=$query->result();//vraca niz odgovora
+        
+        //var_dump($result);
+        
+        return $result;
+        
+    }
+    
+    public function update_result($rez,$oblast,$id){
+        
+        $this->db->where("IdRegistrovani",$id);
+        $this->db->where("IdOblast",$oblast);
+        $this->db->from('rezultat');
+        $query=$this->db->get();
+        $result=$query->row();
+        
+        if($result!=null){
+            if($rez>=50){
+                
+                $this->db->set("Status",'polozio');
+                
+            }
+            else $this->db->set("Status",'pao');
+            $this->db->set("Procenat_tacnih",$rez);
+            $this->db->where("IdRegistrovani",$id);
+            $this->db->where("IdOblast",$oblast);
+            $this->db->update("rezultat");
+        }
+        else{
+            if($rez>=50){
+                
+                $this->db->set("Status",'polozio');
+                
+            }
+            else $this->db->set("Status",'pao');
+            
+            $this->db->set("Procenat_tacnih",$rez);
+            $this->db->set("IdRegistrovani",$id);
+            $this->db->set("IdOblast",$oblast);
+            $this->db->insert("rezultat");
+            
+        }
+        
+    }
 }

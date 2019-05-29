@@ -18,6 +18,9 @@ class ModelStudent extends CI_Model {
         parent::__construct();
     }
     
+  
+    
+    
    public function obrisi_studenta($id){
        $this->db->where("IdRegistrovani",$id);
        $this->db->delete("student");
@@ -63,7 +66,16 @@ class ModelStudent extends CI_Model {
         $query=$this->db->get();
         $result=$query->row();
         
-        return $result->Username;
+        if($result!=null) return $result->Username;
+        
+        return null;
     }
     
+    
+    public function update_sifre($email,$pass){
+        $this->db->set("Password",$pass);
+        $this->db->where("e_mail",$email);
+        $this->db->update("registrovani");
+        
+    }
 }

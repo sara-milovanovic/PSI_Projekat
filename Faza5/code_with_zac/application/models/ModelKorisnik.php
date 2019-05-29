@@ -88,11 +88,12 @@ class ModelKorisnik extends CI_Model {
     }
     
     public function ispravanPassword($lozinka){
-        if ($this->korisnik->Password == $lozinka) {
+     /*   if ($this->korisnik->Password == $lozinka) {
             return TRUE;
         } else {
             return FALSE;
-        }
+        }*/
+        return password_verify($lozinka, $this->korisnik->Password);
     }
     
     public function proveriKorisnika(){

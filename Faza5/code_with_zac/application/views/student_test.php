@@ -148,7 +148,7 @@
                         
                            
                     <?php
-                            $i=0;
+                            $i=1;
                             
                             foreach($checkbox_odg as $odg){
                                 echo "<div class='row' style='background-color:#edecd3' height='100' align='center'><div class='col-sm-12' bgcolor='lightyellow'><font size='6' face='Cursive'>&nbsp;&nbsp;&nbsp;";

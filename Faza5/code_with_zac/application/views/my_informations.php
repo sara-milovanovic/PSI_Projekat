@@ -74,15 +74,7 @@
                     
                 </div>
                 <br/>
-                <div class="row" align="center">
-                    <div class="col-sm-6">
-                        password
-                    </div>
-                    <div class="col-sm-6">
-                        <b><?php if(isset($password)) echo $password ?></b>
-                    </div>   
-                </div>
-                <br/>
+                
                 <div class="row" align="center">
                     <div class="col-sm-6">
                         e-mail

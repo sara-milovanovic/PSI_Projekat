@@ -60,7 +60,6 @@ class Student extends CI_Controller{
     public function ucitaj_infos(){
         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
         $podaci['username']=$this->session->userdata('student')->Username;
-        $podaci['password']=$this->session->userdata('student')->Password;
         $podaci['e_mail']=$this->session->userdata('student')->e_mail;
         $podaci['name']=$this->session->userdata('student')->Ime;
         $podaci['surname']=$this->session->userdata('student')->Prezime;
@@ -108,6 +107,7 @@ class Student extends CI_Controller{
                         $this->db->set("Username", $u);
                     }
                     if(isset($np)) {
+                       $np= password_hash($np, PASSWORD_DEFAULT);
                         $this->db->set("Password", $np);
                     }
                     if(isset($n)) {
@@ -205,20 +205,25 @@ class Student extends CI_Controller{
     }
     
     public function ucitajTest($idOblasti){
+        $this->session->set_userdata('oblast',$idOblasti);
         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
         $podaci['username']=$this->session->userdata('student')->Username;
         $podaci['radio']=$this->ModelPitalica->dohvati_po_vrsti($idOblasti,'radio');
         $podaci['radio_odg']=$this->ModelPitalica->dohvati_po_vrsti_odgovor($podaci['radio']->IdPitalica);
-        $this->session->set_userdata('radio',$podaci['radio_odg']);
+        $podaci['radio_tacan']=$this->ModelPitalica->dohvati_po_vrsti_tacan_odgovor($podaci['radio']->IdPitalica);
+        $this->session->set_userdata('radio',$podaci['radio_tacan']);
         $podaci['checkbox']=$this->ModelPitalica->dohvati_po_vrsti($idOblasti,'checkbox');
         $podaci['checkbox_odg']=$this->ModelPitalica->dohvati_po_vrsti_odgovor($podaci['checkbox']->IdPitalica);
-        $this->session->set_userdata('checkbox',$podaci['checkbox_odg']);
+        $podaci['checkbox_tacan']=$this->ModelPitalica->dohvati_po_vrsti_tacan_odgovor($podaci['checkbox']->IdPitalica);
+        $this->session->set_userdata('checkbox',$podaci['checkbox_tacan']);
         $podaci['list']=$this->ModelPitalica->dohvati_po_vrsti($idOblasti,'list');
         $podaci['list_odg']=$this->ModelPitalica->dohvati_po_vrsti_odgovor($podaci['list']->IdPitalica);
-        $this->session->set_userdata('list',$podaci['list_odg']);
+        $podaci['list_tacan']=$this->ModelPitalica->dohvati_po_vrsti_tacan_odgovor($podaci['list']->IdPitalica);
+        $this->session->set_userdata('list',$podaci['list_tacan']);
         $podaci['fill']=$this->ModelPitalica->dohvati_po_vrsti($idOblasti,'Fill the box');
+        $podaci['fill_tacan']=$this->ModelPitalica->dohvati_po_vrsti_tacan_odgovor($podaci['fill']->IdPitalica);
         $podaci['fill_odg']=$this->ModelPitalica->dohvati_po_vrsti_odgovor($podaci['fill']->IdPitalica);
-        $this->session->set_userdata('fill',$podaci['fill_odg']);
+        $this->session->set_userdata('fill',$podaci['fill_tacan']);
      
         $this->load->view("student_test.php",$podaci);
     }
@@ -252,11 +257,38 @@ class Student extends CI_Controller{
             $niz[$i]=0;
         
         }
-        var_dump($this->input->post());
-        var_dump($this->input->post('c1'));
         
-        $flag=25;
+        $flag=0;
+        
+        
        
+        $br_cekiranih=sizeof($this->session->userdata('checkbox'));
+        
+        $n=0;
+        
+        
+          
+        if($this->input->post("c1")!=null) $n++;
+        
+        if($this->input->post("c2")!=null) $n++;
+        
+        if($this->input->post("c3")!=null) $n++;
+        
+        if($this->input->post("c4")!=null) $n++;
+            
+        
+        if($n==$br_cekiranih){
+            
+            $flag=25;
+            
+            
+        }
+        
+        if(($this->input->post("c1")==null)&&($this->input->post("c2")==null)&&($this->input->post("c3")==null)&&($this->input->post("c4")==null)){
+            
+            $flag=0;
+            
+        }
         
         if(($this->input->post("c1")!=null) && ($this->input->post("c1")==0)){
             
@@ -284,12 +316,7 @@ class Student extends CI_Controller{
         
         $rez+=$flag;
         
-        echo "rezultat je: ";
-        var_dump($rez);
-        
-        var_dump($niz);
-        
-        $podaci['rezultat']=$rez;
+        $this->ModelPitalica->update_result($rez,$this->session->userdata('oblast'),$this->session->userdata('student')->IdRegistrovani);
         
         redirect(base_url("index.php/Student/ucitaj_rezultat/".$rez));
         
@@ -303,5 +330,10 @@ class Student extends CI_Controller{
         $this->load->view("student_result",$podaci);
         
     }
+    
+    
+  
+    
+    
     
 }
