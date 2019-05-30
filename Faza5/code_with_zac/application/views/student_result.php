@@ -64,32 +64,57 @@
 		<hr size="2" color="black">
                 
                 
-                <?php 
-                   
-                        echo "<div class='row'><div class='col-sm-12> <font size='6' color='red'> Your score:".$rezultat."</font>";
-                        echo "<br></div></div>";
+                
+                
+                <div class='row' align='center'>
+                    
+                    <div class='col-sm-12'>
                         
-                        echo "<br>Correct answers:<br><br><div class='row'><div class='col-sm-12> <font size='4' > Q1:<br>".$this->session->userdata('radio')[0]->Tekst."<br>";
-                        echo "</font></div></div>";
+                        <p><font size='7' face="Cursive" color='#EA93F0'>Your score: <?php echo $rezultat; ?>% </font></p>
                         
-                        echo "<div class='row'><div class='col-sm-12> <font size='4' > Q2:<br>".$this->session->userdata('list')[0]->Tekst."<br>";
-                        echo "</font></div></div>";
+                    </div>
+                    
+                </div>
+                <br><br>
+                <div class='row'>
+                    
+                    <div class='col-sm-3'>
                         
-                        echo "<div class='row'><div class='col-sm-12> <font size='4' > Q3:<br>".$this->session->userdata('fill')[0]->Tekst."<br>";
-                        echo "</font></div></div>";
+                        <p><font size='5' face="Cursive" color='#1A4570'> <b>Question 1:</b></font><br><font size='4' face="Cursive" color='black'><br>*<?php echo $this->session->userdata('radio')[0]->Tekst;?>*</font></p>
                         
-                        echo "<div class='row'><div class='col-sm-12> <font size='4' > Q4:<br>";
-                        foreach ($this->session->userdata('checkbox') as $t) {
+                    </div>
+                    
+                
+                    
+                    <div class='col-sm-3'>
+                        
+                        <p><font size='5' face="Cursive" color='#1A4570'> <b>Question 2:</b></font><br><font size='4' face="Cursive" color='black'><br>*<?php echo $this->session->userdata('list')[0]->Tekst;?>*</font></p>
+                        
+                    </div>
+                    
+                    <div class='col-sm-3'>
+                        
+                        <p><font size='5' face="Cursive" color='#1A4570'> <b>Question 3:</b></font><br><font size='4' face="Cursive" color='black'><br>*<?php echo $this->session->userdata('fill')[0]->Tekst;?>*</font></p>
+                        
+                    </div>
+                    
+                    <div class='col-sm-3'>
+                        
+                        <p><font size='5' face="Cursive" color='#1A4570'> <b>Question 3:</b></font><br><font size='4' face="Cursive" color='black'><br>
+                            <?php 
                             
-                            echo $t->Tekst."<br>";
-                           
-                        }
-                        echo "</font></div></div>";
-                   
+                                foreach ($this->session->userdata('checkbox') as $t) {
+                            
+                                    echo "*".$t->Tekst."*<br>";
+
+                                }
+                            
+                            ?>
+                        </font></p>
+                        
+                    </div>
                 
-                ?>
-                
-                               
+                </div>               
                 <br/>
                 <hr size="2" color="black">
                     

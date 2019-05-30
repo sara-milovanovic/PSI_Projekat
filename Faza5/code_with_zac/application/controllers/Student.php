@@ -104,7 +104,21 @@ class Student extends CI_Controller{
             else{
 
                     if(isset($u)) {
-                        $this->db->set("Username", $u);
+                        
+                        $this->db->where("Username",$u);
+                        $query=$this->db->get('registrovani');
+                        $result=$query->row();
+                        
+                        if($result!=null){
+                            
+                            redirect(base_url("index.php/Student/ucitaj_change_infos/Username_already_exists"));
+                            
+                        }
+                        else{
+                            
+                            $this->db->set("Username", $u);
+                            
+                        }
                     }
                     if(isset($np)) {
                        $np= password_hash($np, PASSWORD_DEFAULT);

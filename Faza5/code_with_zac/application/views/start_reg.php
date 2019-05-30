@@ -112,7 +112,7 @@ But more than any of that, when taught correctly, programming can be a whole hea
                         <font size="4" face="Cursive">
 				<?php 
                                     foreach ($oblasti as $o) {
-                                        echo "<div class='row'> <div class='col-sm-12'><a href='ucitajTest/".$o->IdOblast."'> *".$o->Ime."*</a></div></div>";
+                                        echo "<div class='row'> <div class='col-sm-12'><a style='color:#1A4570' href='ucitajTest/".$o->IdOblast."'> *".$o->Ime."*</a></div></div>";
                                     }
                                 
                                 ?>
@@ -226,11 +226,12 @@ But more than any of that, when taught correctly, programming can be a whole hea
                     
                
                     <hr size="2" color="black" >
-                    <div class="row" align="right">
+                    <div class="row" align="center">
                         <div class="col-sm-12">
                             <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
                         </div>
                     </div>
+                    <br>
             </div>	
 	</body>
 </html>

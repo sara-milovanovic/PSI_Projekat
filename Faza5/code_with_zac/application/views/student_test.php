@@ -63,9 +63,9 @@
                 <br/>
 		<hr size="2" color="black">
                 
-                <div class="row" align="left">
+                <div class="row" align="center">
                     <div class="col-sm-12">
-                        <font face="Cursive" size="5"><b>Good luck!</b></font>
+                        <font color='#83B8EC' face="Cursive" size="8"><b>Good luck!</b></font>
                     </div>
                 </div>
                 
@@ -73,14 +73,14 @@
                     <!--RADIO-->
                     <br><br>
                     <div class="row">
-                        <div class="col-sm-6" align="center">
-                            <?php echo "Pitanje 1: <br>".$radio->Tekst."<br><br>"?>
+                        <div class="col-sm-12" align="center">
+                            <?php echo "<font size='5' face='Cursive' color='#1A4570'><b>Pitanje 1: <br>".$radio->Tekst."</font></b><br><br>"?>
                         </div>
                     </div>
                     
                     <?php
                         foreach($radio_odg as $odg){
-                            echo "<div class='row' style='background-color:#edecd3' height='100' align='center'><div class='col-sm-12' bgcolor='lightyellow'><font size='6' face='Cursive'>&nbsp;&nbsp;&nbsp;";
+                            echo "<div class='row' style='background-color:#edecd3' height='100' align='center'><div class='col-sm-12' bgcolor='lightyellow'><font size='4' face='Cursive'>&nbsp;&nbsp;&nbsp;";
 
                             echo "<input type='radio' name='p1' value='".$odg->Tacan."'>";                                
                             echo '&nbsp;';
@@ -95,8 +95,8 @@
                     <!--LIST-->
                     <br><br>
                     <div class="row">
-                        <div class="col-sm-6" align="center">
-                            <?php echo "Pitanje 2: <br>".$list->Tekst."<br><br>"?>
+                        <div class="col-sm-12" align="center">
+                            <?php echo "<font size='5' face='Cursive' color='#1A4570'><b>Pitanje 2: <br>".$list->Tekst."</b></font><br><br>"?>
                         </div>
                     </div>
                     <div class='row' style='background-color:#edecd3' height='100' align='center'>
@@ -122,8 +122,8 @@
                     <!--FILL THE BOX-->
                     <br><br>
                     <div class="row">
-                        <div class="col-sm-6" align="center">
-                            <?php echo "Pitanje 3: <br>".$fill->Tekst."<br><br>";
+                        <div class="col-sm-12" align="center">
+                            <?php echo "<font size='5' face='Cursive' color='#1A4570'><b>Pitanje 3: <br>".$fill->Tekst."</b></font><br><br>";
                            
                            echo "<input type='text' hidden name='fill3' value='".$fill_odg[0]->Tekst."'>";
                                     ?>
@@ -139,11 +139,9 @@
                     
                     <!--CHECKBOX-->
                     <br><br>
-                    <div class="row">
-                        <div class="col-sm-6" align="center">
-                            <?php echo "Pitanje 4: <br>".$checkbox->Tekst."<br><br>"?>
-                        </div>
-                    </div>
+                    
+                    <?php echo "<div class='row'> <div class='col-sm-12' align='center'><font size='5' face='Cursive' color='#1A4570'><b>Pitanje 4: <br>".$checkbox->Tekst."</b></font><br></div></div><br>"?>
+                        
                     
                         
                            
@@ -151,13 +149,13 @@
                             $i=1;
                             
                             foreach($checkbox_odg as $odg){
-                                echo "<div class='row' style='background-color:#edecd3' height='100' align='center'><div class='col-sm-12' bgcolor='lightyellow'><font size='6' face='Cursive'>&nbsp;&nbsp;&nbsp;";
+                                echo "<div class='row' style='background-color:#edecd3' height='100' align='center'><div class='col-sm-12' bgcolor='lightyellow'><font size='4' face='Cursive'>&nbsp;&nbsp;&nbsp;";
 
                                 echo "<input type='checkbox' name='c".$i."' value='".$odg->Tacan."'>&nbsp;".$odg->Tekst;
                                 
                                 
                                 
-                                echo "</font></div></div>";
+                                echo "</font></div></div><br>";
                                     
                                 $i++;
                             }

@@ -200,11 +200,12 @@ But more than any of that, when taught correctly, programming can be a whole hea
                     
                
                     <hr size="2" color="black" >
-                    <div class="row" align="right">
+                    <div class="row" align="center">
                         <div class="col-sm-12">
                             <font size="4" face="Cursive" width="40%">Thanks for using our app!<font/>
                         </div>
                     </div>
+                    <br>
             </div>	
 	</body>
 </html>

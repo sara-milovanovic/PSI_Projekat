@@ -110,7 +110,7 @@
                 <br><br>
                 <div class="row" align="center" height="200">
                     <div class="col-sm-12">
-                        <font size='5' face='Cursive'>Your score:</font>
+                        <font size='6' face='Cursive' color='#1A4570'><b>Your score:</font>
                     </div>
                 </div>
                 <br><br>
@@ -122,8 +122,8 @@
                 
                  <?php
                     foreach ($oblasti as $o) {
-                        echo "<div class='row' align='center'><div class='col-sm-12'>*".$o->Ime;
-                        echo '*'.$o->Procenat_tacnih.'%</div></div>';
+                        echo "<div class='row' align='center'><div class='col-sm-12'><font size='4' face='Cursive' color='#1A4570'><b>".$o->Ime;
+                        echo ' - '.$o->Procenat_tacnih.'%</font></div></div>';
                     }
                  ?>
                 

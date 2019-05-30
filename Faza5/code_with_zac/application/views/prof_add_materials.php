@@ -110,8 +110,7 @@
                                 <option>While loop</option>
                                 <option>Switch/Case</option>
                                 <option>Pointers</option>
-                                <option>What is output of the following code...</option>
-                                <option>Final test (random questions)</option>
+                                
                              </select>
                         </div>
                     </div>

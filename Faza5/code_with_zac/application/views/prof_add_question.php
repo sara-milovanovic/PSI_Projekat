@@ -89,9 +89,7 @@
                                 <option value='While loop'>While loop</option>
                                 <option value='Switch/Case'>Switch/Case</option>
                                 <option value='Pointers'>Pointers</option>
-                                <option value='What is output of the following code...'>What is output of the following code...</option>
-                                <option value='Final test (random questions)'>Final test (random questions)</option>
-                           </select>
+                            </select>
                         </div>
                     </div>
                     <br><br>

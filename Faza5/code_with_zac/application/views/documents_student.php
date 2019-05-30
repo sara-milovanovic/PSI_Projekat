@@ -57,8 +57,8 @@
                 
                 <?php
                     foreach ($oblast as $obl) {
-                        echo "<div class='row' align='center'><div class='col-sm-12'><font face='Cursive' size='5'><b>";
-                        echo $obl->Ime;
+                        echo "<br><div class='row' align='center'><div class='col-sm-12'><font face='Cursive' size='5'><b>";
+                        echo "<u>".$obl->Ime."</u>";
                         echo "</b></font></div><br><br><div class='col-sm-12'>";
                         echo $obl->Materijal;
                         echo "</div></div>";
