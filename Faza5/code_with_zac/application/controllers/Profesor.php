@@ -1,18 +1,14 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Korisnik
- *
- * @author Korisnik
+ * Klasa Profesor koja koja sluzi kao kontroler za vrstu korisnika: profesor 
+ * 
  */
 class Profesor extends CI_Controller{
     
+    /**
+     * Konstruktor klase Profeosr koji ukljucuje modele koji ce biti potrebni kao i vodi racuna o tome logovanju profesora na sistem
+     */
     public function __construct() {
         parent::__construct();
         $this->load->model("ModelKorisnik");
@@ -34,13 +30,13 @@ class Profesor extends CI_Controller{
         }
     }
     
-    /*private function prikazi($glavniDeo,$podaci=[]){
-        $podaci['autor']=$this->session->userdata('autor');
-        $this->load->view("sablon/header_admin.php", $podaci);
-        $this->load->view($glavniDeo, $podaci);
-        $this->load->view("sablon/footer.php");
-    }*/
-    
+    /**
+     * Autor:
+     * Funkcija koja ucitava pocetnu stranicu koju profesor vidi kada se tek uloguje na sistem
+     * 
+     * @param 
+     * @return void
+     */
     public function index(){
        $poruka=$this->ModelOblasti->ucitaj_oblasti();
         if ($poruka) {
@@ -53,12 +49,27 @@ class Profesor extends CI_Controller{
         $this->load->view("start_prof.php", $podaci);
     }
     
+    /**
+     * Autor:
+     * Funkcija koja trenutno ulogovanog profesora izloguje sa sistema i redirektuje na gosta tj pocetnu stranu koju vidi gost
+     * 
+     * @param 
+     * @return void
+     */
     public function logout(){
         $this->session->unset_userdata("profesor");
         $this->session->sess_destroy();
         redirect("Gost");
     }
     
+    /**
+     * Autor:
+     * Funkcija ucitava stranicu na kojoj profesor moze dodavati nova pitanja
+     * Funkcija takodje ucitava ovu stranicu sa prikazon poruke o gresci
+     * 
+     * @param Strung $poruka, String $q, String $a1, String $a2, String $a3, String $a4
+     * @return void
+     */
     public function ucitaj_dodavanje_pitanja($poruka=null,$q=null,$a1=null,$a2=null,$a3=null,$a4=null){
         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
         
@@ -74,20 +85,34 @@ class Profesor extends CI_Controller{
         
     }
     
+    /**
+     * Autor:
+     * Funkcija ucitava stranicu na kojoj profesor moze dodavati nove materijale
+     * Funkcija takodje ucitava ovu stranicu sa prikazon poruke o gresci
+     * 
+     * @param Strung $poruka, String $mat
+     * @return void
+     */
     public function ucitaj_dodavanje_materijala($poruka=null,$mat=null){
         if($poruka!=null) $podaci['poruka']=$poruka.'!';
         else{
             $podaci['poruka']=$poruka;
-            
         }
          $podaci['materijal']=$mat;
          $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
-        //$this->prikazi("adminvesti.php",$podaci);
          $podaci['username']=$this->session->userdata('profesor')->Username;
          $this->load->view("prof_add_materials.php",$podaci);
         
     }
    
+    /**
+     * Autor:
+     * Funkcija koja sluzi za dodavanje novih pitanja
+     * Funkcija ucitava ovu stranicu sa prikazon poruke o gresci ili poruke o uspesnom dodavanju
+     * 
+     * @param
+     * @return void
+     */
     public function add_question(){
         
         $pitanje=$this->input->post('question');
@@ -105,8 +130,6 @@ class Profesor extends CI_Controller{
             $niz[$i]=0;
         
         }
-        //var_dump($niz);
-         
         $checked= $this->input->post("c1");
         if( $checked=="on"){
               $niz[0]=1;
@@ -127,8 +150,6 @@ class Profesor extends CI_Controller{
               $niz[3]=1;
         }
       
-      
-        //var_dump($niz);
         $this->form_validation->set_rules("question", "Question", "required");
         $this->form_validation->set_rules("ans1", "Answer 1", "required");
         $this->form_validation->set_message("required","Field {field} is required.");
@@ -207,11 +228,17 @@ class Profesor extends CI_Controller{
         }
         else{
             $this->ucitaj_dodavanje_pitanja();
-        }
-        
-        
+        } 
     }
     
+    /**
+     * Autor:
+     * Funkcija koja sluzi za dodavanje novih materijala
+     * Funkcija ucitava ovu stranicu sa prikazon poruke o gresci ili poruke o uspesnom dodavanju
+     * 
+     * @param
+     * @return void
+     */
     public function add_material(){
         
         $mat=$this->input->post('mat');
@@ -227,17 +254,20 @@ class Profesor extends CI_Controller{
             $poruka="Material_waiting_for_approval!";
             redirect(base_url("index.php/Profesor/ucitaj_dodavanje_materijala/Material_waiting_for_approval"));   
             
-            
-            
         }
         else{
             $poruka="Material_waiting_for_approval!";
             redirect(base_url("index.php/Profesor/ucitaj_dodavanje_materijala/Fill_the_box"));   
-        }
-        
-        
+        }        
     }
     
+    /**
+     * Autor:
+     * Funkcija ucitava stranicu na kojoj profesor moze izabrati najboljeg ucenika meseca
+     * 
+     * @param
+     * @return void
+     */
     public function ucitaj_biranje_njaboljeg(){
        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
        $podaci['username']=$this->session->userdata('profesor')->Username;
@@ -246,15 +276,28 @@ class Profesor extends CI_Controller{
         
     }
     
+    /**
+     * Autor:
+     * Funkcija koja poziva odgovarajuci model koji evidentira novog najboljeg ucenika meseca
+     * Funkcija ponovo ucitava stranicu za biranje najboljeg
+     * 
+     * @param
+     * @return void
+     */
     public function proglasi_najboljeg($id){
-        
         $this->ModelStudent->update_najboljeg($id);
         redirect(base_url("index.php/Profesor/ucitaj_biranje_njaboljeg"));
         
     }
 
-    
-     public function ucitaj_faq(){
+    /**
+     * Autor:
+     * Funkcija poziva odgovarajuci model i ucitava stranicu za pregled cesto postavljanih pitanja
+     * 
+     * @param
+     * @return void
+     */
+    public function ucitaj_faq(){
        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
        $podaci['username']=$this->session->userdata('profesor')->Username;
        $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
@@ -262,6 +305,13 @@ class Profesor extends CI_Controller{
        $this->load->view("faq_only_view_prof.php",$podaci);
     }
     
+    /**
+     * Autor:
+     * Funkcija koja poziva odgovarajuci model i ucitava stranicu za prikaz materijala
+     *  
+     * @param
+     * @return void
+     */
     public function ucitaj_documents(){
         $poruka=$this->ModelOblasti->ucitaj_oblasti();
         if ($poruka) {
@@ -271,7 +321,15 @@ class Profesor extends CI_Controller{
        $podaci['username']=$this->session->userdata('profesor')->Username;
        $this->load->view("documents_prof.php",$podaci);
     }
-     public function ucitaj_komentare(){
+    
+    /**
+     * Autor:
+     * Funkcija poziva odgovarajuci model i ucitava stranicu za prikaz komentara o kursu 
+     * 
+     * @param
+     * @return void
+     */
+    public function ucitaj_komentare(){
        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
        $podaci['username']=$this->session->userdata('profesor')->Username;
        $komentari=$this->ModelKomentari->ucitaj_komentare();
@@ -280,6 +338,14 @@ class Profesor extends CI_Controller{
         
     }
     
+    /**
+     * Autor:
+     * Funkcija koja dohvata upisani komentar i poziva model koji komentar evidentira u bazi
+     * Funkcija ucitava stranicu za pregled komentara
+     * 
+     * @param
+     * @return void
+     */
     public function dodaj_komentar(){
         
         $novi=$this->input->post('novi_komentar');
@@ -287,6 +353,15 @@ class Profesor extends CI_Controller{
         $this->ModelKomentari->upisi_komentar($novi,$user);
         redirect(base_url("index.php/Profesor/ucitaj_komentare"));
     }
+    
+    /**
+     * Autor:
+     * Funkcija koja sluzi za prisanje zadatog komentara
+     * Funkcija ucitava stranicu za prikaz komentara
+     * 
+     * @param int $id
+     * @return void
+     */
     public function brisi_komentar($id){
         
         $this->ModelKomentari->brisi_komentar($id);
@@ -294,19 +369,32 @@ class Profesor extends CI_Controller{
       
     }
         
+    /**
+     * Autor:
+     * Funkcija ucitava stranicu na kojoj profesor moze oceniti kurs
+     * 
+     * @param
+     * @return void
+     */
     public function ucitaj_rate(){
-         $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
-       $podaci['username']=$this->session->userdata('profesor')->Username;
-         $this->load->view("prof_rate_app.php",$podaci);
+        $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+        $podaci['username']=$this->session->userdata('profesor')->Username;
+        $this->load->view("prof_rate_app.php",$podaci);
         
     }
 
-    
+    /**
+     * Autor:
+     * Funkcija koja poziva model koji evidentira datu ocenu i ucitava stranicu na kojoj trenutno ulogovani profesor moze oceniti kurs
+     * 
+     * @param
+     * @return void
+     */
     public function oceni(){
         $id=$this->session->userdata('profesor')->IdRegistrovani;
         $ocena=$this->input->post('star');
         $this->ModelOcena->oceni($id,$ocena);
-         redirect(base_url("index.php/Profesor/ucitaj_rate"));
+        redirect(base_url("index.php/Profesor/ucitaj_rate"));
         
     }
     

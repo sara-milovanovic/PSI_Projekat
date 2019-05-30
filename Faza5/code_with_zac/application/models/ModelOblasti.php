@@ -1,39 +1,51 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Klasa ModelOblasti koja sluzi za komunikaciju sa bazom i sadrzi fje vezane za oblasti i rezultate za oblasti
+ * 
  */
 
-/**
- * Description of ModelOblasti
- *
- * @author Iva
- */
 class ModelOblasti extends CI_Model{
-    //put your code here
+    
+    /**
+     * Autor:
+     * Konstruktor klase ModelOblasti
+     * 
+     * @param
+     * @return void
+     */
     public function __construct() {
         parent::__construct();
     }
     
+    /**
+     * Autor:
+     * Funkcija koja vraca niz svih oblasti
+     * 
+     * @param
+     * @return Object[]
+     */
     public function ucitaj_oblasti(){
-        
-        
         $this->db->from('oblast');
         $query=$this->db->get();
-        $result=$query->result();//vraca niz komentara
+        $result=$query->result();
         return $result;
         
     }
     
+    /**
+     * Autor:
+     * Funkcija koja vraca niz svih oblast sa rezultatima koje je na njima ostvario trenutno ulogovani student
+     * 
+     * @param
+     * @return Object[]
+     */
     public function ucitaj_oblasti_sa_rez(){
         $id=$this->session->userdata('student')->IdRegistrovani;
         $this->db->where("r.IdRegistrovani=$id and r.IdOblast=o.IdOblast");
         $this->db->from('oblast o,rezultat r');
         $query=$this->db->get();
-        $result=$query->result();//vraca niz komentara
+        $result=$query->result();
         return $result;
-        
     }
 }
