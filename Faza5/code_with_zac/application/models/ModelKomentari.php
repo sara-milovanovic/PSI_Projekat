@@ -13,9 +13,28 @@
  */
 class ModelKomentari extends CI_Model{
     //put your code here
+    
+    /**
+     * Autor:
+     * Konstruktor klase ModelKomentari
+     *  
+     * @param
+     * @return void
+     */
+    
     public function __construct() {
         parent::__construct();
     }
+    
+    /**
+     * Autor:
+     * Funkcija koja dohvata sve komentare iz baze i kao
+     * rezultat vraca niz cesto komentara
+     *  
+     * @param
+     * @return Object[]
+     */
+    
     
     public function ucitaj_komentare(){
         $this->db->where("k.IdRegistrovani=r.IdRegistrovani");
@@ -24,6 +43,16 @@ class ModelKomentari extends CI_Model{
         $result=$query->result();//vraca niz komentara
         return $result;
     }
+    
+    
+    /**
+     * Autor:
+     * Funkcija koja upisuje odgovarajuci komentar u bazu
+     *  
+     * @param
+     * @return void
+     */
+    
     public function upisi_komentar($novi,$user){
         
         $this->db->set("Tekst", $novi);
@@ -34,6 +63,14 @@ class ModelKomentari extends CI_Model{
         
         
     }
+    
+    /**
+     * Autor:
+     * Funkcija koja brise komentar iz baze sa zadatim parametrom
+     *  
+     * @param
+     * @return void
+     */
     
     public function brisi_komentar($id){
         

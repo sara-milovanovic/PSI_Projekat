@@ -13,9 +13,27 @@
  */
 class ModelFAQ extends CI_Model{
     //put your code here
+    
+    /**
+     * Autor:
+     * Konstruktor klase ModelFAQ
+     *  
+     * @param
+     * @return void
+     */
+    
     public function __construct() {
         parent::__construct();
     }
+    
+    /**
+     * Autor:
+     * Funkcija koja dohvata sva cesto postavljena pitanja iz baze i kao
+     * rezultat vraca niz cesto postavljenih pitanja
+     *  
+     * @param
+     * @return Object[]
+     */
     
     public function dohvati_sve_faq(){
         $this->db->from('faq');

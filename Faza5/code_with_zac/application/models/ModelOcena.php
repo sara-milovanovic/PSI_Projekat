@@ -13,11 +13,31 @@
  */
 class ModelOcena extends CI_Model{
     //put your code here
+    
+    /**
+     * Autor:
+     * Konstruktor klase ModelOcena
+     *  
+     * @param
+     * @return void
+     */
+    
     public function __construct() {
         parent::__construct();
     }
     
     //put your code here
+    
+    
+    /**
+     * Autor:
+     * Funkcija koja evidentira ocenu korisnika za kurs, ukoliko je
+     * korisnik vec ocenjivao kurs onda se radi update ocene u bazi
+     *  
+     * @param
+     * @return Object
+     */
+    
     
     public function oceni($id,$ocena){
         
@@ -63,6 +83,16 @@ class ModelOcena extends CI_Model{
         $this->db->update("kurs");
         
     }
+    
+    
+    /**
+     * Autor:
+     * Funkcija koja dohvata ocenu kursa iz baze 
+     *  
+     * @param
+     * @return Object
+     */
+    
     
     public function dohvati_ocenu(){
         
