@@ -1,21 +1,13 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of ModelFAQ
- *
- * @author Sara
+ * Klasa ModelFAQ koja sluzi za komunikaciju sa bazom u kontekstu rada sa cesto postavljanim pitanjima
+ * 
  */
+
 class ModelFAQ extends CI_Model{
-    //put your code here
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Konstruktor klase ModelFAQ
      *  
      * @param
@@ -27,7 +19,7 @@ class ModelFAQ extends CI_Model{
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja dohvata sva cesto postavljena pitanja iz baze i kao
      * rezultat vraca niz cesto postavljenih pitanja
      *  

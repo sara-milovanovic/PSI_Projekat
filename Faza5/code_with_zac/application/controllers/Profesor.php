@@ -31,7 +31,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja ucitava pocetnu stranicu koju profesor vidi kada se tek uloguje na sistem
      * 
      * @param 
@@ -50,7 +50,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja trenutno ulogovanog profesora izloguje sa sistema i redirektuje na gosta tj pocetnu stranu koju vidi gost
      * 
      * @param 
@@ -63,7 +63,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija ucitava stranicu na kojoj profesor moze dodavati nova pitanja
      * Funkcija takodje ucitava ovu stranicu sa prikazon poruke o gresci
      * 
@@ -86,7 +86,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija ucitava stranicu na kojoj profesor moze dodavati nove materijale
      * Funkcija takodje ucitava ovu stranicu sa prikazon poruke o gresci
      * 
@@ -106,7 +106,7 @@ class Profesor extends CI_Controller{
     }
    
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja sluzi za dodavanje novih pitanja
      * Funkcija ucitava ovu stranicu sa prikazon poruke o gresci ili poruke o uspesnom dodavanju
      * 
@@ -232,7 +232,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja sluzi za dodavanje novih materijala
      * Funkcija ucitava ovu stranicu sa prikazon poruke o gresci ili poruke o uspesnom dodavanju
      * 
@@ -262,7 +262,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija ucitava stranicu na kojoj profesor moze izabrati najboljeg ucenika meseca
      * 
      * @param
@@ -277,7 +277,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model koji evidentira novog najboljeg ucenika meseca
      * Funkcija ponovo ucitava stranicu za biranje najboljeg
      * 
@@ -291,7 +291,7 @@ class Profesor extends CI_Controller{
     }
 
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija poziva odgovarajuci model i ucitava stranicu za pregled cesto postavljanih pitanja
      * 
      * @param
@@ -306,7 +306,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja poziva odgovarajuci model i ucitava stranicu za prikaz materijala
      *  
      * @param
@@ -323,7 +323,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija poziva odgovarajuci model i ucitava stranicu za prikaz komentara o kursu 
      * 
      * @param
@@ -339,7 +339,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja dohvata upisani komentar i poziva model koji komentar evidentira u bazi
      * Funkcija ucitava stranicu za pregled komentara
      * 
@@ -355,7 +355,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja sluzi za prisanje zadatog komentara
      * Funkcija ucitava stranicu za prikaz komentara
      * 
@@ -370,7 +370,7 @@ class Profesor extends CI_Controller{
     }
         
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija ucitava stranicu na kojoj profesor moze oceniti kurs
      * 
      * @param
@@ -384,7 +384,7 @@ class Profesor extends CI_Controller{
     }
 
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja poziva model koji evidentira datu ocenu i ucitava stranicu na kojoj trenutno ulogovani profesor moze oceniti kurs
      * 
      * @param

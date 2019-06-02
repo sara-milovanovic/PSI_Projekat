@@ -1,15 +1,8 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Korisnik
- *
- * @author Korisnik
+ * Klasa Admin koja koja sluzi kao kontroler za vrstu korisnika: admin 
+ * 
  */
 class Admin extends CI_Controller{
     /**
@@ -37,7 +30,7 @@ class Admin extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja dohvata upisani komentar i poziva model koji komentar evidentira u bazi
      * Funkcija ucitava stranicu za pregled komentara
      * 
@@ -55,7 +48,7 @@ class Admin extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja ucitava pocetnu stranicu koju admin vidi kada se tek uloguje na sistem
      * 
      * @param 
@@ -75,7 +68,7 @@ class Admin extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja trenutno ulogovanog admina izloguje sa sistema i redirektuje na gosta tj pocetnu stranu koju vidi gost
      * 
      * @param 
@@ -91,7 +84,7 @@ class Admin extends CI_Controller{
     
     
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija poziva odgovarajuci model i ucitava stranicu za pregled i dodavanje cesto postavljanih pitanja
      * koja se evidentiraju u bazi
      * 
@@ -108,7 +101,7 @@ class Admin extends CI_Controller{
     }
    
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja poziva odgovarajuci model i ucitava stranicu za prikaz materijala
      *  
      * @param
@@ -116,14 +109,14 @@ class Admin extends CI_Controller{
      */
    
      public function ucitaj_documents(){
-          $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
+       $podaci['najbolji']=$this->ModelStudent->dohvati_najboljeg();
        $podaci['username']=$this->session->userdata('admin')->Username;
        $podaci['oblast']=$this->ModelMaterijal->izlistaj_materijale();
        $this->load->view("documents_admin.php",$podaci);
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model i ucitava stranicu za pregled studenata, gde admin
      * ima mogucnost da obrise studente koji narusavaju pravila kursa
      *  
@@ -140,7 +133,7 @@ class Admin extends CI_Controller{
    }
    
    /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model i ucitava stranicu na kojoj
      * admin moze da odobri ili odbije pitanja koja je neki profesor napravio
      *  
@@ -156,7 +149,7 @@ class Admin extends CI_Controller{
    }
    
    /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model i ucitava stranicu na kojoj
      * admin moze da odobri ili odbije pitanja koja je neki profesor napravio
      *  
@@ -172,7 +165,7 @@ class Admin extends CI_Controller{
    }
    
    /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model pomocu kog admin odobrava materijal
      * Nakon sto admin odobri materijal, on se evidentira u bazi, a brise se iz tabele u bazi 
      * koja sadrzi materijale na cekanju
@@ -195,7 +188,7 @@ class Admin extends CI_Controller{
    }
    
    /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model pomocu kog admin ne odobrava materijal
      * Nakon sto admin ne odobri materijal, on se brise se iz tabele u bazi 
      * koja sadrzi materijale na cekanju
@@ -212,7 +205,7 @@ class Admin extends CI_Controller{
    }
    
    /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model pomocu kog admin odobrava pitalicu
      * Nakon sto admin odobri pitalicu, ona se evidentira u bazi, a brise se iz tabele u bazi 
      * koja sadrzi pitalice na cekanju
@@ -232,7 +225,7 @@ class Admin extends CI_Controller{
    
    
    /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model pomocu kog admin ne odobrava pitalicu
      * Nakon sto admin ne odobri pitalicu, on se brise se iz tabele u bazi 
      * koja sadrzi pitalice na cekanju
@@ -248,7 +241,7 @@ class Admin extends CI_Controller{
    }
    
    /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija poziva odgovarajuci model i ucitava stranicu za prikaz i brisanje komentara o kursu 
      * 
      * @param
@@ -261,12 +254,8 @@ class Admin extends CI_Controller{
    
    
    
-    public function ucitaj_final_test(){
-      //poziv fje koja dohvata pitalice
-   }
-   
    /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja poziva odgovarajuci model pomocu kog admin dodaje 
      * cesto postavljena pitanja. Nakon sto admin doda pitanje ono se 
      * evidentira u bazi  
@@ -303,7 +292,7 @@ class Admin extends CI_Controller{
    }
    
    /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja proverava da li su dobri podaci uneti u formu i u slucaju
      * da nisu ispisuje odgovarajucu gresku
      *  
@@ -330,7 +319,7 @@ class Admin extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja poziva odgovarajuci model koji ucitava stranicu 
      * na kojoj admin vidi sve studente koji su na kursu i moze da ih obrise
      *  
@@ -346,7 +335,7 @@ class Admin extends CI_Controller{
     
     
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja poziva odgovarajuci model pomocu kog  administrator brise studente koji krse pravila
      * kursa. Nakon sto ih administrator obrise oni se brisu i iz baze
      *  
@@ -361,7 +350,7 @@ class Admin extends CI_Controller{
     
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model pomocu kog administrator brise komentare koji krse pravila
      * kursa. Nakon sto ih administrator obrise oni se brisu i iz baze
      *  
@@ -378,7 +367,7 @@ class Admin extends CI_Controller{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model koji ucitava stranicu sa svim komentarima
      *  
      * @param

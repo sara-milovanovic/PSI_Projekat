@@ -1,21 +1,14 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of ModelOcena
- *
- * @author Sara
+ * Klasa ModelOcena koja sluzi za komunikaciju sa bazom u kontekstu rada sa korisnickim ocenama
+ * 
  */
 class ModelOcena extends CI_Model{
     //put your code here
     
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Konstruktor klase ModelOcena
      *  
      * @param
@@ -26,11 +19,10 @@ class ModelOcena extends CI_Model{
         parent::__construct();
     }
     
-    //put your code here
     
     
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja evidentira ocenu korisnika za kurs, ukoliko je
      * korisnik vec ocenjivao kurs onda se radi update ocene u bazi
      *  
@@ -86,7 +78,7 @@ class ModelOcena extends CI_Model{
     
     
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja dohvata ocenu kursa iz baze 
      *  
      * @param

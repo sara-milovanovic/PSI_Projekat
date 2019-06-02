@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * Klasa Gost koja koja sluzi kao kontroler za vrstu korisnika: gost 
+ * 
+ */
 class Gost extends CI_Controller{
     
+    /**
+     * Konstruktor klase Gost koji ukljucuje modele koji ce biti potrebni i vodi racuna o trentnom korisniku ulogovanom na sistem
+     */
     public function __construct() {
         parent::__construct();
         $this->load->model('ModelKorisnik');
@@ -10,11 +17,7 @@ class Gost extends CI_Controller{
         $this->load->model("ModelOcena");
         $this->load->model("ModelFAQ");
         $this->load->model("ModelStudent");
-        //ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
-        // kako su nam oba modela trebala u svim kontrolerima 
-        //mogli smo i u autoload falju da ih dodamo u niz za modele
         
-        //provera da li je korisnik mozda vec ulogovan
         if (($this->session->userdata('admin')) != NULL) {
             redirect('Admin');
         }
@@ -26,15 +29,13 @@ class Gost extends CI_Controller{
         }
     }
     
-     
-        
-    //pomocna metoda koja sluzi za ucitavanje stranice posto nam se svaka stranica sadrzi iz tri dela
-    private function prikazi($glavniDeo, $data){
-        $this->load->view("sablon/header_gost.php", $data);
-        $this->load->view($glavniDeo, $data);
-        $this->load->view("sablon/footer.php");
-    }
-    
+    /**
+     * Autor:Sara Milovanović
+     * Funkcija koja ucitava pocetnu stranicu koju gost vidi kada se tek uloguje na sistem
+     * 
+     * @param 
+     * @return void
+     */
     public function index($poruka=NULL){
         $poruka=$this->ModelOblasti->ucitaj_oblasti();
         $podaci=[];
@@ -46,7 +47,13 @@ class Gost extends CI_Controller{
         
     }
           
-    //metoda koja ucitava formu za  logovanje
+    /**
+     * Autor:Sara Milovanović
+     * Funkcija koja prikazuje formu za logovanje
+     * 
+     * @param String $poruka, String $u
+     * @return void
+     */
     public function login($poruka=NULL,$u=null)
     {  
         $podaci=[];
@@ -57,6 +64,13 @@ class Gost extends CI_Controller{
         $this->load->view('login.php',$podaci);
     }
     
+    /**
+     * Autor:Sara Milovanović
+     * Funkcija koja prikazuje formu za registraciju
+     * 
+     * @param String $poruka
+     * @return void
+     */
     public function signup_formValidation($poruka=NULL)
     {  
         $podaci=[];
@@ -66,7 +80,14 @@ class Gost extends CI_Controller{
         $this->load->view('SignUp.php',$podaci);
     }
     
-    //metoda koja se poziva klikom na submit forme za logovanje
+    
+    /**
+     * Autor:Sara Milovanović
+     * Funkcija koja se poziva klikom na submit dugme forme za logovanje i sluzi za proveru podataka za logovanje
+     * 
+     * @param 
+     * @return void
+     */
     public function ulogujse(){
         
       
@@ -108,33 +129,41 @@ class Gost extends CI_Controller{
         }
     }
    
-    
-    
-   public function ucitaj_login(){
-       $this->load->view("login.php");
-   }
-   
+    /**
+     * Autor:Iva Veljković
+     * Funkcija koja poziva odgovarajuci model i ucitava stranicu sa cesto postavljanim pitanjima
+     * 
+     * @param 
+     * @return void
+     */
    public function ucitaj_faq(){
        $faq_svi=$this->ModelFAQ->dohvati_sve_faq();
        $podaci['faq'] = $faq_svi;
        $this->load->view("faq_only_view.php",$podaci);
     }
    
-   public function ucitaj_komentare(){
+    /**
+     * Autor:Sara Milovanović
+     * Funkcija koja poziva odgovarajuci model i ucitava stranicu sa komentarima
+     * 
+     * @param 
+     * @return void
+     */
+    public function ucitaj_komentare(){
        
        $podaci['komentari']=$this->ModelKomentari->ucitaj_komentare();
        $this->load->view("comments_only_view.php",$podaci);
-   }
+    }
    
-   public function ucitaj_signup(){
-       $this->load->view("SignUp.php");
-   }
    
-    public function ucitaj_home(){
-       $this->index();
-   }
-   
-   public function signup(){
+    /**
+     * Autor:Sara Milovanović
+     * Funkcija koja se poziva klikom na submit dugme forme za registrovanje i sluzi za proveru podataka za registraciju
+     * 
+     * @param 
+     * @return void
+     */
+    public function signup(){
        
        $this->form_validation->set_rules("username", "Username", "required");
        $this->form_validation->set_rules("password", "Password", "required");
@@ -169,8 +198,15 @@ class Gost extends CI_Controller{
         }
        
        
-   }
+    }
    
+    /**
+     * Autor:Iva Veljković
+     * Funkcija koja se poziva ukoliko korisnik zaboravi svoju sifru i pozivom ove f-je mu se na mail posalje njegova nova sifra
+     * 
+     * @param 
+     * @return void
+     */
      public function posalji_mail(){
              $config = array();
              $config['protocol'] = 'smtp';
@@ -180,8 +216,6 @@ class Gost extends CI_Controller{
              $config['smtp_port'] = 465;
              $config['charset'] = 'iso-8859-1';
              $config['mailtype'] = 'html';
-             //extension=php_openssl.dll
-             //ovde ide neki rand i uodate sifre za tog korisnika
              $pass= random_int(100000, 2500000);
              
              $email=$this->input->post('mail');
@@ -199,12 +233,18 @@ class Gost extends CI_Controller{
              $this->email->message("<h2>Password: ".$pass."</h2>");
              
              $this->email->send();
-             //var_dump($pass);
              
              redirect('Gost');
        
    }
    
+   /**
+     * Autor:Iva Veljković
+     * Funkcija koja ucitava stranicu gde korisnik unosi svoj mail prilikom zaboravljanja sifre
+     * 
+     * @param 
+     * @return void
+     */
    public function ucitaj_mail(){
        
        $this->load->view('mail.php');

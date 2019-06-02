@@ -5,24 +5,24 @@
 
 class ModelPitalica extends CI_Model{
   
- /**
-*Autor:
-*
-*Kreiranje nove instance
-*@param 
-*@return void
-*/    
+    /**
+    *Autor:Iva Veljković
+    *
+    *Kreiranje nove instance
+    *@param 
+    *@return void
+    */    
     public function __construct() {
         parent::__construct();
     }
    
-   /**
-*Autor:
-*
-*Funkcija koja dodaje pitanje tipa radio i odgovore na njega za odredjenu oblast
-*@param String $pitanje, String $oblast, Sting $ans1,Sting $ans2,Sting $ans3,Sting $ans4
-*@return void
-*/  
+    /**
+     *Autor:Sara Milovanović
+     *
+     *Funkcija koja dodaje pitanje tipa radio i odgovore na njega za odredjenu oblast
+     *@param String $pitanje, String $oblast, Sting $ans1,Sting $ans2,Sting $ans3,Sting $ans4
+     *@return void
+     */  
     public function dodaj_radio_pitanje($pitanje,$oblast,$ans1,$ans2,$ans3,$ans4){
         
         $this->db->where("Ime",$oblast);
@@ -69,13 +69,13 @@ class ModelPitalica extends CI_Model{
         }
         
     }
- /**
-*Autor:
-*
-*Funkcija kojadohvata ID poslednje dodate pitalice
-*@param 
-*@return int
-*/  
+    /**
+    *Autor:Iva Veljković
+    *
+    *Funkcija kojadohvata ID poslednje dodate pitalice
+    *@param 
+    *@return int
+    */  
     
     public function dohvati_id(){
         
@@ -85,13 +85,13 @@ class ModelPitalica extends CI_Model{
         return $result->IdPitalica;
         
     }
-       /**
-*Autor:
-*
-*Funkcija koja dodaje pitanje tipa checkbox i odgovore na njega za odredjenu oblast
-*@param String $pitanje, String $oblast, Sting $ans1,Sting $ans2,Sting $ans3,Sting $ans4
-*@return void
-*/  
+    /**
+     *Autor:Sara Milovanović
+     *
+     *Funkcija koja dodaje pitanje tipa checkbox i odgovore na njega za odredjenu oblast
+     *@param String $pitanje, String $oblast, Sting $ans1,Sting $ans2,Sting $ans3,Sting $ans4
+     *@return void
+     */  
     public function dodaj_checkbox_pitanje($pitanje,$oblast,$ans1,$ans2,$ans3,$ans4,$niz){
         
         $this->db->where("Ime",$oblast);
@@ -138,13 +138,13 @@ class ModelPitalica extends CI_Model{
         }
         
     }
-       /**
-*Autor:
-*
-*Funkcija koja dodaje pitanje tipa list i odgovore na njega za odredjenu oblast
-*@param String $pitanje, String $oblast, Sting $ans1,Sting $ans2,Sting $ans3,Sting $ans4
-*@return void
-*/
+    /**
+     *Autor:Sara Milovanović
+     *
+     *Funkcija koja dodaje pitanje tipa list i odgovore na njega za odredjenu oblast
+     *@param String $pitanje, String $oblast, Sting $ans1,Sting $ans2,Sting $ans3,Sting $ans4
+     *@return void
+     */
     
     public function dodaj_list_pitanje($pitanje,$oblast,$ans1,$ans2,$ans3,$ans4,$niz){
         $this->db->where("Ime",$oblast);
@@ -191,13 +191,13 @@ class ModelPitalica extends CI_Model{
         }
         
     }
- /**
-*Autor:
-*
-*Funkcija koja dodaje pitanje tipa fill i odgovor na njega za odredjenu oblast
-*@param String $pitanje, String $oblast, Sting $ans1
-*@return void
-*/
+    /**
+    *Autor:Sara Milovanović
+    *
+    *Funkcija koja dodaje pitanje tipa fill i odgovor na njega za odredjenu oblast
+    *@param String $pitanje, String $oblast, Sting $ans1
+    *@return void
+    */
     public function dodaj_fill_pitanje($pitanje,$oblast,$ans1){
         
         $this->db->where("Ime",$oblast);
@@ -222,14 +222,13 @@ class ModelPitalica extends CI_Model{
         $this->db->insert("odgovor");
         
     }
-	
-       /**
-*Autor:
-*
-*Funkcija koja dohvata sve pitalice koje cekaju odobrenje admina
-*@param 
-*@return Object[]
-*/
+    /**
+     *Autor:Nedeljko Jokić
+     *
+     *Funkcija koja dohvata sve pitalice koje cekaju odobrenje admina
+     *@param 
+     *@return Object[]
+     */
     
     public function dohvati_pitalicu_na_cekanju(){
         
@@ -242,26 +241,26 @@ class ModelPitalica extends CI_Model{
         return $result;
         
     }
-/**
-*Autor:
-*
-*Funkcija koja prebacuje pitalicu iz neaktivnog u aktivni status
-*@param int $id
-*@return 
-*/    
+    /**
+    *Autor:Nedeljko Jokić
+    *
+    *Funkcija koja prebacuje pitalicu iz neaktivnog u aktivni status
+    *@param int $id
+    *@return 
+    */    
     public function odobri_pitalicu($id){
         $this->db->set("Status","aktivna");
         $this->db->where('IdPitalica',$id);
         $this->db->update("pitalica");
         
     }
- /**
-*Autor:
-*
-*Funkcija koja izbacuje pitalicu iz baze kada je admin ne odobri
-*@param int $id
-*@return 
-*/  
+    /**
+    *Autor:Nedeljko Jokić
+    *
+    *Funkcija koja izbacuje pitalicu iz baze kada je admin ne odobri
+    *@param int $id
+    *@return 
+    */  
     public function ponisti_pitalicu($id){
         
        $this->db->where("IdPitalica",$id);
@@ -271,13 +270,13 @@ class ModelPitalica extends CI_Model{
        $this->db->delete("odgovor");
         
     }
-/**
-*Autor:
-*
-*Funkcija koja dohvata sve pitalice iz odredjene oblasti koje su aktivne
-*@param int $idOblasti, String $t
-*@return Object[]
-*/      
+    /**
+    *Autor:Sara Milovanović
+    *
+    *Funkcija koja dohvata sve pitalice iz odredjene oblasti koje su aktivne
+    *@param int $idOblasti, String $t
+    *@return Object[]
+    */      
     public function dohvati_po_vrsti($idOblasti,$t){
         $this->db->where("(IdOblast=$idOblasti) and (Status='aktivna')  ");
         $this->db->where("Tip",$t);
@@ -290,13 +289,13 @@ class ModelPitalica extends CI_Model{
         return $rnd;
         
     }
- /**
-*Autor:
-*
-*Funkcija koja dohvata sve ponudjene odgovore za odredjenu pitalicu
-*@param int $id
-*@return Object[]
-*/     
+    /**
+    *Autor:Sara Milovanović
+    *
+    *Funkcija koja dohvata sve ponudjene odgovore za odredjenu pitalicu
+    *@param int $id
+    *@return Object[]
+    */     
     public function dohvati_po_vrsti_odgovor($id){
         
         $this->db->where("IdPitalica",$id);
@@ -307,13 +306,13 @@ class ModelPitalica extends CI_Model{
         
         return $result;
     }
-/**
-*Autor:
-*
-*Funkcija koja dohvata tacan odgovor za odredjenu pitalicu
-*@param int $id
-*@return Object[]
-*/      
+    /**
+    *Autor:Sara Milovanović
+    *
+    *Funkcija koja dohvata tacan odgovor za odredjenu pitalicu
+    *@param int $id
+    *@return Object[]
+    */      
     public function dohvati_po_vrsti_tacan_odgovor($id){
         
         $this->db->where("IdPitalica",$id);
@@ -324,13 +323,13 @@ class ModelPitalica extends CI_Model{
         return $result;
         
     }
-  /**
-*Autor:
-*
-*Funkcija koja nakon resavanja test evidentira rezultat studenta
-*@param float $rez, int $oblast, int $id
-*@return 
-*/    
+       /**
+      *Autor:Iva Veljković
+      *
+      *Funkcija koja nakon resavanja test evidentira rezultat studenta
+      *@param float $rez, int $oblast, int $id
+      *@return 
+      */    
     public function update_result($rez,$oblast,$id){
         
         $this->db->where("IdRegistrovani",$id);

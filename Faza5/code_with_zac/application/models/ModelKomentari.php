@@ -1,21 +1,13 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of ModelKomentari
- *
- * @author Sara
+ * Klasa ModelKomentari koja sluzi za komunikaciju sa bazom u kontekstu rada sa korisnickim komentarima
+ * 
  */
 class ModelKomentari extends CI_Model{
     //put your code here
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Konstruktor klase ModelKomentari
      *  
      * @param
@@ -27,7 +19,7 @@ class ModelKomentari extends CI_Model{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja dohvata sve komentare iz baze i kao
      * rezultat vraca niz cesto komentara
      *  
@@ -46,7 +38,7 @@ class ModelKomentari extends CI_Model{
     
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja upisuje odgovarajuci komentar u bazu
      *  
      * @param
@@ -65,7 +57,7 @@ class ModelKomentari extends CI_Model{
     }
     
     /**
-     * Autor:
+     * Autor:Nedeljko Jokić
      * Funkcija koja brise komentar iz baze sa zadatim parametrom
      *  
      * @param

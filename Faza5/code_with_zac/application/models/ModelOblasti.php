@@ -8,7 +8,7 @@
 class ModelOblasti extends CI_Model{
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Konstruktor klase ModelOblasti
      * 
      * @param
@@ -19,7 +19,7 @@ class ModelOblasti extends CI_Model{
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja vraca niz svih oblasti
      * 
      * @param
@@ -34,7 +34,7 @@ class ModelOblasti extends CI_Model{
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja vraca niz svih oblast sa rezultatima koje je na njima ostvario trenutno ulogovani student
      * 
      * @param

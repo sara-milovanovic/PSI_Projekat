@@ -8,7 +8,7 @@ class ModelKorisnik extends CI_Model {
     public $korisnik;
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Konstruktor klase ModelKorisnik
      * 
      * @param
@@ -20,7 +20,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja vraca true ako korisnik sa zadatim korisnickim imenom postoji, a u suprotnom vraca false
      * 
      * @param String $korisnicko_ime
@@ -38,7 +38,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja vraca true ako korisnik sa id-jem postoji, a u suprotnom vraca false
      * 
      * @param int $id
@@ -56,7 +56,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja vraca true ako korisnik sa zadatim korisnicki imenom postoji, a u suprotnom vraca false
      * 
      * @param String $korisnicko_ime
@@ -74,7 +74,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja vraca true ako korisnik sa zadatim mail-om postoji, a u suprotnom vraca false
      * 
      * @param String $mail
@@ -91,7 +91,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja u bazu ubacuje novog korisnika sa zadatim username-om, password-om, mail-om, imenom i prezimenom respektivno i vraca ubacenog korisnika
      * 
      * 
@@ -123,7 +123,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja proverava da li je uneti password validan
      * 
      * @param String $lozinka
@@ -134,7 +134,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja proverava da li je trenutno ulogovani korisnik student, admin ili profesor
      * 
      * @param
@@ -157,7 +157,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja u bazu insertuje cesto postavljano pitanje i odgovor na njega 
      * 
      * @param String $p, String $o
@@ -170,7 +170,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     /**
-     * Autor:
+     * Autor:Iva Veljković
      * Funkcija koja vraca niz svih studenata registrovanih na sistem
      * 
      * @param

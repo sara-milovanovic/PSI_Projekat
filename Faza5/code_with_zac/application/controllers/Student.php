@@ -2,6 +2,7 @@
 /**
 *Klasa Student je kontroler koji je zaduzen za komunikaciju izmedju modela i view-ova vezanih za korisnika tipa student
 */
+
 class Student extends CI_Controller{
      /**
      * Konstruktor klase Student koji ukljucuje modele koji ce biti potrebni i vodi racuna o logovanju studenta na sistem
@@ -27,7 +28,7 @@ class Student extends CI_Controller{
         }
     }
     /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja ucitava pocetnu stranicu koju student vidi kada se tek uloguje na sistem
      * 
      * @param 
@@ -46,8 +47,8 @@ class Student extends CI_Controller{
         redirect(base_url("index.php/Student/ucitaj_index"));
         
     }
-	 /**
-     * Autor:
+    /**
+     * Autor:Sara Milovanović
      * Funkcija koja ucitava sve potrebne informacije koje su vidljive na pocetnoj strani i ucitava pocetnu strnu
      * 
      * @param 
@@ -67,8 +68,8 @@ class Student extends CI_Controller{
         $this->load->view("start_reg.php", $podaci);
         
     }
-	 /**
-     * Autor:
+    /**
+     * Autor:Nedeljko Jokić
      * Funkcija koja je zaduzena da izloguje studenta i prebaci ga na pocetnu stranu za neregistrovanog korisnika
      * 
      * @param 
@@ -81,7 +82,7 @@ class Student extends CI_Controller{
         redirect("Gost");
     }
      /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja ucitava sve informacije o samom studentu koje on moze da vidi
      * 
      * @param 
@@ -97,7 +98,7 @@ class Student extends CI_Controller{
         $this->load->view("my_informations.php",$podaci);
     }
      /**
-     * Autor:
+     * Autor:Sara Milovanović
      * Funkcija koja ucitava stranicu na kojoj student moze da menja informacije o sebi
      * 
      * @param String $poruka
@@ -118,8 +119,8 @@ class Student extends CI_Controller{
     }
 	
 	
-	 /**
-     * Autor:
+    /**
+     * Autor:Sara Milovanović
      * Funkcija koja je zaduzena za pozivanje modela koji menjaju informacije koje je student zahtevao da se promene
      * 
      * @param 
@@ -197,8 +198,9 @@ class Student extends CI_Controller{
         }
         
     }
-	 /**
-     * Autor:
+
+    /**
+     * Autor:Sara Milovanović
      * Funkcija koja ucitava stranicu sa komentarima kursa
      * 
      * @param 
@@ -215,8 +217,9 @@ class Student extends CI_Controller{
        $this->load->view("write_comments.php",$podaci);
         
     }
-	 /**
-     * Autor:
+
+    /**
+     * Autor:Nedeljko Jokić
      * Funkcija koja je zaduzena za pozivanje funkcije modela koja dodaje komentar studenta za odredjeni kurs
      * 
      * @param 
@@ -231,8 +234,8 @@ class Student extends CI_Controller{
         redirect(base_url("index.php/Student/ucitaj_komentare"));
         
     }
- 	 /**
-     * Autor:
+    /**
+     * Autor:Nedeljko Jokić
      * Funkcija koja je zaduzena za pozivanje funkcije modela koja brise komentar studenta za odredjeni kurs
      * 
      * @param int $id
@@ -245,8 +248,8 @@ class Student extends CI_Controller{
         redirect(base_url("index.php/Student/ucitaj_komentare"));
        
     }
-		 /**
-     * Autor:
+    /**
+     * Autor:Iva Veljković
      * Funkcija koja je zaduzena za ucitavanje stranice sa cesto postavljenim pitanjima
      * 
      * @param 
@@ -261,8 +264,8 @@ class Student extends CI_Controller{
        $this->load->view("faq_only_view_student.php",$podaci);
     }
 	
-		 /**
-     * Autor:
+    /**
+     * Autor:Iva Veljković
      * Funkcija koja je zaduzena za ucitavanje stranice sa dokumentima o odredjenom kursu
      * 
      * @param 
@@ -277,8 +280,8 @@ class Student extends CI_Controller{
        $this->load->view("documents_student.php",$podaci);
     }
     
- 	 /**
-     * Autor:
+    /**
+     * Autor:Iva Veljković
      * Funkcija koja je zaduzena za ucitavanje stranice za ocenjivanje kursa
      * 
      * @param 
@@ -293,8 +296,8 @@ class Student extends CI_Controller{
         
     }
 	
-	/**
-     * Autor:
+    /**
+     * Autor:Iva Veljković
      * Funkcija koja je zaduzena za pozivanje metode modela koja menja prosecnu ocenu kursa
      * 
      * @param 
@@ -309,8 +312,8 @@ class Student extends CI_Controller{
          redirect(base_url("index.php/Student/ucitaj_rate"));
         
     }
-		 /**
-     * Autor:
+    /**
+     * Autor:Iva Veljković
      * Funkcija koja je zaduzena za ucitavanje stranice sa testom za odredjenu oblast
      * 
      * @param  int $idOblast
@@ -342,8 +345,8 @@ class Student extends CI_Controller{
         $this->load->view("student_test.php",$podaci);
     }
 	
-		 /**
-     * Autor:
+    /**
+     * Autor:Iva Veljković
      * Funkcija koja je zaduzena za racunanje konacnog rezultata na osnovu datih odgovora na testu
      * 
      * @param 
@@ -444,8 +447,8 @@ class Student extends CI_Controller{
         redirect(base_url("index.php/Student/ucitaj_rezultat/".$rez));
         
     }
-		 /**
-     * Autor:
+    /**
+     * Autor:Iva Veljković
      * Funkcija koja je zaduzena za ucitavanje stranice sa rezultatima testa
      * 
      * @param float $rez
