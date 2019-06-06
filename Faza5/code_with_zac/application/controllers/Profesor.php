@@ -323,7 +323,7 @@ class Profesor extends CI_Controller{
     }
     
     /**
-     * Autor:Iva Veljković
+     * Autor:Nedeljko Jokić
      * Funkcija poziva odgovarajuci model i ucitava stranicu za prikaz komentara o kursu 
      * 
      * @param

@@ -28,6 +28,9 @@ class Gost extends CI_Controller{
             redirect('Profesor');
         }
     }
+     public function ucitaj_home(){
+       $this->index();
+   }
     
     /**
      * Autor:Sara Milovanović

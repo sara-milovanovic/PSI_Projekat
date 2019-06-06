@@ -48,7 +48,7 @@ class Admin extends CI_Controller{
     }
     
     /**
-     * Autor:Iva Veljković
+     * Autor:Nedeljko Jokić
      * Funkcija koja ucitava pocetnu stranicu koju admin vidi kada se tek uloguje na sistem
      * 
      * @param 
@@ -116,7 +116,7 @@ class Admin extends CI_Controller{
     }
     
     /**
-     * Autor:Iva Veljković
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model i ucitava stranicu za pregled studenata, gde admin
      * ima mogucnost da obrise studente koji narusavaju pravila kursa
      *  
@@ -241,7 +241,7 @@ class Admin extends CI_Controller{
    }
    
    /**
-     * Autor:Iva Veljković
+     * Autor:Nedeljko Jokić
      * Funkcija poziva odgovarajuci model i ucitava stranicu za prikaz i brisanje komentara o kursu 
      * 
      * @param
@@ -367,7 +367,7 @@ class Admin extends CI_Controller{
     }
     
     /**
-     * Autor:Iva Veljković
+     * Autor:Nedeljko Jokić
      * Funkcija koja poziva odgovarajuci model koji ucitava stranicu sa svim komentarima
      *  
      * @param
